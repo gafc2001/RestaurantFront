@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 import db from '../assets/images/db.png';
 import { NavLink } from 'react-router-dom';
-class Header extends Component {
-    
-    render() {
-        return (
-            <header>
+export default function Header()
+{
+    return (
+            <header className="body">
                 <div className="icon__menu">
-                    <i  className="fas fa-bars" id="btn_open" onClick={this.props.DesplegarMenu}></i>
+                    <i  className="fas fa-bars" id="btn_open"></i>
                 </div>
-                
-
-
-
-                    <div className="options__menu">
+                <div className="menu__side" id="menu_side">
                     <div className="name__page">
                         <img src={db} className="app-logo" alt="logotipo" />
                         <h4>Delibakery</h4>
                     </div>
+
+                    <div className="options__menu">
 
                         <NavLink to="/home" className="selected">
                             <div className="option">
@@ -62,8 +59,8 @@ class Header extends Component {
                         </NavLink>
 
                     </div>
+
+                </div>
             </header>
         );
-    }
 }
-export default Header;
