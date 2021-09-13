@@ -2,54 +2,50 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { helpHttp } from "../../helpers/helpHttp";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 const initialForm = {
   idProduct: null,
-  nameCategory: null,
+  category: {idCategory:null,nameCategory:null},
   nameProduct: "",
   priceProduct: "",
-  availableProduct: "",
+  availableProduct: true,
+  img:null,
   description: "",
 };
 
 export const CrudFormPro = ({
-    data2,
-    createData,
-    updateData,
-    dataToEdit,
-    setDataToEdit,
-}
-) => {
-
-  let api = helpHttp();
+  createData,
+  updateData,
+  dataToEdit,
+  setDataToEdit,
+}) => {
+  
   let url = "https://restaurantrestapi.herokuapp.com/categories";
   const [db2, setDb2] = useState(null);
   const [Error, setError] = useState(null);
-  //  cargando
-  const [Loading, setLoading] = useState(false);
-  //controlar respuestas del servidor 
+  //controlar respuestas del servidor
   useEffect(() => {
-      setLoading(true);
-      helpHttp().get(url).then((res) =>{
-          //console.log(res);
-          if(!res.err){
-              setDb2(res);
-              setError(null);
-          } else {
-              setDb2(null);
-              setError(res);               
-          }
-      setLoading(false);
-         
+    
+    helpHttp()
+      .get(url)
+      .then((res) => {
+        //console.log(res);
+        if (!res.err) {
+          setDb2(res);
+          setError(null);
+        } else {
+          setDb2(null);
+          setError(res);
+        }
+
       });
   }, []);
 
-
-
-  
-    const [form, setform] = useState(initialForm);
+  const [form, setform] = useState(initialForm);
 
   useEffect(() => {
     if (dataToEdit) {
+      console.log(dataToEdit)
       setform(dataToEdit);
     } else {
       setform(initialForm);
@@ -58,41 +54,34 @@ export const CrudFormPro = ({
 
   //sirve para manipular el cambio de estado de initialForm
 
-  const handleSelectChange=(e)=> {
-    let categoryName = e.target.options[e.target.selectedIndex].text;
+   const selectChange = (e) => {
     let categoryId = e.target.value;
-    setform({idProduct: null,nameProduct: form.nameProduct,
-      priceProduct: form.priceProduct,
-      availableProduct: form.availableProduct,
-      description: form.description,category:{idCategory:categoryId,nameCategory:categoryName}});
-      
-  }
-      
+    db2.map((el) => el.idCategory == categoryId ? setform({...form,category:{idCategory:el.idCategory,nameCategory:el.nameCategory}}) :null);
+
+   };
 
   const handleChange = (e) => {
-    let valor = e.target.value;
-    if (e.target.type === 'select-one') { 
-    valor = e.target.options[e.target.selectedIndex].text;
-    }
+    // let valor = e.target.value;
+    // if (e.target.type === "select-one") {
+    //   valor = e.target.options[e.target.selectedIndex].text;
+    // }
     setform({
       ...form,
-      [e.target.name]: valor,
-  });
-  console.log(form)
+      [e.target.name]:e.target.value,
+    });
   };
-    
 
   const handleSubmit = (e) => {
+    console.log(form)
     e.preventDefault();
-    if (!form.nameProduct || !form.priceProduct || !form.description || !form.nameCategory) {
+    if (!form.nameProduct || !form.priceProduct || !form.description || form.category.idCategory === null) {
       alert("datos incompletos");
-      console.log(form)
+      
       return;
     }
-    
+
     //le pasamos los valores de estado de la variable form en las funciones create y update
     if (form.idProduct === null) {
-      
       createData(form);
     } else {
       updateData(form);
@@ -101,25 +90,31 @@ export const CrudFormPro = ({
     handleReset();
   };
 
-  const handleReset = (e) => {
+  const handleReset = () => {
     setform(initialForm);
     setDataToEdit(null);
   };
+  const fileChange = (e) =>{
+    let selectedFile = e.target.files[0]
+    setform({...form,img:selectedFile})
+    //console.log(form)
+  }
+  //console.log(form)
 
   return (
     <div>
       <h3>{dataToEdit ? "Editar" : "Agregar"}</h3>
       <form onSubmit={handleSubmit}>
-      {db2 && (
-          <select name="categoria" onChange={handleSelectChange}>
-          <option value="">seleccion</option>
-            {db2.map(Elemento =>(
-              <option 
-              key={Elemento.idCategory} value={Elemento.idCategory}>{Elemento.nameCategory}</option>
-            )) 
-            }
+        {db2 && (
+          <select  value={form.category.idCategory} onChange={selectChange}>
+            <option disabled selected value =''>seleccion</option>
+            {db2 && db2.map((Elemento) => (
+              <option key={Elemento.idCategory} value={Elemento.idCategory}>
+                {Elemento.nameCategory}
+              </option>
+            ))}
           </select>
-          )}
+        )}
 
         <input
           type="text"
@@ -135,12 +130,34 @@ export const CrudFormPro = ({
           onChange={handleChange}
           value={form.priceProduct}
         ></input>
+        {/* <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            id="flexRadioDefault1"
+            value={}
+            onChange={radioChange}
+          ></input>
+          <label class="form-check-label" for="flexRadioDefault1">
+            Agotado
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            id="flexRadioDefault2"
+            value={}
+            onChange={radioChange}
+          ></input>
+          <label class="form-check-label" for="flexRadioDefault2">
+            Disponible
+          </label>
+        </div> */}
         <input
-          type="text"
-          name="availableProduct"
-          placeholder="availableProduct"
-          onChange={handleChange}
-          value={form.availableProduct}
+          type="file"
+          name="file0"
+          onChange={fileChange}
         ></input>
         <input
           type="text"

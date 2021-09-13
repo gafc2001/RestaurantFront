@@ -10,10 +10,10 @@ const CrudTableRowProduct = ({ el, setDataToEdit, deleteData }) => {
       } = el;
       return (
         <tr>
-          
+          <td>{el.category.nameCategory && (el.category.nameCategory)}</td>
           <td>{nameProduct}</td>
           <td>{priceProduct}</td>
-          <td>{availableProduct}</td>
+          <td>Disponible</td>
           <td>{description}</td>
           <td>
             <button onClick={() => setDataToEdit(el)}>Editar</button>

@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-import Home from './components/Home';
 import Error from './components/Error';
 import Message from './components/Message';
 import Notify from './components/Notify';
 import Exit from './components/Exit';
-
 import { CrudProducts } from './components/crud/CrudProducts';
 import {Products} from './components/home/Products';
 import LoginUser from './components/Login/LoginUser';
