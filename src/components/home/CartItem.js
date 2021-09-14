@@ -2,9 +2,15 @@ import "../home/home.css";
 import "../home/style.css"
 const CartItem = ({ data, delFromCart }) => {
   let { idProduct, nameProduct, priceProduct, quantity } = data;
+  console.log(data)
   return (
     <div class="order-item order-grid">
-      <div class="order-img"></div>
+      <div class="order-img">
+      <img
+          src={`https://restaurantrestapi.herokuapp.com/api/products/${idProduct}/image`}
+          alt={nameProduct}
+        />
+      </div>
       <div class="order-info">
         <p>{nameProduct}</p>
         <p class="order-price">$ {priceProduct}</p>

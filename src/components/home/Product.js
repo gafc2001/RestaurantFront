@@ -16,11 +16,14 @@ const Product = ({ data, addToCart }) => {
         <p class="product-price">${priceProduct}.00</p>
         <p class="product-available">{description}</p>
       </div>
+      <div class="btn-container">
       <button
-        className="btn-primarys "
+        className="btn btn-primary "
         onClick={() => addToCart(idProduct)}
       > agregar
       </button>
+        </div>
+
     </div>
   );
 };
