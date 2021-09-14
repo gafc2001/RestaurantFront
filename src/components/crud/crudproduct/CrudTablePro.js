@@ -1,12 +1,12 @@
 import React from 'react'
 import { ProductItem } from './ProductItem';
-import SideBar from "./../../sidebar/Sidebar";
 import "./../../../assets/css/style.css";
 import "./../../../assets/css/configuration.css";
-
+import {ModalForm} from "./ModalForm";
 const CrudTablePro = ({ data, setDataToEdit, deleteData }) => {
     return (
         <div class="col-2">
+            
             <header class="settings-header">
                 <div class="settings-info">
                     <h3 class="settings-title">Products Managment</h3>
@@ -36,12 +36,7 @@ const CrudTablePro = ({ data, setDataToEdit, deleteData }) => {
                 </div>
             </header>
             <div class="settings-content">
-                <div class="product new-product center">
-                    <div>
-                        <div class="plus">+</div>
-                        <div >Add new dish</div>
-                    </div>
-                </div>
+                <ModalForm/>
                 {data.map(el =>
                     <ProductItem key={el.idProduct}
                         el={el}
