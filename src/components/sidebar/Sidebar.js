@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import "../sidebar/sidebar.css"
 import "../../assets/css/style.css";
 import logo from"../../assets/images/logo.png"
-export default function Sidebar()
+export default function Sidebar({role})
 {
     return (
         <nav className="sidebar">
@@ -52,7 +52,7 @@ export default function Sidebar()
                 </span>
             </li>
             </NavLink>
-            <NavLink to="/settings" className="sidebar-item center" activeClassName="sidebar-item-active">
+            {role==="ROLE_ADMIN" | role==="ROLE_MODERATOR" && (<NavLink to="/settings" className="sidebar-item center" activeClassName="sidebar-item-active">
             <li class="center">
                     <a href="./configuration.html">
                         <span class="center">
@@ -62,7 +62,7 @@ export default function Sidebar()
                         </span>
                     </a>
                 </li>
-            </NavLink>
+            </NavLink>)}
         </ul>
     </nav>
         );

@@ -51,6 +51,7 @@ export default function LoginUser() {
           
         }else{
           localStorage.setItem("id",result.id);
+          localStorage.setItem("role",result.roles[0]);
           localStorage.setItem("username",result.username);
           localStorage.setItem("email",result.email);
           localStorage.setItem("token",result.token);
@@ -88,33 +89,33 @@ export default function LoginUser() {
   return (
     <>
     {user && <Redirect to="/home" />}
-      <img src={backgroundImg} alt="" class="background"/>
+      <img src={backgroundImg} alt="" className="background"/>
       <SideBar/>
-        <div class="content center">
-            <div class="content-form">
-                <div class="form-logo">
+        <div className="content center">
+            <div className="content-form">
+                <div className="form-logo">
                     <img src={logoWhite} alt=""/>
                 </div>
                 <form onSubmit={handleSubmit}>  
-                    <div class="form-group">
+                    <div className="form-group">
                     {Error &&( (<Message msg={"Contrasena incorrecta o usuario"} 
             bgColor="#dc3545"/>))}
                         <label for="username">Username</label>
-                        <div class="input-container">
-                            <i class="fas fa-user-circle"></i>
-                            <input value={form.user} type="text" id="username" name="username" placeholder="Your username" class="input" onChange={handleChange}/>
+                        <div className="input-container">
+                            <i className="fas fa-user-circle"></i>
+                            <input value={form.user} type="text" id="username" name="username" placeholder="Your username" className="input" onChange={handleChange}/>
                         </div>
                        
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="password">Password</label>
-                        <div class="input-container">
-                            <i class="fas fa-lock"></i>
-                            <input value={form.password} type="password" id="password"  name="password" placeholder="Your password" class="input" onChange={handleChange}/>
+                        <div className="input-container">
+                            <i className="fas fa-lock"></i>
+                            <input value={form.password} type="password" id="password"  name="password" placeholder="Your password" className="input" onChange={handleChange}/>
                         </div>
 
                     </div>
-                    <button class="btn btn-primary" type="submit">
+                    <button className="btn btn-primary" type="submit">
                         Signin
                     </button>
                     <span className="button-separator"> <span>or</span> </span>

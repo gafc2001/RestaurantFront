@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { helpHttp } from "../../helpers/helpHttp";
-import Modal from "react-modal";
 import "./../../Login/form.css";
 
 const customStyles = {
@@ -36,7 +35,6 @@ const initialForm = {
 };
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement("#root");
 export const ModalForm = ({
   createData,
   updateData,
@@ -135,40 +133,10 @@ export const ModalForm = ({
     //console.log(form)
   };
   //console.log(form)
-
-  let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
   return (
     <div>
-      <div className="product new-product center" onClick={openModal}>
-        <div>
-          <div className="plus">+</div>
-          <div>Add new dish</div>
-        </div>
-      </div>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
         <div className="page-info">
-          <h2 className="page-name">{dataToEdit ? "Editar" : "Agregar"}</h2>
-          <h2 className="date">Producto</h2>
+          <h2 className="page-name">{dataToEdit ? "Edit" : "Add"}</h2>
         </div>
         <form onSubmit={handleSubmit}>
           {db2 && (
@@ -185,13 +153,12 @@ export const ModalForm = ({
             </select>
           )}
           <div className="form-group">
-            <label for="username">Product</label>
+            <label htmlFor="username">Product</label>
             <div className="input-container">
               <i className="fas fa-user-circle"></i>
               <input
                 type="text"
-                id="username"
-                placeholder="Your username"
+                placeholder="Name product.."
                 className="input"
                 name="nameProduct"
                 onChange={handleChange}
@@ -200,14 +167,13 @@ export const ModalForm = ({
             </div>
           </div>
           <div className="form-group">
-            <label for="username">Price</label>
+            <label htmlFor="username">Price</label>
             <div className="input-container">
               <i className="fas fa-user-circle"></i>
               <input
                 type="text"
-                id="username"
                 name="priceProduct"
-                placeholder="Your username"
+                placeholder="Price.."
                 className="input"
                 onChange={handleChange}
                 value={form.priceProduct}
@@ -215,26 +181,23 @@ export const ModalForm = ({
             </div>
           </div>
           <div className="form-group">
-            <label for="username">File</label>
+            <label htmlFor="username">File</label>
             <div className="input-container">
               <i className="fas fa-user-circle"></i>
               <input
                 type="file"
-                id="username"
-                placeholder="Your username"
                 name="file0"
                 onChange={fileChange}
               />
             </div>
           </div>
           <div className="form-group">
-            <label for="username">Description</label>
+            <label htmlFor="username">Description</label>
             <div className="input-container">
               <i className="fas fa-user-circle"></i>
               <input
                 type="text"
-                id="username"
-                placeholder="Your username"
+                placeholder="description.."
                 className="input"
                 name="description"
                 onChange={handleChange}
@@ -245,9 +208,8 @@ export const ModalForm = ({
           <button className="btn btn-primary" value="Enviar" type="submit">
             Save
           </button>
-          <button className="btn btn-secondary" value="limpiar">Discard</button>
+          <button type="reset" className="btn btn-secondary"  value="limpiar" onClick={handleReset} >Discard</button>
         </form>
-      </Modal>
     </div>
   );
 };

@@ -23,12 +23,14 @@ export const Products = () => {
   const [Loading, setLoading] = useState(false);
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
   const { db, cart } = state;
+  const [role,setrole] = useState(localStorage.getItem("role"))
+  //cuando esta nulo  la respuesta cae el programa arreglar
   useEffect(() => {
     setLoading(true);
     helpHttp()
       .get(url)
       .then((res) => {
-        //console.log(res);
+        console.log(res);
         if (!res.err) {
           dispatch({ type: TYPES.READ_ALL_DATA, payload: res });
           //setDb(res);
@@ -55,7 +57,7 @@ export const Products = () => {
 
   return (
     <div className="parent">
-      <Sidebar />
+      <Sidebar  role={role}/>
       <div class="column-1 content">
         <header class="header">
           <div class="header-info">
