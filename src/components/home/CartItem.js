@@ -1,5 +1,5 @@
 import "../home/home.css";
-import "../home/style.css"
+import "../../assets/css/style.css";
 const CartItem = ({ data, delFromCart }) => {
   let { idProduct, nameProduct, priceProduct, quantity } = data;
   return (

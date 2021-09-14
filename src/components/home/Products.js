@@ -11,7 +11,8 @@ import {
 } from "../../reducers/shoppingReducer";
 import { TYPES } from "../../acctions/shoppingAction";
 import Sidebar from "../sidebar/Sidebar";
-import "../home/style.css";
+
+import "../../assets/css/style.css";
 import "../home/home.css";
 import "../home/sidebar.css"
 
@@ -53,7 +54,7 @@ export const Products = () => {
   };
 
   return (
-    <div id="root">
+    <div className="parent">
       <Sidebar />
       <div class="column-1 content">
         <header class="header">

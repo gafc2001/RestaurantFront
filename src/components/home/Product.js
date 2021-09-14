@@ -1,6 +1,6 @@
 import React from "react";
 import "../home/home.css";
-import"../home/style.css"
+import "../../assets/css/style.css";
 const Product = ({ data, addToCart }) => {
   let { idProduct, nameProduct, priceProduct, description } = data;
   return (
