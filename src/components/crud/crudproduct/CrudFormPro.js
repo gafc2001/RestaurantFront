@@ -129,30 +129,6 @@ export const CrudFormPro = ({
           onChange={handleChange}
           value={form.priceProduct}
         ></input>
-        {/* <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            id="flexRadioDefault1"
-            value={}
-            onChange={radioChange}
-          ></input>
-          <label class="form-check-label" for="flexRadioDefault1">
-            Agotado
-          </label>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            id="flexRadioDefault2"
-            value={}
-            onChange={radioChange}
-          ></input>
-          <label class="form-check-label" for="flexRadioDefault2">
-            Disponible
-          </label>
-        </div> */}
         <input
           type="file"
           name="file0"

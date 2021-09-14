@@ -1,16 +1,17 @@
 import React ,{ Component } from 'react';
-import { FormGroup } from 'react-bootstrap';
-import {Button,Modal,ModalHeader,ModalBody,ModalFooter,Input, Label} from 'reactstrap';
+//import { FormGroup } from 'react-bootstrap';
+//import {Button,Modal,ModalHeader,ModalBody,ModalFooter,Input, Label} from 'reactstrap';
 import { useState} from "react";
 export default function Notify() {
     
-    const [state, setstate] = useState(false)
-   const abrirModal=()=>{
-        setstate(!state);
-    }
+//     const [state, setstate] = useState(false)
+//    const abrirModal=()=>{
+//         setstate(!state);
+    
         return(
             <>
-            <div className="principal">
+            <h1>noti</h1>
+            {/*<div className="principal">
                 <div className="secundario">
                     <Button color="success" onClick={abrirModal}>MOdal</Button>
                 </div>
@@ -32,7 +33,7 @@ export default function Notify() {
 
                     </ModalFooter>
                 </Modal>
-            </div>
+        </div>*/}
             </>
         );
     }
