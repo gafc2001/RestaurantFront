@@ -34,7 +34,7 @@ const CartItem = ({ data, delFromCart }) => {
             fill="#3B5162"
           />
         </svg>
-        <button onClick={() => delFromCart(idProduct)}>Eliminar de uno</button>
+        <button  onClick={() => delFromCart(idProduct)}>Eliminar de uno</button>
         <button onClick={() => delFromCart(idProduct, true)}>
           Eliminar categoria
         </button>

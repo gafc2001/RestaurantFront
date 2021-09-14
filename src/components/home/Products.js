@@ -13,7 +13,7 @@ import { TYPES } from "../../acctions/shoppingAction";
 import Sidebar from "../sidebar/Sidebar";
 import "../home/style.css";
 import "../home/home.css";
-import "../home/sidebar.css";
+import "../home/sidebar.css"
 
 export const Products = () => {
   let url = "https://restaurantrestapi.herokuapp.com/api/products";

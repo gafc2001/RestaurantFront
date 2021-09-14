@@ -1,5 +1,4 @@
 import { useState} from "react";
-import "bootstrap/dist/css/bootstrap.min.css"
 import delicius from '../../assets/images/delicius.jpg'
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router";

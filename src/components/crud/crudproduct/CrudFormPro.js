@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { helpHttp } from "../../helpers/helpHttp";
 
-import "bootstrap/dist/css/bootstrap.min.css";
 const initialForm = {
   idProduct: null,
   category: {idCategory:'',nameCategory:null},
