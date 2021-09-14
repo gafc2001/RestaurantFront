@@ -4,30 +4,34 @@ const CartItem = ({ data, delFromCart }) => {
   let { idProduct, nameProduct, priceProduct, quantity } = data;
   console.log(data)
   return (
-    <div class="order-item order-grid">
-      <div class="order-img">
+    <div className="order-item order-grid">
+      <div className="order-img">
       <img
           src={`https://restaurantrestapi.herokuapp.com/api/products/${idProduct}/image`}
           alt={nameProduct}
         />
       </div>
-      <div class="order-info">
+      <div className="order-info">
         <p>{nameProduct}</p>
-        <p class="order-price">$ {priceProduct}</p>
+        <p className="order-price">$ {priceProduct}</p>
       </div>
-      <div class="order-qty input-container">
-        <input type="text" name="quantity" value={quantity} class="input" />
+      <div className="order-qty input-container">
+        <input type="text" name="quantity" value={quantity} className="input" />
       </div>
-      <div class="order-total ">$ {quantity * priceProduct}</div>
-
-      <div class="order-msg input-container input-center">
+      <div className="order-total ">
+        $ {quantity * priceProduct}
+      </div>
+      <div className="order-msg input-container input-center">
         <input
           type="text"
           placeholder="Please just a little bit spicy only"
-          class="input"
+          className="input"
         />
       </div>
-      <div class="order-delete center">
+      <div className="btn-order order-delete center"  onClick={() => delFromCart(idProduct)}>
+        <i class="fas fa-minus-square"></i>
+      </div>
+      <div className="btn-order order-delete-category center" onClick={() => delFromCart(idProduct, true)}>
         <svg
           width="24"
           height="24"
@@ -40,13 +44,7 @@ const CartItem = ({ data, delFromCart }) => {
             fill="#3B5162"
           />
         </svg>
-        <button  onClick={() => delFromCart(idProduct)}>Eliminar de uno</button>
-        <button onClick={() => delFromCart(idProduct, true)}>
-          Eliminar categoria
-        </button>
       </div>
-
-      
     </div>
   );
 };
