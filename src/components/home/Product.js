@@ -17,13 +17,10 @@ const Product = ({ data, addToCart }) => {
         <p class="product-available">{description}</p>
       </div>
       <div class="btn-container">
-      <button
-        className="btn btn-primary "
-        onClick={() => addToCart(idProduct)}
-      > agregar
-      </button>
-        </div>
-
+        <button className="btn btn-primary " onClick={() => addToCart(idProduct)}>
+          <i class="fas fa-shopping-cart"></i>  Add 
+        </button>
+      </div>
     </div>
   );
 };

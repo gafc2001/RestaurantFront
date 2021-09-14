@@ -24,7 +24,7 @@
     margin-top: 8rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 8rem 2rem;
+    gap: 10rem 2rem;
     
 }
 .product-card{
@@ -130,18 +130,28 @@
 }
 .order-msg{
     grid-row: 2 / 3;
-    grid-column: 1 / 4;
+    grid-column: 1 / 3;
+}
+.btn-order{
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 15%;
+    border: 1px solid;
 }
 .order-delete{
     grid-row: 2 / 3;
-    grid-column: 4 / 5;
-    width: 4.8rem;
-    height: 4.8rem;
-    border: var(--red-color) 1px solid;
-    border-radius: 15%;
+    grid-column: 3 / 4;
+    border-color: var(--blue-color);
+    color: var(--blue-color);
+    font-size: 2rem;
 }
-.order-delete path{
-    fill: var(--primary-color);
+.order-delete-category path{
+    fill: var(--red-color);
+}
+.order-delete-category{
+    grid-row: 2 / 3;
+    grid-column: 4 / 5;
+    border-color: var(--red-color);
 }
 .order-resume{
     margin-bottom: 1rem;
