@@ -45,6 +45,8 @@ const CartItem = ({ data, delFromCart }) => {
           Eliminar categoria
         </button>
       </div>
+
+      
     </div>
   );
 };

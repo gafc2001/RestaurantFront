@@ -97,6 +97,8 @@ export default function LoginUser() {
                 </div>
                 <form onSubmit={handleSubmit}>  
                     <div class="form-group">
+                    {Error &&( (<Message msg={"Contrasena incorrecta o usuario"} 
+            bgColor="#dc3545"/>))}
                         <label for="username">Username</label>
                         <div class="input-container">
                             <i class="fas fa-user-circle"></i>
@@ -110,8 +112,7 @@ export default function LoginUser() {
                             <i class="fas fa-lock"></i>
                             <input value={form.password} type="password" id="password"  name="password" placeholder="Your password" class="input" onChange={handleChange}/>
                         </div>
-                        {Error &&( (<Message msg={"Contrasena incorrecta o usuario"} 
-            bgColor="#dc3545"/>))}
+
                     </div>
                     <button class="btn btn-primary" type="submit">
                         Login
