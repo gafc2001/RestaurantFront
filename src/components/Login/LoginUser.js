@@ -5,6 +5,18 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
 import { Message } from "../crud/Message";
 
+//Components
+import SideBar from "./../sidebar/Sidebar"
+
+//Styles
+import "./form.css";
+import "./../../assets/css/style.css";
+
+//Images
+import logoWhite from "./../../assets/images/logo-white.png";
+import backgroundImg from '../../assets/images/background.jpg';
+
+
 const initialForm = {
   username: "",
   name: "",
@@ -75,46 +87,40 @@ export default function LoginUser() {
 };
 
   return (
-    <div>
-      {!user ?
-       <section className="contact-box">
-       <div className="row no-gutters bg-dark">
-           <div className="col-xl-5 col-lg-12 register-bg" style={{ backgroundImage: `url(${delicius})` }} >             
-            <div className="position-absolute testiomonial p-4">
-                <h3 className="font-weight-bold text-light">Los más deliciosos platos.</h3>
-                <p className="lead text-light">Tu paladar se aproxima al éxtasis.</p>
-            </div>
-           </div>
-           <div className="col-xl-7 col-lg-12 d-flex">
-                <div className="container align-self-center p-6">
-                    <h1 className="font-weight-bold mb-3 text-light">Inicia sesion</h1>
-                    <p className="text-muted mb-5">Ingresa la siguiente información para iniciar Sesion.</p>
-                    {Error &&( (<Message msg={"Contrasena incorrecta o usuario"} 
-            bgColor="#dc3545"/>))}
-
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-row mb-2">
-                            <div className="form-group col-md-4">
-                                <label className="font-weight-bold text-light">Usuario <span className="text-danger">*</span></label>
-                                <input type="text"   name="username" onChange={handleChange} className="form-control" placeholder="Tu usuario" value={form.username}></input>
-                            </div>
-                            <div className="form-group col-md-4">
-                                <label className="font-weight-bold text-light">Contrasena <span className="text-danger">*</span></label>
-                                <input type="password"  name="password" onChange={handleChange} className="form-control" placeholder="Tu contraseña" value={form.password}></input>
-                            </div>
-                        </div>
-          
-                        <button className="btn btn-primary width-100 ">Inicia Sesion</button>
-                        <Link className="btn btn-primary width-100 mx-2" to="/register">Registrar</Link>
-
-                    </form>
-                    <small className="d-inline-block text-muted mt-5">Todos los derechos reservados | © 2021 Delibakery</small>
+    <>
+    {user && <Redirect to="/home" />}
+      <img src={backgroundImg} alt="" class="background"/>
+      <SideBar/>
+        <div class="content center">
+            <div class="content-form">
+                <div class="form-logo">
+                    <img src={logoWhite} alt=""/>
                 </div>
-           </div>
-       </div>
-   </section>
-:(<Redirect to="/home"/>)}
-    </div>
+                <form onSubmit={handleSubmit}>  
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <div class="input-container">
+                            <i class="fas fa-user-circle"></i>
+                            <input value={form.user} type="text" id="username" name="username" placeholder="Your username" class="input" onChange={handleChange}/>
+                        </div>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-container">
+                            <i class="fas fa-lock"></i>
+                            <input value={form.password} type="password" id="password"  name="password" placeholder="Your password" class="input" onChange={handleChange}/>
+                        </div>
+                        {Error &&( (<Message msg={"Contrasena incorrecta o usuario"} 
+            bgColor="#dc3545"/>))}
+                    </div>
+                    <button class="btn btn-primary" type="submit">
+                        Login
+                    </button>
+                </form>
+            </div>
+        </div>
+    </>
   );
   }
 

@@ -1,0 +1,38 @@
+.content-form{
+    background-color: var(--base-dark-primary);
+    border-radius: 8px;
+    padding: 3rem;
+    box-shadow: var(--shadow);
+    position: relative;
+
+}
+.content-form .form-logo{
+    margin: 0 auto;
+    margin-bottom: 3rem;
+    width: 80%;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+.form-group label{
+    color: var(--text-white);
+    font-size: 2rem;
+    font-weight: var(--text-regular);
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+.form-group .input{
+    padding: 1rem .5rem;
+}
+.input-container i{
+    font-size: 1.4rem;
+}
+.background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: blur(12px);
+}
