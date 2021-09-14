@@ -5,7 +5,6 @@ import { useState, useEffect} from 'react';
 import { helpHttp } from '../helpers/helpHttp';
 import { Message } from './Message';
 import { Loader } from './Loader';
-import Header from '../Header';
 
 
 
@@ -20,7 +19,7 @@ export const CrudProducts = () => {
 //  cargando
     const [Loading, setLoading] = useState(false);
     let api = helpHttp();
-    let url = "https://restaurantrestapi.herokuapp.com/products";
+    let url = "https://restaurantrestapi.herokuapp.com/api/categories";
 
     //controlar respuestas del servidor 
     useEffect(() => {
@@ -104,7 +103,6 @@ export const CrudProducts = () => {
 
     return (
         <div>
-            <Header/>
             <h5>CRUD</h5>
             <button>CRUD CATEGORIA</button>
             <button>CRUD PRODUCTOS</button>

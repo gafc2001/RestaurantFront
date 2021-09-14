@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import './assets/css/App.css';
-
-
 //importando componentes
 import Router from './Router'
 

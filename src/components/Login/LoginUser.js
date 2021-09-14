@@ -1,5 +1,4 @@
 import { useState} from "react";
-import Header from "../Header";
 import "bootstrap/dist/css/bootstrap.min.css"
 import delicius from '../../assets/images/delicius.jpg'
 import { Link } from "react-router-dom";
@@ -77,7 +76,6 @@ export default function LoginUser() {
 
   return (
     <div>
-      <Header/>
       {!user ?
        <section className="contact-box">
        <div className="row no-gutters bg-dark">

@@ -1,17 +1,27 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-const Product = ({data,addToCart}) => {
+import "../home/home.css";
+import"../home/style.css"
+const Product = ({ data, addToCart }) => {
   let { idProduct, nameProduct, priceProduct, description } = data;
   return (
-    <div className="card">
-      
-      <img src={`https://restaurantrestapi.herokuapp.com/products/${idProduct}/image`} alt={nameProduct}/>
-      <h4>{nameProduct}</h4>
-      <h5>${priceProduct}.00</h5>
-      <p>
-          {description}
-      </p>
-      <button className="btn btn-outline-secondary " onClick={()=> addToCart(idProduct)}>agregar</button>
+    <div class="product-card">
+      <div class="card-image center">
+        <img
+          src={`https://restaurantrestapi.herokuapp.com/api/products/${idProduct}/image`}
+          alt={nameProduct}
+        />
+      </div>
+      <div class="card-info">
+        <p class="product-name">{nameProduct}</p>
+        <p class="product-price">${priceProduct}.00</p>
+        <p class="product-available">{description}</p>
+      </div>
+
+      <button
+        className="btn btn-outline-secondary "
+        onClick={() => addToCart(idProduct)}
+      > agregar
+      </button>
     </div>
   );
 };

@@ -1,8 +1,7 @@
 import { useState} from "react";
-import "bootstrap/dist/css/bootstrap.min.css"
+//import "bootstrap/dist/css/bootstrap.min.css"
 import delicius from '../../assets/images/delicius.jpg'
 import { Redirect } from "react-router";
-import Header from "../Header";
 const initialForm = {
   username:"",
   email:"",
@@ -59,7 +58,6 @@ const [Login,setLogin] = useState(false);
 
   return (
     <div>
-      <Header/>
         {!Login ?(
  <section className="contact-box">
        <div className="row no-gutters bg-dark">

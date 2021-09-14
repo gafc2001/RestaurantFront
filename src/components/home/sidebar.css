@@ -1,0 +1,47 @@
+.sidebar{
+    background-color: var(--base-dark-primary);
+    height: 100vh;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    position: fixed;
+}
+.sidebar::-webkit-scrollbar{
+    display: none;
+}
+.sidebar-menu{
+    padding: 1rem 0 1rem 1rem;
+}
+.logo{
+    background-color: #FFF;
+    border-radius: inherit;
+    margin-bottom: 2rem;
+}
+.sidebar-item{
+    padding: 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    width: 7rem;
+    height: 7rem;
+}
+.sidebar-item span{
+    border-radius: 1rem;
+    width: 5rem;
+    height: 5rem;
+}
+
+.sidebar-item path{
+    fill: var(--primary-color);
+}
+/*Active link*/
+.sidebar-item-active{
+    background-color: var(--base-dark-secondary);
+}
+.sidebar-item-active span{
+    background-color: var(--primary-color);
+    box-shadow: var(--shadow);
+}
+.sidebar-item-active path{
+    fill : var(--text-white);
+    
+}

@@ -23,6 +23,8 @@ class Router extends Component {
                     <Route exact path='/settings' component={CrudAppPro} />
                     <Route exact path='/exit' component={Exit} />
                     <Route exact path='/register' component={RegisterUser} />
+                    <Route exact path='/categories' component={CrudProducts} />
+                    
 
                     <Route component={Error} />
                 </Switch>

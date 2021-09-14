@@ -16,7 +16,7 @@ export const CrudAppPro = () => {
   const [Loading, setLoading] = useState(false);
 
   let api = helpHttp();
-  let url = "https://restaurantrestapi.herokuapp.com/products";
+  let url = "https://restaurantrestapi.herokuapp.com/api/products";
 
   //controlar respuestas del servidor
   useEffect(() => {
@@ -55,7 +55,7 @@ export const CrudAppPro = () => {
             method: "POST",
           };
           fetch(
-            `https://restaurantrestapi.herokuapp.com/products/${res.idProduct}/image`,
+            `https://restaurantrestapi.herokuapp.com/api/products/${res.idProduct}/image`,
             requestOptions
           )
             .then((resp) => resp)
@@ -96,7 +96,7 @@ export const CrudAppPro = () => {
           method: "POST",
         };
         fetch(
-          `https://restaurantrestapi.herokuapp.com/products/${data.idProduct}/image`,
+          `https://restaurantrestapi.herokuapp.com/api/products/${data.idProduct}/image`,
           requestOptions
         )
           .then((resp) => resp)

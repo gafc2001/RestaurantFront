@@ -5,7 +5,7 @@ import { helpHttp } from "../../helpers/helpHttp";
 import "bootstrap/dist/css/bootstrap.min.css";
 const initialForm = {
   idProduct: null,
-  category: {idCategory:null,nameCategory:null},
+  category: {idCategory:'',nameCategory:null},
   nameProduct: "",
   priceProduct: "",
   availableProduct: true,
@@ -20,7 +20,7 @@ export const CrudFormPro = ({
   setDataToEdit,
 }) => {
   
-  let url = "https://restaurantrestapi.herokuapp.com/categories";
+  let url = "https://restaurantrestapi.herokuapp.com/api/categories";
   const [db2, setDb2] = useState(null);
   const [Error, setError] = useState(null);
   //controlar respuestas del servidor
@@ -74,7 +74,7 @@ export const CrudFormPro = ({
   const handleSubmit = (e) => {
     console.log(form)
     e.preventDefault();
-    if (!form.nameProduct || !form.priceProduct || !form.description || form.category.idCategory === null) {
+    if (!form.nameProduct || !form.priceProduct || !form.description || form.category.idCategory === '') {
       alert("datos incompletos");
       
       return;
