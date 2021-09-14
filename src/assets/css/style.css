@@ -56,7 +56,10 @@ a{
     --spread : 0;
     --shadow-color : rgba(234, 124, 105, 0.4);    
 }
-
+button{
+    outline: none;
+    border: none;
+}
 body{
     font-family: var(--text-family);
 }
@@ -118,6 +121,9 @@ body{
     align-items: center;
 }
 .input-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: var(--form-color);
     border-radius: .8rem;
     border: 1px solid var(--form-border);

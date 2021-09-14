@@ -114,8 +114,16 @@ export default function LoginUser() {
             bgColor="#dc3545"/>))}
                     </div>
                     <button class="btn btn-primary" type="submit">
-                        Login
+                        Signin
                     </button>
+                    <span className="button-separator"> <span>or</span> </span>
+                    <Link to="/register">
+                      <div className="btn btn-secondary">
+                        Register
+                      </div>
+                    </Link>
+
+                    
                 </form>
             </div>
         </div>
