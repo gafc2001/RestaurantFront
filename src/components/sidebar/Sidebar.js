@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import "../sidebar/sidebar.css"
-import "../sidebar/style.css"
+import "../../assets/css/style.css";
 import logo from"../../assets/images/logo.png"
 export default function Sidebar()
 {
