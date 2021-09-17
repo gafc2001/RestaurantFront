@@ -139,7 +139,7 @@ export const ModalForm = ({
   };
 
   return (
-    <div>
+    <>
       <div className="page-info">
         {Error && (
           <Message
@@ -245,6 +245,6 @@ export const ModalForm = ({
           Discard
         </button>
       </form>
-    </div>
+    </>
   );
 };
