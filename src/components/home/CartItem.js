@@ -2,7 +2,6 @@ import "../home/home.css";
 import "../../assets/css/style.css";
 const CartItem = ({ data, delFromCart }) => {
   let { idProduct, nameProduct, priceProduct, quantity } = data;
-  console.log(data)
   return (
     <div className="order-item order-grid">
       <div className="order-img">
@@ -16,7 +15,7 @@ const CartItem = ({ data, delFromCart }) => {
         <p className="order-price">$ {priceProduct}</p>
       </div>
       <div className="order-qty input-container">
-        <input type="text" name="quantity" value={quantity} className="input" />
+        <input type="text" name="quantity" placeholder={quantity} disabled className="input" />
       </div>
       <div className="order-total ">
         $ {quantity * priceProduct}

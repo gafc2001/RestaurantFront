@@ -8,10 +8,9 @@ export const shoppingInitialState = {
 export function shoppingReducer(state,action){
     switch(action.type){
         case TYPES.READ_ALL_DATA:{
-            console.log(action.payload)
             return{
                 ...state,
-                db:action.payload.map(data=>data),
+               db:action.payload.map(data=>data),
             }
 
         }
@@ -51,6 +50,8 @@ export function shoppingReducer(state,action){
             };
             
         }
+        case TYPES.NO_DATA:
+            return shoppingInitialState;
         default:
             return state;
     }

@@ -105,13 +105,6 @@ export default function RegisterUser() {
                         </div>
                     </div>
                     
-                    <div className="form-group">
-                        <label for="rpt-password">Repeat Password</label>
-                        <div className="input-container">
-                            <i className="fas fa-lock"></i>
-                            <input type="password" id="rpt-password" placeholder="Repeat password" classNameName="input"/>
-                        </div>
-                    </div>
                     <button className="btn btn-primary" type="submit">
                         Login
                     </button>

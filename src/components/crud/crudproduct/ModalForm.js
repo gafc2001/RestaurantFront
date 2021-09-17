@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { helpHttp } from "../../helpers/helpHttp";
 import "./../../Login/form.css";
+import { Message } from "../Message";
 
 const customStyles = {
   content: {
@@ -49,8 +50,7 @@ export const ModalForm = ({
     helpHttp()
       .get(url)
       .then((res) => {
-        //console.log(res);
-        if (!res.err) {
+        if (res.length > 0) {
           setDb2(res);
           setError(null);
         } else {
@@ -64,7 +64,7 @@ export const ModalForm = ({
 
   useEffect(() => {
     if (dataToEdit) {
-      console.log(dataToEdit);
+      //console.log(dataToEdit);
       setform(dataToEdit);
     } else {
       setform(initialForm);
@@ -100,7 +100,6 @@ export const ModalForm = ({
   };
 
   const handleSubmit = (e) => {
-    console.log(form);
     e.preventDefault();
     if (
       !form.nameProduct ||
@@ -130,86 +129,122 @@ export const ModalForm = ({
   const fileChange = (e) => {
     let selectedFile = e.target.files[0];
     setform({ ...form, img: selectedFile });
-    //console.log(form)
   };
-  //console.log(form)
+  const handleAvariable = (e) => {
+    if (e.target.value === "sold out") {
+      setform({ ...form, availableProduct: false });
+    } else {
+      setform({ ...form, availableProduct: true });
+    }
+  };
+
   return (
     <div>
-        <div className="page-info">
-          <h2 className="page-name">{dataToEdit ? "Edit" : "Add"}</h2>
+      <div className="page-info">
+        {Error && (
+          <Message
+            msg={"Error al comunicarse con el servidor"}
+            bgColor="#dc3545"
+          />
+        )}
+        <h2 className="page-name">{dataToEdit ? "Edit" : "Add"}</h2>
+      </div>
+      <form onSubmit={handleSubmit}>
+        {db2 && (
+          <select value={form.category.idCategory} onChange={selectChange}>
+            <option disabled value="">
+              seleccion
+            </option>
+            {db2 &&
+              db2.map((Elemento) => (
+                <option key={Elemento.idCategory} value={Elemento.idCategory}>
+                  {Elemento.nameCategory}
+                </option>
+              ))}
+          </select>
+        )}
+        <div className="form-group">
+          <label htmlFor="product">Product</label>
+          <div className="input-container">
+            <i className="fas fa-user-circle"></i>
+            <input
+              type="text"
+              placeholder="Name product.."
+              className="input"
+              name="nameProduct"
+              onChange={handleChange}
+              value={form.nameProduct}
+            />
+          </div>
         </div>
-        <form onSubmit={handleSubmit}>
-          {db2 && (
-            <select value={form.category.idCategory} onChange={selectChange}>
-              <option disabled selected value="">
-                seleccion
-              </option>
-              {db2 &&
-                db2.map((Elemento) => (
-                  <option key={Elemento.idCategory} value={Elemento.idCategory}>
-                    {Elemento.nameCategory}
-                  </option>
-                ))}
-            </select>
-          )}
-          <div className="form-group">
-            <label htmlFor="username">Product</label>
-            <div className="input-container">
-              <i className="fas fa-user-circle"></i>
-              <input
-                type="text"
-                placeholder="Name product.."
-                className="input"
-                name="nameProduct"
-                onChange={handleChange}
-                value={form.nameProduct}
-              />
-            </div>
+        <div className="form-group">
+          <label htmlFor="price">Price</label>
+          <div className="input-container">
+            <i className="fas fa-user-circle"></i>
+            <input
+              type="number"
+              name="priceProduct"
+              placeholder="Price.."
+              className="input"
+              onChange={handleChange}
+              value={form.priceProduct}
+            />
           </div>
-          <div className="form-group">
-            <label htmlFor="username">Price</label>
-            <div className="input-container">
-              <i className="fas fa-user-circle"></i>
-              <input
-                type="text"
-                name="priceProduct"
-                placeholder="Price.."
-                className="input"
-                onChange={handleChange}
-                value={form.priceProduct}
-              />
-            </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="file">File</label>
+          <div className="input-container">
+            <i className="fas fa-user-circle"></i>
+            <input type="file" name="file0" onChange={fileChange} />
           </div>
-          <div className="form-group">
-            <label htmlFor="username">File</label>
-            <div className="input-container">
-              <i className="fas fa-user-circle"></i>
-              <input
-                type="file"
-                name="file0"
-                onChange={fileChange}
-              />
-            </div>
+        </div>
+        <div className="form-group">
+          <label htmlFor="desct">Description</label>
+          <div className="input-container">
+            <i className="fas fa-user-circle"></i>
+            <input
+              type="text"
+              placeholder="description.."
+              className="input"
+              name="description"
+              onChange={handleChange}
+              value={form.description}
+            />
           </div>
-          <div className="form-group">
-            <label htmlFor="username">Description</label>
-            <div className="input-container">
-              <i className="fas fa-user-circle"></i>
-              <input
-                type="text"
-                placeholder="description.."
-                className="input"
-                name="description"
-                onChange={handleChange}
-                value={form.description}
-              />
-            </div>
-          </div>
-          <button className="btn btn-primary" value="Enviar" type="submit">
-            Save
-          </button>
-          <button type="reset" className="btn btn-secondary"  value="limpiar" onClick={handleReset} >Discard</button>
-        </form>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="avariable">Availability</label>
+          <input
+            type="radio"
+            name="Availability"
+            id="available"
+            onClick={handleAvariable}
+            value="available"
+            defaultChecked
+          />
+          <label htmlFor="sold out">avariable</label>
+          <input
+            type="radio"
+            name="Availability"
+            id="sold out"
+            onClick={handleAvariable}
+            value="sold out"
+          />
+          <label htmlFor="avariable">sold out</label>
+        </div>
+        <button className="btn btn-primary" value="Enviar" type="submit">
+          Save
+        </button>
+        <button
+          type="reset"
+          className="btn btn-secondary"
+          value="limpiar"
+          onClick={handleReset}
+        >
+          Discard
+        </button>
+      </form>
     </div>
   );
 };

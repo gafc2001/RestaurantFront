@@ -24,19 +24,19 @@ export const Products = () => {
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
   const { db, cart } = state;
   const [role,setrole] = useState(localStorage.getItem("role"))
-  //cuando esta nulo  la respuesta cae el programa arreglar
+  
+  
+  
   useEffect(() => {
     setLoading(true);
     helpHttp()
       .get(url)
       .then((res) => {
-        console.log(res);
-        if (!res.err) {
+        if (res.length>0) {
           dispatch({ type: TYPES.READ_ALL_DATA, payload: res });
-          //setDb(res);
           setError(null);
         } else {
-          //setDb(null);
+          dispatch({ type: TYPES.NO_DATA});
           setError(res);
         }
         setLoading(false);
@@ -47,7 +47,6 @@ export const Products = () => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
   };
   const delFromCart = (id, all = false) => {
-    console.log(id, all);
     if (all) {
       dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id });
     } else {
@@ -132,9 +131,9 @@ export const Products = () => {
           <p class="col-3">Price</p>
         </div>
         <div class="order-list">
-          {cart.map((item, index) => (
+         {cart.map((item, index) => (
             <CartItem key={index} data={item} delFromCart={delFromCart} />
-          ))}
+         ))}
         </div>
         <div class="order-resume">
           <div class="resume-item">
