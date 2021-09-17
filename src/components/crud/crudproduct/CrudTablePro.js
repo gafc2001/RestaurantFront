@@ -11,7 +11,7 @@ const CrudTablePro = ({
   createData,
   updateData,
   dataToEdit,
-  Loading
+  Loading,
 }) => {
   return (
     <div className="col-2">
@@ -49,13 +49,19 @@ const CrudTablePro = ({
         </div>
       </header>
       <div className="settings-content">
-      {Loading && <Loader />}
-        <ModalForm
+        {Loading && <Loader />}
+        <div class="product new-product center">
+          <div>
+            <div class="plus">+</div>
+            <div>Add new dish</div>
+          </div>
+        </div>
+        {/*<ModalForm
           createData={createData}
           updateData={updateData}
           dataToEdit={dataToEdit}
           setDataToEdit={setDataToEdit}
-        />
+        />*/}
         {data.length > 0 ? (
           data.map((el) => (
             <ProductItem
