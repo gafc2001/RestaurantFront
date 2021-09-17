@@ -3,7 +3,7 @@ import { ProductItem } from "./ProductItem";
 import "./../../../assets/css/style.css";
 import "./../../../assets/css/configuration.css";
 import { ModalForm } from "./ModalForm";
-import { Loader } from "../Loader";
+import { Loader } from "./../Loader";
 const CrudTablePro = ({
   data,
   setDataToEdit,

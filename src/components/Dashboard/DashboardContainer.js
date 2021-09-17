@@ -31,10 +31,18 @@ const DashboardContainer = (props) => {
                         <li className="category-item category-active">
                             <span>Hot Dishes</span>
                         </li>
-                        <li className="category-item">Fast Food</li>
-                        <li className="category-item">Soups</li>
-                        <li className="category-item">Desserts</li>
-                        <li className="category-item">Salads</li>
+                        <li className="category-item category-active">
+                            <span>Fast Food</span>
+                        </li>
+                        <li className="category-item">
+                            <span>Soups</span>
+                        </li>
+                        <li className="category-item">
+                            <span>Desserts</span>
+                        </li>
+                        <li className="category-item">
+                            <span>Salads</span>
+                        </li>
                     </ul>
                 </div>
             </header>
@@ -45,4 +53,4 @@ const DashboardContainer = (props) => {
     );
 }
 
-export {DashboardContainer};
+export { DashboardContainer };

@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React from 'react';
+import { useState, useEffect, useReducer } from "react";
 import CrudTablePro from "./CrudTablePro";
 import { helpHttp } from "../../helpers/helpHttp";
 import { Message } from "../Message";
 
-import {DashboardNav} from './../Dashboard/DashboardNav';
-import Sidebar from "../../sidebar/Sidebar";
+import { DashboardNav } from './../DashboardNav';
+import Sidebar from "./../../sidebar/Sidebar";
 import { crudInitialState, crudReducer } from "../../../reducers/crudReducer";
 import { TYPES } from "../../../acctions/crudAction";
 
@@ -146,7 +147,7 @@ export const CrudAppPro = () => {
           </div>
         </header>
         <main className="settings">
-          <DashboardNav/>
+          <DashboardNav />
           {db && (
             <CrudTablePro
               data={db}

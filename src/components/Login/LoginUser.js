@@ -2,7 +2,7 @@ import { useState} from "react";
 
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
-import { Message } from "../crud/Message";
+import { Message } from "../Dashboard/Message";
 
 //Components
 import SideBar from "./../sidebar/Sidebar"

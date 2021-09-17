@@ -5,11 +5,12 @@ import Error from './components/Error';
 import Message from './components/Message';
 import Notify from './components/Notify';
 import Exit from './components/Exit';
-import { CrudProducts } from './components/crud/CrudProducts';
+import { CrudProducts } from './components/Dashboard/Category/CrudProducts';
 import {Products} from './components/home/Products';
 import LoginUser from './components/Login/LoginUser';
 import RegisterUser from './components/Login/RegisterUser';
-import {CrudAppPro} from './components/crud/crudproduct/CrudAppPro'
+import {CrudAppPro} from './components/Dashboard/Product/CrudAppPro';
+
 class Router extends Component {
 
     render() {

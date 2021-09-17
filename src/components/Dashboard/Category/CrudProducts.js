@@ -2,14 +2,14 @@ import React from 'react'
 import { CrudFormCategory } from './CrudFormCategory';
 import CrudTable from './CrudTable';
 import { useState, useEffect } from 'react';
-import { helpHttp } from '../helpers/helpHttp';
-import { Message } from './Message';
-import { Loader } from './Loader';
-import SideBar from './../sidebar/Sidebar';
-import {DashboardNav} from './Dashboard/DashboardNav';
-import {DashboardContainer} from './Dashboard/DashboardContainer';
-import "./../../assets/css/style.css";
-import "./../../assets/css/configuration.css";
+import { helpHttp } from './../../helpers/helpHttp';
+import { Message } from './../Message';
+import { Loader } from './../Loader';
+import SideBar from './../../sidebar/Sidebar';
+import {DashboardNav} from '../DashboardNav';
+import {DashboardContainer} from '../DashboardContainer';
+import "./../../../assets/css/style.css";
+import "./../../../assets/css/configuration.css";
 
 export const CrudProducts = () => {
 
