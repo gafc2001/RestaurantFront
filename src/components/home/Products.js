@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useReducer } from "react";
-import { Loader } from "../crud/Loader";
-import { Message } from "../crud/Message";
+import { Loader } from "../Dashboard/Loader";
+import { Message } from "../Dashboard/Message";
 import { helpHttp } from "../helpers/helpHttp";
 import Product from "./Product";
 import CartItem from "./CartItem";
