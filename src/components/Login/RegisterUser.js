@@ -8,13 +8,12 @@ import { Redirect } from "react-router";
 import SideBar from "./../sidebar/Sidebar"
 
 //Styles
-import "./form.css";
+import "./../../assets/css/form.css";
 import "./../../assets/css/style.css";
 
 //Images
 import logoWhite from "./../../assets/images/logo-white.png";
 import backgroundImg from '../../assets/images/background.jpg';
-
 
 const initialForm = {
   username: "",

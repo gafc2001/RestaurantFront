@@ -1,8 +1,7 @@
 .content-form{
     background-color: var(--base-dark-primary);
     border-radius: 8px;
-    padding: 3rem;
-    box-shadow: var(--shadow);
+    padding: 2rem;
     position: relative;
 
 }
@@ -19,8 +18,8 @@
 }
 .form-group label{
     color: var(--text-white);
-    font-size: 2rem;
-    font-weight: var(--text-regular);
+    font-size: 1.6rem;
+    font-weight: var(--text-semi-bold);
     margin-bottom: 1rem;
     padding-left: 1rem;
 }

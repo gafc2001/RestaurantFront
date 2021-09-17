@@ -28,6 +28,13 @@ a{
 
     --primary-color : #EA7C69;
     --secondary-color : #9288E0;
+    /*Extras colors*/
+    --green-color : #50D1AA;
+    --red-color : #FF7CA3;
+    --orange-color : #FF7CA3;
+    --blue-color : #65B0F6;
+    --purple-color : #9290FE;
+    
     /*Text colors*/
     --text-dark : #3B5162;
     --text-gray : #3B5162;
@@ -41,12 +48,7 @@ a{
     --text-medium: 500;
     --text-semi-bold: 600;
 
-    /*Extras colors*/
-    --green-color : #50D1AA;
-    --red-color : #FF7CA3;
-    --orange-color : #FF7CA3;
-    --blue-color : #65B0F6;
-    --purple-color : #9290FE;
+    
 
     /*Dropshadow properties*/
     --shadow : 0px 8px 24px rgba(234, 124, 105, 0.3);

@@ -53,13 +53,25 @@ export const CrudFormCategory = ({createData, updateData,dataToEdit,setDataToEdi
     };
     
     return (
-        <div>
-            <h3>{dataToEdit ? "Edit":"Add"}</h3>
+        <div className="content-form"> 
             <form onSubmit={handleSubmit}>
-                <input type="text" name="nameCategory" placeholder="nameCategory" onChange={handleChange} value={form.nameCategory}></input>
-                <input type="text" name="description" placeholder="description" onChange={handleChange} value={form.description}></input>
-                <input type="submit" value="Enviar"></input>
-                <input type="reset" value="limpiar" onClick={handleReset}></input>
+                <div className="form-group">
+                    <label for="nameCategory">Categoria</label>
+                    <div className="input-container">
+                        <input type="text" name="nameCategory" id="nameCategory" placeholder="Categoria" className="input" onChange={handleChange} value={form.nameCategory}></input>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <label for="description">Descripcion</label>
+                    <div className="input-container">
+                        <input type="text" name="description" id="description" placeholder="Descripcion" className="input" onChange={handleChange} value={form.description}></input>
+                    </div>
+                </div>
+                <div className="btn-container">
+                    <button type="submit" className="btn btn-primary" >{dataToEdit ? "Edit":"Add"}</button>
+                    <button type="reset" onClick={handleReset} className="btn btn-secondary">Cancelar</button>
+                </div>
+                
             </form>
         </div>
     );

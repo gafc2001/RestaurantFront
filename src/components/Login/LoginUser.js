@@ -8,7 +8,7 @@ import { Message } from "../Dashboard/Message";
 import SideBar from "./../sidebar/Sidebar"
 
 //Styles
-import "./form.css";
+import "./../../assets/css/form.css";
 import "./../../assets/css/style.css";
 
 //Images
