@@ -3,7 +3,9 @@ import { ProductItem } from "./ProductItem";
 import "./../../../assets/css/style.css";
 import "./../../../assets/css/configuration.css";
 import { ModalForm } from "./ModalForm";
+import Modal from "react-modal";
 import { Loader } from "../Loader";
+Modal.setAppElement("#root");
 const CrudTablePro = ({
   data,
   setDataToEdit,
@@ -13,6 +15,41 @@ const CrudTablePro = ({
   dataToEdit,
   Loading,
 }) => {
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      backgroundColor: "#1F1D2B",
+      border: "0px",
+      width: "60rem",
+    },
+    overlay: {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "rgba(23, 22, 32, 0.900)",
+    },
+  };
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <div className="col-2">
       <header className="settings-header">
@@ -50,18 +87,26 @@ const CrudTablePro = ({
       </header>
       <div className="settings-content">
         {Loading && <Loader />}
-        <div class="product new-product center">
+        <div class="product new-product center" onClick={openModal}>
           <div>
             <div class="plus">+</div>
             <div>Add new dish</div>
           </div>
         </div>
-        {/*<ModalForm
-          createData={createData}
-          updateData={updateData}
-          dataToEdit={dataToEdit}
-          setDataToEdit={setDataToEdit}
-        />*/}
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <ModalForm
+            createData={createData}
+            updateData={updateData}
+            dataToEdit={dataToEdit}
+            setDataToEdit={setDataToEdit}
+          />
+        </Modal>
         {data.length > 0 ? (
           data.map((el) => (
             <ProductItem
@@ -69,6 +114,10 @@ const CrudTablePro = ({
               el={el}
               setDataToEdit={setDataToEdit}
               deleteData={deleteData}
+              createData={createData}
+              updateData={updateData}
+              dataToEdit={dataToEdit}
+              setDataToEdit={setDataToEdit}
             />
           ))
         ) : (
