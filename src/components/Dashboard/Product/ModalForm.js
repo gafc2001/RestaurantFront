@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { helpHttp } from "../../helpers/helpHttp";
-import "./../../Login/form.css";
+import "./../../../assets/css/form.css";
 import { Message } from "../Message";
 
 const customStyles = {

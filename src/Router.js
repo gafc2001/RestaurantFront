@@ -5,7 +5,7 @@ import Error from './components/Error';
 import Message from './components/Message';
 import Notify from './components/Notify';
 import Exit from './components/Exit';
-import { CrudProducts } from './components/Dashboard/Category/CrudProducts';
+import { CrudCategory } from './components/Dashboard/Category/CrudCategory';
 import {Products} from './components/home/Products';
 import LoginUser from './components/Login/LoginUser';
 import RegisterUser from './components/Login/RegisterUser';
@@ -24,7 +24,7 @@ class Router extends Component {
                     <Route exact path='/settings' component={CrudAppPro} />
                     <Route exact path='/exit' component={Exit} />
                     <Route exact path='/register' component={RegisterUser} />
-                    <Route exact path='/categories' component={CrudProducts} />
+                    <Route exact path='/categories' component={CrudCategory} />
                     
 
                     <Route component={Error} />
