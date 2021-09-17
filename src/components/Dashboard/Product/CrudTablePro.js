@@ -3,13 +3,9 @@ import { ProductItem } from "./ProductItem";
 import "./../../../assets/css/style.css";
 import "./../../../assets/css/configuration.css";
 import { ModalForm } from "./ModalForm";
-<<<<<<< HEAD:src/components/crud/crudproduct/CrudTablePro.js
 import Modal from "react-modal";
 import { Loader } from "../Loader";
 Modal.setAppElement("#root");
-=======
-import { Loader } from "./../Loader";
->>>>>>> e9e35bfe36250e8155b3d1262c5834790fbcc7f6:src/components/Dashboard/Product/CrudTablePro.js
 const CrudTablePro = ({
   data,
   setDataToEdit,
