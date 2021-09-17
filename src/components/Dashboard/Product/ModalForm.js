@@ -152,8 +152,8 @@ export const ModalForm = ({
       <form onSubmit={handleSubmit}>
         {db2 && (
           <select value={form.category.idCategory} onChange={selectChange}>
-            <option disabled value="">
-              seleccion
+            <option  value="">
+              Seleccione
             </option>
             {db2 &&
               db2.map((Elemento) => (

@@ -103,7 +103,6 @@ const CrudTablePro = ({
           <ModalForm
             createData={createData}
             updateData={updateData}
-            dataToEdit={dataToEdit}
             setDataToEdit={setDataToEdit}
           />
         </Modal>
@@ -112,7 +111,6 @@ const CrudTablePro = ({
             <ProductItem
               key={el.idProduct}
               el={el}
-              setDataToEdit={setDataToEdit}
               deleteData={deleteData}
               createData={createData}
               updateData={updateData}
