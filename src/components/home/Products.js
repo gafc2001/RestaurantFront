@@ -56,6 +56,7 @@ export const Products = () => {
 
   return (
     <div className="parent">
+      {console.log(cart)}
       <Sidebar  role={role}/>
       <div class="column-1 content">
         <header class="header">
