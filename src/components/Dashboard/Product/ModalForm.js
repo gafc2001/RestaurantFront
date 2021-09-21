@@ -4,27 +4,6 @@ import { helpHttp } from "../../helpers/helpHttp";
 import "./../../../assets/css/form.css";
 import { Message } from "../Message";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    backgroundColor: "#1F1D2B",
-    border: "0px",
-    width: "60rem",
-  },
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(23, 22, 32, 0.900)",
-  },
-};
 const initialForm = {
   idProduct: null,
   category: { idCategory: "", nameCategory: null },
@@ -58,7 +37,7 @@ export const ModalForm = ({
           setError(res);
         }
       });
-  }, []);
+  }, [url]);
 
   const [form, setform] = useState(initialForm);
 
@@ -76,7 +55,7 @@ export const ModalForm = ({
   const selectChange = (e) => {
     let categoryId = e.target.value;
     db2.map((el) =>
-      el.idCategory == categoryId
+      el.idCategory === categoryId
         ? setform({
             ...form,
             category: {

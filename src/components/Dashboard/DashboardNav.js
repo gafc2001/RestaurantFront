@@ -7,9 +7,6 @@ const DashboardNav = () => {
         <nav className="settings-navbar">
             <ul className="navbar-list">
                 <DashboardLink/>
-                <DashboardLink/>
-                <DashboardLink/>
-                <DashboardLink/>
             </ul>
         </nav>
     </div>

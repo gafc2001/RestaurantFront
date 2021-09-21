@@ -1,7 +1,7 @@
 import "../home/home.css";
 import "../../assets/css/style.css";
 const CartItem = ({ data, delFromCart }) => {
-  let { idProduct, nameProduct, priceProduct, quantity } = data;
+  let { idProduct, nameProduct, priceProduct, quantity,total } = data;
   return (
     <div className="order-item order-grid">
       <div className="order-img">
@@ -18,7 +18,7 @@ const CartItem = ({ data, delFromCart }) => {
         <input type="text" name="quantity" placeholder={quantity} disabled className="input" />
       </div>
       <div className="order-total ">
-        $ {quantity * priceProduct}
+        $ {total}
       </div>
       <div className="order-msg input-container input-center">
         <input
@@ -28,7 +28,7 @@ const CartItem = ({ data, delFromCart }) => {
         />
       </div>
       <div className="btn-order order-delete center"  onClick={() => delFromCart(idProduct)}>
-        <i class="fas fa-minus-square"></i>
+        <i className="fas fa-minus-square"></i>
       </div>
       <div className="btn-order order-delete-category center" onClick={() => delFromCart(idProduct, true)}>
         <svg

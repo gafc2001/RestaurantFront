@@ -1,6 +1,6 @@
 import React from 'react';
-import { propTypes } from 'react-bootstrap/esm/Image';
-import { DashboardLink } from './DashboardLink';
+//import { propTypes } from 'react-bootstrap/esm/Image';
+//import { DashboardLink } from './DashboardLink';
 
 const DashboardContainer = (props) => {
     return (

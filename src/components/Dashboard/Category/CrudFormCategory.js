@@ -56,13 +56,13 @@ export const CrudFormCategory = ({createData, updateData,dataToEdit,setDataToEdi
         <div className="content-form"> 
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label for="nameCategory">Categoria</label>
+                    <label htmlFor="nameCategory">Categoria</label>
                     <div className="input-container">
                         <input type="text" name="nameCategory" id="nameCategory" placeholder="Categoria" className="input" onChange={handleChange} value={form.nameCategory}></input>
                     </div>
                 </div>
                 <div className="form-group">
-                    <label for="description">Descripcion</label>
+                    <label htmlFor="description">Descripcion</label>
                     <div className="input-container">
                         <input type="text" name="description" id="description" placeholder="Descripcion" className="input" onChange={handleChange} value={form.description}></input>
                     </div>

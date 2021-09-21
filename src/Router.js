@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Error from './components/Error';
 import Message from './components/Message';
-import Notify from './components/Notify';
+import {Notify} from './components/Notify';
 import Exit from './components/Exit';
 import { CrudCategory } from './components/Dashboard/Category/CrudCategory';
 import {Products} from './components/home/Products';
@@ -21,12 +21,10 @@ class Router extends Component {
                     <Route exact path='/login' component={LoginUser} />
                     <Route exact path='/message' component={Message} />
                     <Route exact path='/notifications' component={Notify} />
-                    <Route exact path='/settings' component={CrudAppPro} />
+                    <Route exact path='/dashboard-products' component={CrudAppPro} />
                     <Route exact path='/exit' component={Exit} />
-                    <Route exact path='/register' component={RegisterUser} />
-                    <Route exact path='/categories' component={CrudCategory} />
-                    
-
+                    <Route exact path='/register' component={RegisterUser}/>
+                    <Route exact path='/dashboard-categories' component={CrudCategory} />
                     <Route component={Error} />
                 </Switch>
             </BrowserRouter>
