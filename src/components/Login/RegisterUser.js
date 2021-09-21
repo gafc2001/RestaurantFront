@@ -1,6 +1,5 @@
 import { useState } from "react";
 //import "bootstrap/dist/css/bootstrap.min.css"
-import delicius from '../../assets/images/delicius.jpg'
 import { Redirect } from "react-router";
 
 
@@ -21,7 +20,6 @@ const initialForm = {
   password: "",
   roles: ["mod", "user"]
 };
-const roles = ["mod", "user"]
 
 export default function RegisterUser() {
   const [form, setform] = useState(initialForm);

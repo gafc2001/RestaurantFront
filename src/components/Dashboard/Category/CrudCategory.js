@@ -39,7 +39,7 @@ export const CrudCategory = () => {
             setLoading(false);
 
         });
-    }, []);
+    }, [url]);
 
 
     //esta funcion crea un nuevo registro

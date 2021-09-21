@@ -100,7 +100,7 @@ export default function LoginUser() {
                     <div className="form-group">
                     {Error &&( (<Message msg={"Contrasena incorrecta o usuario"} 
             bgColor="#dc3545"/>))}
-                        <label for="username">Username</label>
+                        <label htmlFor="username">Username</label>
                         <div className="input-container">
                             <i className="fas fa-user-circle"></i>
                             <input value={form.user} type="text" id="username" name="username" placeholder="Your username" className="input" onChange={handleChange}/>
@@ -108,7 +108,7 @@ export default function LoginUser() {
                        
                     </div>
                     <div className="form-group">
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <div className="input-container">
                             <i className="fas fa-lock"></i>
                             <input value={form.password} type="password" id="password"  name="password" placeholder="Your password" className="input" onChange={handleChange}/>

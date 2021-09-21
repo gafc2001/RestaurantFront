@@ -87,9 +87,9 @@ const CrudTablePro = ({
       </header>
       <div className="settings-content">
         {Loading && <Loader />}
-        <div class="product new-product center" onClick={openModal}>
+        <div className="product new-product center" onClick={openModal}>
           <div>
-            <div class="plus">+</div>
+            <div className="plus">+</div>
             <div>Add new dish</div>
           </div>
         </div>
@@ -103,7 +103,6 @@ const CrudTablePro = ({
           <ModalForm
             createData={createData}
             updateData={updateData}
-            dataToEdit={dataToEdit}
             setDataToEdit={setDataToEdit}
           />
         </Modal>
@@ -112,7 +111,6 @@ const CrudTablePro = ({
             <ProductItem
               key={el.idProduct}
               el={el}
-              setDataToEdit={setDataToEdit}
               deleteData={deleteData}
               createData={createData}
               updateData={updateData}
