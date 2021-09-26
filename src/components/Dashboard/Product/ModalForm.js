@@ -140,7 +140,6 @@ export const ModalForm = ({
         <div className="form-group">
           <label htmlFor="product">Product</label>
           <div className="input-container">
-            <i className="fas fa-user-circle"></i>
             <input
               type="text"
               placeholder="Name product.."
@@ -154,7 +153,6 @@ export const ModalForm = ({
         <div className="form-group">
           <label htmlFor="price">Price</label>
           <div className="input-container">
-            <i className="fas fa-user-circle"></i>
             <input
               type="number"
               name="priceProduct"
@@ -168,14 +166,12 @@ export const ModalForm = ({
         <div className="form-group">
           <label htmlFor="file">File</label>
           <div className="input-container">
-            <i className="fas fa-user-circle"></i>
             <input type="file" name="file0" onChange={fileChange} />
           </div>
         </div>
         <div className="form-group">
           <label htmlFor="desct">Description</label>
           <div className="input-container">
-            <i className="fas fa-user-circle"></i>
             <input
               type="text"
               placeholder="description.."
