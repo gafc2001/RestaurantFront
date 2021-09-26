@@ -1,11 +1,10 @@
 import React from 'react';
-//importando componentes
-import Router from './Router'
+import Routes from './routes/Routes'
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <Router/>
+      <Routes/>
     </div>
   );
 }

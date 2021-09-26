@@ -121,9 +121,14 @@ export function shoppingReducer(state, action) {
       };
     }
     case TYPES.READ_ONE_CATEGORY:{
-      let oneCategory=state.db.filter((products) => products.category.idCategory === action.payload)
       return{
-        ...state,onecategory:oneCategory
+        ...state,onecategory:state.db.filter((products) => products.category.idCategory === action.payload)
+
+      }
+    }
+    case TYPES.REMOVE_CATEGORY:{
+      return{
+        ...state,onecategory:action.payload
 
       }
     }

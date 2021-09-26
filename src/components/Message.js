@@ -1,12 +1,13 @@
-import React ,{ Component } from 'react';
-class Message extends Component{
-    render(){
-        return(
-            <div>
-                <h4>este es el Message </h4>
-            </div>
-            
-        );
-    }
-}
-export default Message;
+import React from "react";
+import Sidebar from "./sidebar/Sidebar";
+
+const Messages = () => {
+  return (
+    <>
+      <Sidebar />
+      <h1>Este es el mensaje</h1>
+    </>
+  );
+};
+
+export default Messages;

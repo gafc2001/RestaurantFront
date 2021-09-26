@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import { useState, useEffect, useReducer } from "react";
 import CrudTablePro from "./CrudTablePro";
 import { helpHttp } from "../../helpers/helpHttp";
 import { Message } from "../Message";
 
-import { DashboardNav } from './../DashboardNav';
+import { DashboardNav } from "./../DashboardNav";
 import Sidebar from "./../../sidebar/Sidebar";
 import { crudInitialState, crudReducer } from "../../../reducers/crudReducer";
 import { TYPES } from "../../../acctions/crudAction";
@@ -130,40 +130,21 @@ export const CrudAppPro = () => {
   };
 
   return (
-    <div className="parent">
-      <Sidebar />
-      <div className="content">
-        <header className="header">
-          <div className="header-info">
-            <div className="page-info">
-              {Error && (
-                <Message
-                  msg={"Error al comunicarse con el servidor"}
-                  bgColor="#dc3545"
-                />
-              )}
-              <h2 className="page-name">Settings</h2>
-            </div>
-          </div>
-        </header>
-        <main className="settings">
-          <DashboardNav />
-          {db && (
-            <CrudTablePro
-              data={db}
-              //funcion para actualizar laa  nueva renderizacion sin el elemento renderizado
-              setDataToEdit={setDataToEdit}
-              //pasamos el deletedata para eliminar un id
-              deleteData={deleteData}
-              createData={createData}
-              updateData={updateData}
-              //para diferenciar entre create y update necesitamos pasarle la variable de estado y la funcion que actualiza datatoedit
-              dataToEdit={dataToEdit}
-              Loading={Loading}
-            />
-          )}
-        </main>
-      </div>
-    </div>
+    <>
+      {db && (
+        <CrudTablePro
+          data={db}
+          //funcion para actualizar laa  nueva renderizacion sin el elemento renderizado
+          setDataToEdit={setDataToEdit}
+          //pasamos el deletedata para eliminar un id
+          deleteData={deleteData}
+          createData={createData}
+          updateData={updateData}
+          //para diferenciar entre create y update necesitamos pasarle la variable de estado y la funcion que actualiza datatoedit
+          dataToEdit={dataToEdit}
+          Loading={Loading}
+        />
+      )}
+    </>
   );
 };

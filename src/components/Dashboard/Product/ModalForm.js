@@ -54,17 +54,13 @@ export const ModalForm = ({
 
   const selectChange = (e) => {
     let categoryId = e.target.value;
-    db2.map((el) =>
-      el.idCategory === categoryId
-        ? setform({
-            ...form,
-            category: {
-              idCategory: el.idCategory,
-              nameCategory: el.nameCategory,
-            },
-          })
-        : null
-    );
+    console.log(categoryId);
+    setform({
+      ...form,
+      category: {
+        idCategory: categoryId,
+      },
+    });
   };
 
   const handleChange = (e) => {
@@ -80,6 +76,7 @@ export const ModalForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(form);
     if (
       !form.nameProduct ||
       !form.priceProduct ||
@@ -131,9 +128,7 @@ export const ModalForm = ({
       <form onSubmit={handleSubmit}>
         {db2 && (
           <select value={form.category.idCategory} onChange={selectChange}>
-            <option  value="">
-              Seleccione
-            </option>
+            <option value="">Seleccione</option>
             {db2 &&
               db2.map((Elemento) => (
                 <option key={Elemento.idCategory} value={Elemento.idCategory}>

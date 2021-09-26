@@ -2,10 +2,6 @@ import { useState } from "react";
 //import "bootstrap/dist/css/bootstrap.min.css"
 import { Redirect } from "react-router";
 
-
-//Components
-import SideBar from "./../sidebar/Sidebar"
-
 //Styles
 import "./../../assets/css/form.css";
 import "./../../assets/css/style.css";
@@ -13,6 +9,7 @@ import "./../../assets/css/style.css";
 //Images
 import logoWhite from "./../../assets/images/logo-white.png";
 import backgroundImg from '../../assets/images/background.jpg';
+import Sidebar from "../sidebar/Sidebar";
 
 const initialForm = {
   username: "",
@@ -21,7 +18,7 @@ const initialForm = {
   roles: ["mod", "user"]
 };
 
-export default function RegisterUser() {
+export const  RegisterUser = () => {
   const [form, setform] = useState(initialForm);
   // mensaje de error
   const [Login, setLogin] = useState(false);
@@ -73,7 +70,6 @@ export default function RegisterUser() {
     <>
     {Login && <Redirect to="/login" />}
       <img src={backgroundImg} alt="" className="background"/>
-      <SideBar/>
         <div className="content center">
             <div className="content-form">
                 <div className="form-logo">
@@ -81,21 +77,21 @@ export default function RegisterUser() {
                 </div>
                 <form onSubmit={handleSubmit}>  
                     <div className="form-group">
-                        <label for="username">Username</label>
+                        <label htmlFor="username">Username</label>
                         <div className="input-container">
                             <i className="fas fa-user-circle"></i>
                             <input type="text" id="username" name="username" placeholder="Your username" className="input" onChange={handleChange}/>
                         </div>
                     </div>
                     <div className="form-group">
-                        <label for="email">Email</label>
+                        <label htmlFor="email">Email</label>
                         <div className="input-container">
                             <i className="fas fa-envelope"></i>
                             <input type="email" id="email"  name="email" placeholder="Your email" className="input" onChange={handleChange}/>
                         </div>
                     </div>
                     <div className="form-group">
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <div className="input-container">
                             <i className="fas fa-lock"></i>
                             <input type="password" id="password"  name="password" placeholder="Your password" className="input" onChange={handleChange}/>
@@ -110,4 +106,4 @@ export default function RegisterUser() {
         </div>
     </>
   );
-}
+};

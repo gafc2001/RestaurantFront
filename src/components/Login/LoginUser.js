@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
 import { Message } from "../Dashboard/Message";
 
-//Components
-import SideBar from "./../sidebar/Sidebar"
 
 //Styles
 import "./../../assets/css/form.css";
@@ -24,7 +22,7 @@ const initialForm = {
   roles:[]
 };
 
-export default function LoginUser() {
+export const  LoginUser=()=> {
   const [form, setform] = useState(initialForm);
   const baseUrl = "https://restaurantrestapi.herokuapp.com/api/auth/signin";
   const [user,setuser] = useState(null);
@@ -45,19 +43,21 @@ export default function LoginUser() {
     fetch(baseUrl, requestOptions)
       .then(response => response.json())
       .then(result => { 
-        console.log(result);
+        //console.log(result);
         if(result.message === 'Bad credentials'){
           setError(true)
           
         }else{
-          localStorage.setItem("id",result.id);
-          localStorage.setItem("role",result.roles[0]);
-          localStorage.setItem("username",result.username);
-          localStorage.setItem("email",result.email);
-          localStorage.setItem("token",result.token);
-          localStorage.setItem("tokenType",result.tokenType);
+
+          sessionStorage.setItem("id",result.id);
+          sessionStorage.setItem("username",result.username);
+          sessionStorage.setItem("token",result.accessToken);
+          sessionStorage.setItem("role",result.roles);
+          // localStorage.setItem("email",result.email);
+          // localStorage.setItem("tokenType",result.tokenType);
           setuser(result)
           setError(false)
+          //grantPermission(result.roles.includes("ROLE_USER"))
           // if(user.roles[0]==='ROLE_USER'){
           //   window.location = '/home'
 
@@ -85,13 +85,12 @@ export default function LoginUser() {
       iniciarSesion(form);
     }
 };
-
   return (
     <>
     {user && <Redirect to="/home" />}
-      <img src={backgroundImg} alt="" className="background"/>
-      <SideBar/>
+      <img src={backgroundImg} alt="logo" className="background"/>
         <div className="content center">
+          
             <div className="content-form">
                 <div className="form-logo">
                     <img src={logoWhite} alt=""/>
@@ -124,14 +123,12 @@ export default function LoginUser() {
                         Register
                       </div>
                     </Link>
-
-                    
                 </form>
             </div>
         </div>
     </>
   );
-  }
+  };
 
 
 // const url = "https://restaurantrestapi.herokuapp.com/api/auth/signin";

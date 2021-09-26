@@ -1,0 +1,60 @@
+.box{
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+input.src{
+  padding: 9px 10px 9px 32px;
+  outline: none;
+  font-size: 18px;
+  border-radius: 1.5rem;
+  color: #fff;
+  border: 1px solid   #393C49;
+  background: #2D303E;
+  width: 150px;
+  transition:all .5s;
+}
+input.src:hover{
+  width: 220px;
+  background-color: #2D303E;
+  border-color: #393C49;
+  box-shadow: 0 0 5px #fcfcfc80;
+
+}
+
+.homeview-header {
+  width: 100%;
+  height: 900px;
+  background: #bc4e9c;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, hsla(249, 33%, 17%, 0.459), hsla(229, 31%, 21%, 0.664)), url(../../assets/images/delibakery.jpg);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, hsla(249, 33%, 17%, 0.459), hsla(229, 31%, 21%, 0.664)), url(../../assets/images/delibakery.jpg);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+}
+
+ .textos-header{
+  display: flex;
+  height: 430px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.textos-header h1{
+  font-size: 50px;
+  color:#fff;
+}
+
+.textos-header h2{
+  font-size: 30px;
+  font-weight: 300;
+  color:#fff;
+}
+

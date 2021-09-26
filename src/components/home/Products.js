@@ -26,9 +26,9 @@ export const Products = () => {
   const [Loading, setLoading] = useState(false);
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
   const { db, cart,purchase_units,subtotal,onecategory } = state;
-  const [role,setrole] = useState(localStorage.getItem("role"))
+  //const [role,setrole] = useState(localStorage.getItem("role"))
   //para las respuestas de paypal
-  const [Order,setOrder]=useState(null);
+  //const [Order,setOrder]=useState(null);
   
   
 //para productos
@@ -50,6 +50,9 @@ export const Products = () => {
 
   const filtCategory=(idCategory)=>{
     dispatch({ type: TYPES.READ_ONE_CATEGORY,payload:idCategory});
+  }
+  const removeCategory=(state)=>{
+    dispatch({ type: TYPES.REMOVE_CATEGORY,payload:state});
   }
 
   //para paypal
@@ -78,17 +81,28 @@ export const Products = () => {
 
   const onApprove = async(data, actions) => {
     const order = await actions.order.capture();
-    setOrder(order);
-    console.log(order)
+    orderSubmit(order);
   //return actions.order.capture();
 }
+const orderSubmit = (order) => {
+  let order_detail={
+    iduser:localStorage.getItem("id"),
+    idpayment:order.id,
+    status: order.status,
+    subtotal:order[0].amount.value,
+    items:order[0].items,
+    create_time:order.create_time,
+    name_payment_method:"paypal"
 
-
+  }
+}
   return (
+    <>
+    <Sidebar/>
     <div className="parent">
-      <Sidebar  role={role}/>
+      
       <div className="column-1 content">
-          <Header  filtCategory={filtCategory}/>
+          <Header  filtCategory={filtCategory} removeCategory={removeCategory} />
         <main className="menu">
           <div className="menu-header">
             <p className="menu-title">Choose Dishes</p>
@@ -129,7 +143,7 @@ export const Products = () => {
           <p className="col-3">Price</p>
         </div>
         <div className="order-list">
-         {cart.map((item, index) => (
+         {cart && cart.map((item, index) => (
             <CartItem key={index} data={item} delFromCart={delFromCart} />
          ))}
         </div>
@@ -144,9 +158,9 @@ export const Products = () => {
           </div>
         </div>
         <div className="btn-container">
-          <a onClick={addToPay} className="btn btn-primary">
+          <button onClick={addToPay} className="btn btn-primary">
             Confirm you order
-          </a>
+          </button>
         <PayPalButton onClick={addToPay}
           createOrder={(data, actions) => createOrder(data, actions)}
           onApprove={(data, actions) => onApprove(data, actions)}
@@ -154,5 +168,6 @@ export const Products = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
