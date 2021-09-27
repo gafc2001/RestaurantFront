@@ -9,7 +9,7 @@ export const FilterCategory =({data,filtCategory})=>{
           {/*<li className="category-item category-active">
             <span>All Product</span>
           </li>*/}
-          <li className="category-item " onClick={() =>filtCategory(idCategory)}>{nameCategory}</li>
+          <li className="filter-item " onClick={() =>filtCategory(idCategory)}>{nameCategory}</li>
           </>
           
         

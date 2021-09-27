@@ -54,9 +54,9 @@ export const Header = ({ filtCategory,removeCategory }) => {
           />
         </div>
       </div>
-      <div className="categories">
-        <ul className="category-list">
-          <li class="category-item" onClick={()=>removeCategory(null)}>
+      <div className="filter">
+        <ul className="filter-list">
+          <li class="filter-item" onClick={()=>removeCategory(null)}>
             <span>All</span>
           </li>
           {category &&
