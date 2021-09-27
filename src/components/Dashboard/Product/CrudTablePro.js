@@ -52,7 +52,7 @@ const CrudTablePro = ({
 
   return (
     <>
-      <div className="settings-content">
+      <div className="product-container">
         {Loading && <Loader />}
         <div className="product new-product center" onClick={openModal}>
           <div>

@@ -24,21 +24,21 @@ export const DashboardHeader = () => {
             <span>Manage Categories</span>
           </div>
         </div>
-        <div className="categories">
-          <ul className="category-list">
-            <li className="category-item category-active">
+        <div className="filter">
+          <ul className="filter-list">
+            <li className="filter-item filter-active">
               <span>Hot Dishes</span>
             </li>
-            <li className="category-item">
+            <li className="filter-item">
               <span>Fast Food</span>
             </li>
-            <li className="category-item">
+            <li className="filter-item">
               <span>Soups</span>
             </li>
-            <li className="category-item">
+            <li className="filter-item">
               <span>Desserts</span>
             </li>
-            <li className="category-item">
+            <li className="filter-item">
               <span>Salads</span>
             </li>
           </ul>

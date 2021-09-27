@@ -10,7 +10,7 @@ import { Dashboard } from '../components/Dashboard/Dashboard';
 import Error from '../components/Error';
 import { Products } from '../components/home/Products';
 import Message from '../components/Message';
-import { Notify } from '../components/Notify';
+import { Orders } from '../components/notifications/orders';
 import { isAuthenticated } from "../auth/authentications";
 import HomeView from "../components/homeview/HomeView"
 
@@ -25,7 +25,7 @@ const Routes = () => {
       <PublicRoute exact path="/login" component={LoginUser} />
       <PublicRoute exact path="/register" component={RegisterUser} />
       <PrivateRoute exact path="/home" component={Products} />
-      <PrivateRoute exact path="/notifications" component={Notify} />
+      <PrivateRoute exact path="/notifications" component={Orders} />
       <PrivateRoute exact path="/message" component={Message} />
       <PrivateRoute path="/dashboard" component={Dashboard} />
       <Route exact path="/404" component={Error} />
