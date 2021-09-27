@@ -8,6 +8,14 @@ export default function Sidebar()
 
 {
     let role =sessionStorage.getItem('role');
+
+    const logoutSession =()=>{
+        sessionStorage.removeItem("id");
+        sessionStorage.removeItem("username");
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("role");
+    }
+   
     //(sessionStorage.getItem('role')).includes('ROLE_USER')
     return (
         
@@ -59,7 +67,7 @@ export default function Sidebar()
                 </li>
             </NavLink>}
 
-            <NavLink to="/login" className="sidebar-item center" activeClassName="sidebar-item-active">
+            <NavLink to="/login" className="sidebar-item center" activeClassName="sidebar-item-active" onClick={logoutSession}>
             <li>
                 <span className="center">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

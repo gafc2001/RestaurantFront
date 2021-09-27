@@ -161,7 +161,7 @@ const orderSubmit = (order) => {
           <button onClick={addToPay} className="btn btn-primary">
             Confirm you order
           </button>
-        <PayPalButton onClick={addToPay}
+        <PayPalButton 
           createOrder={(data, actions) => createOrder(data, actions)}
           onApprove={(data, actions) => onApprove(data, actions)}
         />
