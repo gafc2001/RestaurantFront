@@ -1,8 +1,10 @@
 
 import React, { useRef, useState } from "react";
+import {Link} from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar";
 import "./../../assets/css/notification.css";
 import clipboard from "../../assets/images/clipboard.png";
+import { OrderDetails } from "./orderDetail";
 // Import Swiper React components
 
 
@@ -33,26 +35,30 @@ export const Orders = () => {
                 </div>
               </div>
               <div className="product-container">
-                <div className="product product-item preparing">
-                  <div className="product-content">
-                    <h2 className="center product-title" >Order #4523</h2>
-                    <div className="product-image center">
-                      <img src={clipboard} />
+                <Link to="/details">
+                  <div className="product product-item preparing" >
+                    <div className="product-content">
+                      <h2 className="center product-title" >Order #4523</h2>
+                      <div className="product-image center">
+                        <img src={clipboard} />
+                      </div>
+                      <div className="product-info">
+                        <span className="product-name">Product</span>
+                        <span className="product-details">
+                          <span>$100.0</span> &bull;
+                          <span>Available</span>
+                        </span>
+                      </div>
                     </div>
-                    <div className="product-info">
-                      <span className="product-name">Product</span>
-                      <span className="product-details">
-                        <span>$100.0</span> &bull;
-                        <span>Available</span>
-                      </span>
+                    <div className="btn-product center">
+                      <div className="status">
+                        Preparing...
+                      </div>
                     </div>
                   </div>
-                  <div className="btn-product center">
-                    <div className="status">
-                      Preparing...
-                    </div>
-                  </div>
-                </div>
+                  
+                </Link>
+                <Link to="/details">
                 <div className="product product-item pending">
                   <div className="product-content">
                     <h2 className="center product-title" >Order #4523</h2>
@@ -73,6 +79,8 @@ export const Orders = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
+                <Link to="/details">
                 <div className="product product-item completed">
                   <div className="product-content">
                     <h2 className="center product-title" >Order #4523</h2>
@@ -93,6 +101,8 @@ export const Orders = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
+                <Link to="/details">
                 <div className="product product-item completed">
                   <div className="product-content">
                     <h2 className="center product-title" >Order #4523</h2>
@@ -113,6 +123,8 @@ export const Orders = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
+                <Link to="/details">
                 <div className="product product-item completed">
                   <div className="product-content">
                     <h2 className="center product-title" >Order #4523</h2>
@@ -133,6 +145,7 @@ export const Orders = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
             </div>
           </div>
