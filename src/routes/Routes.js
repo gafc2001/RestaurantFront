@@ -13,7 +13,7 @@ import Message from '../components/Message';
 import { Orders } from '../components/notifications/orders';
 import { isAuthenticated } from "../auth/authentications";
 import HomeView from "../components/homeview/HomeView"
-
+import { OrderDetails } from "../components/notifications/orderDetail";
 const Routes = () => {
     const isAuth = isAuthenticated();
   return (
@@ -28,6 +28,7 @@ const Routes = () => {
       <PrivateRoute exact path="/notifications" component={Orders} />
       <PrivateRoute exact path="/message" component={Message} />
       <PrivateRoute path="/dashboard" component={Dashboard} />
+      <PrivateRoute path="/details" component={OrderDetails}/>
       <Route exact path="/404" component={Error} />
       <Route
         exact

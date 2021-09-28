@@ -1,10 +1,15 @@
 .noti-container{
     padding: 3rem;
+    
 }
 .noti-title{
     color: var(--text-white);
     font-weight: var(--text-semi-bold);
     font-size: 2rem;
+    padding-bottom: 1rem;
+}
+.noti-title.border-b{
+    border-bottom: 3px solid var(--form-border);
 }
 
 .status{
@@ -29,9 +34,6 @@
     background-color: var(--background-extra-orange);
     color: var(--primary-color)!important;
 }
-/* .pending .product-image i{
-    color: var(--primary-color);
-} */
 .noti-container .product-image img{
     border-radius: unset!important;
     margin-bottom:1rem;
@@ -39,4 +41,42 @@
 .product-title{
     color: var(--text-white);
     margin-bottom: 1rem;
+    
+}
+.card-image img{
+    border-radius: 50rem;
+    width: 10rem;
+}
+.table{
+    display: table;
+    width: 100%;
+    border-spacing: 0;
+    color: var(--text-white);
+    background-color: var(--form-color);
+}
+.table thead{
+    border-radius: 1rem;
+    background-color:var(--primary-color);
+    color: var(--text-white);
+    height:4rem;
+    font-size: 2rem;
+    
+}
+.table thead td{
+    padding: 1rem 0 1rem 2rem;
+}
+.table tbody td{
+    padding: 1rem 0 1rem 2rem;
+    color: var(--text-white);
+    font-size: 1.4rem;
+}
+.table tbody tr{
+    border-bottom: 1px var(--form-border) solid;
+}
+.product-cell{
+    display: flex;
+    align-items: center;   
+}
+.product-cell img{
+    margin-right: 2rem;
 }

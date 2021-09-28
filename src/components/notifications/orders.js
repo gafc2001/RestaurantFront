@@ -1,23 +1,22 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../sidebar/Sidebar";
 import "./../../assets/css/notification.css";
-import Order from "./Order"
+import Order from "./Order";
 // Import Swiper React components
 import { helpHttp } from "../helpers/helpHttp";
 
 export const Orders = () => {
   const [db, setDb] = useState(null);
   const [Error, setError] = useState(null);
-  let iduser=sessionStorage.getItem('id')
+  let iduser = sessionStorage.getItem("id");
   //let url = `https://restaurantrestapi.herokuapp.com/api/api/order/${iduser}`;
   let url = "https://restaurantrestapi.herokuapp.com/api/order";
   useEffect(() => {
-
     helpHttp()
       .get(url)
       .then((res) => {
-        if (res.length>0) {
-          console.log(res)
+        if (res.length > 0) {
+          console.log(res);
           setDb(res);
           setError(null);
         } else {
@@ -25,8 +24,6 @@ export const Orders = () => {
         }
       });
   }, [url]);
-
-
 
   return (
     <>
@@ -56,10 +53,8 @@ export const Orders = () => {
                 </div>
               </div>
               <div className="product-container">
-                {db&&db.map((order)=>(
-                  <Order key={order.idOrder} db={order}/>
-  ))}
-                
+                {db &&
+                  db.map((order) => <Order key={order.idOrder} db={order} />)}
 
                 {/* <div className="product product-item preparing">
                   <div className="product-content">
@@ -67,20 +62,15 @@ export const Orders = () => {
                     <div className="product-image center">
                       <img src={clipboard} />
                     </div>
-                    <div className="product-info">
-                      <span className="product-name">Product</span>
-                      <span className="product-details">
-                        <span>$100.0</span> &bull;
-                        <span>Available</span>
-                      </span>
+                    <div className="btn-product center">
+                      <div className="status">
+                        Preparing...
+                      </div>
                     </div>
                   </div>
-                  <div className="btn-product center">
-                    <div className="status">
-                      Preparing...
-                    </div>
-                  </div>
-                </div>
+                  
+                </Link>
+                <Link to="/details">
                 <div className="product product-item pending">
                   <div className="product-content">
                     <h2 className="center product-title" >Order #4523</h2>
@@ -101,6 +91,8 @@ export const Orders = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
+                <Link to="/details">
                 <div className="product product-item completed">
                   <div className="product-content">
                     <h2 className="center product-title" >Order #4523</h2>
@@ -121,6 +113,8 @@ export const Orders = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
+                <Link to="/details">
                 <div className="product product-item completed">
                   <div className="product-content">
                     <h2 className="center product-title" >Order #4523</h2>
@@ -141,6 +135,8 @@ export const Orders = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
+                <Link to="/details">
                 <div className="product product-item completed">
                   <div className="product-content">
                     <h2 className="center product-title" >Order #4523</h2>
