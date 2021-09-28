@@ -109,7 +109,7 @@ export function shoppingReducer(state, action) {
       return {
         ...state,subtotal:suma,
         purchase_units: {
-          reference_id: "order2",
+          reference_id: "orderDish",
           amount: { currency_code: "USD", value:suma,breakdown:{
             item_total: {
               currency_code: "USD",
