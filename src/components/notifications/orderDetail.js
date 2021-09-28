@@ -1,8 +1,11 @@
 import React, { useRef, useState } from "react";
+
 import Sidebar from "../sidebar/Sidebar";
 import "./../../assets/css/notification.css";
 
-export const OrderDetails = () => {
+export const  OrderDetails = () => {
+     
+
     return (
         <>
             <Sidebar />
@@ -18,7 +21,7 @@ export const OrderDetails = () => {
                     <div className="col-1 box-content">
                         <div className="noti-container">
                             <div className="noti-header">
-                                <h2 className="noti-title border-b">Order #<span>3452</span></h2>
+                                <h2 className="noti-title border-b">Order #<span></span></h2>
                             </div>
                             <div className="product-container">
                                 <table className="table">
@@ -95,4 +98,4 @@ export const OrderDetails = () => {
             </div>
         </>
     );
-}
+};

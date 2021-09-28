@@ -1,10 +1,12 @@
 import React from "react";
 import clipboard from "../../assets/images/clipboard.png";
-const order = ({db}) => {
+import { Link } from "react-router-dom";
+const Order = ({db}) => {
     let {idOrder,totalPrice,statusOrder,description,orderDetails} =db
   return (
     <div className="product product-item completed">
-      <div className="product-content">
+        
+      <Link  to={"/notifications/order/"+idOrder} className="product-content"  >
         <h2 className="center product-title">#{idOrder}</h2>
         <div className="product-image center">
           <img src={clipboard} />
@@ -16,7 +18,7 @@ const order = ({db}) => {
             <span>6 units</span>
           </span>
         </div>
-      </div>
+        </Link>
       <div className="btn-product center">
         <div className="status">{statusOrder}</div>
       </div>
@@ -24,4 +26,4 @@ const order = ({db}) => {
   );
 };
 
-export default order;
+export {Order};

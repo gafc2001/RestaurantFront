@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../sidebar/Sidebar";
 import "./../../assets/css/notification.css";
-import Order from "./Order";
+import {Order} from "./Order";
 // Import Swiper React components
 import { helpHttp } from "../helpers/helpHttp";
 
