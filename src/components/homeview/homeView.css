@@ -1,3 +1,5 @@
+
+/* busqueda */
 input.src{
   padding: 9px 10px 9px 32px;
   outline: none;
@@ -17,11 +19,10 @@ input.src:hover{
 
 }
 .homeview-header {
-  padding-top: 10px;
+  padding-top: 40px;
   width: 100%;
   height: 450px;
   border-radius: 10px;
-  background: #bc4e9c;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, hsla(249, 33%, 17%, 0.459), hsla(229, 31%, 21%, 0.664)), url(../../assets/images/delicius.jpg);
   /* Chrome 10-25, Safari 5.1-6 */
@@ -29,6 +30,15 @@ input.src:hover{
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-size: cover;
   background-attachment: fixed;
-  position: relative;
 }
 
+.product-card {
+  box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+  cursor: default;
+  transition: all 400ms ease;
+}
+.product-card:hover{
+  box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+  transform: translateY(-8%);
+
+}

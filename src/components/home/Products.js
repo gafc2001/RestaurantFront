@@ -81,20 +81,31 @@ export const Products = () => {
 
   const onApprove = async(data, actions) => {
     const order = await actions.order.capture();
+    console.log(order)
     orderSubmit(order);
   //return actions.order.capture();
 }
 const orderSubmit = (order) => {
-  let order_detail={
-    iduser:localStorage.getItem("id"),
-    idpayment:order.id,
-    status: order.status,
-    subtotal:order[0].amount.value,
-    items:order[0].items,
-    create_time:order.create_time,
-    name_payment_method:"paypal"
+  let products =[]
+  order.purchase_units[0].items.map(product=>products.push({idproduct:product.sku,quantity:product.quantity}))
 
+  let order_detail={
+    iduser:sessionStorage.getItem("id"),
+    status:order.status,
+    subtotal: parseFloat(order.purchase_units[0].amount.value),
+    orders:products,
+    create_time:order.create_time,
+    payment_method: 5
   }
+  let options = {
+    body: order_detail,
+    headers: { "content-type": "application/json" },
+  };
+  console.log(JSON.stringify(order_detail))
+  console.log(order_detail)
+  helpHttp().post('https://restaurantrestapi.herokuapp.com/api/order', options).then((res) => {console.log(res)
+  });
+
 }
   return (
     <>

@@ -14,8 +14,8 @@ import Sidebar from "../sidebar/Sidebar";
 //moment importaciones
 //import Moment from 'react-moment';
 //import 'moment/locale/es';
-import "../../assets/css/home.css";
-import "../../assets/css/style.css";
+//import "../../assets/css/home.css";
+//import "../../assets/css/style.css";
 import comida from "../../assets/images/oferta.png";
 
 SwiperCore.use([EffectCoverflow, Pagination]);
