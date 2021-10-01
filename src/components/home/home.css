@@ -33,7 +33,7 @@
     border-radius: 1.5rem;
     position: relative;
     height: 23rem;
-    padding: 9rem 2rem 1rem 2rem;
+    padding: 5rem 2rem 1rem 2rem;
     color: var(--text-white);
     text-align: center;
 }
@@ -50,11 +50,14 @@
     flex-direction: column;
     height: 100%;
 }
-.card-info .product-name{
-    line-height: 1.5rem;
-}
-.card-info .product-available{
+.card-info .product-desc{
     color: var(--text-light);
+    display:inline-block;
+    line-height: 1.4rem;
+    height: 2rem;
+    overflow: hidden;
+    white-space:pre-wrap;
+    text-overflow: ellipsis;
 }
 
 

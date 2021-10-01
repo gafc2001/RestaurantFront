@@ -14,7 +14,7 @@ const Product = ({ data, addToCart}) => {
       <div className="card-info">
         <p className="product-name">{nameProduct}</p>
         <p className="product-price">${priceProduct}.00</p>
-        <p className="product-available">{description}</p>
+        <p className="product-desc">{description}</p>
       </div>
       <div className="btn-container">
         <button className="btn btn-primary " onClick={() => (addToCart(idProduct)) }>
