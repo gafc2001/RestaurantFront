@@ -111,8 +111,7 @@ const orderSubmit = (order) => {
     <>
     <Sidebar/>
     <div className="parent">
-      
-      <div className="column-1 content">
+      <div className="column-1 content f-column">
           <Header  filtCategory={filtCategory} removeCategory={removeCategory} />
         <main className="menu">
           <div className="menu-header">
@@ -144,7 +143,7 @@ const orderSubmit = (order) => {
         </main>
       </div>
 
-      <div className="column-2">
+      <div className="column-2 bg-primary">
         <div className="order-title">
           <p>Orders #31234</p>
         </div>

@@ -2,17 +2,6 @@
     margin-top: 3rem;
 }
 /*Main column*/
-.column-1{
-    flex: 4;
-    background-color: var(--base-dark-secondary);
-}
-.column-2{
-    flex: 2.5;
-    background-color: var(--base-dark-primary);
-    padding: 1rem 4rem;
-    color: var(--text-white);
-}
-
 
 .menu-header .menu-title{
     font-weight: var(--text-semi-bold);
