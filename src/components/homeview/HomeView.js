@@ -126,11 +126,11 @@ const HomeView = () => {
                 </div>
                 <div className="details">
                   <h3>
-                    Este es la oferta
+                    Torta de flan
                     <br />
-                    <span>este es la descripcion</span>
+                    <span>Sabor a chococale</span>
                   </h3>
-                  <h4>5:00hrs</h4>
+                  <h4>2:00hrs</h4>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
@@ -139,11 +139,11 @@ const HomeView = () => {
                 </div>
                 <div className="details">
                   <h3>
-                    Este es la oferta
+                    Arros con leche
                     <br />
-                    <span>este es la descripcion</span>
+                    <span>Canela y clavo a gusto</span>
                   </h3>
-                  <h4>5:00hrs</h4>
+                  <h4>3:00hrs</h4>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
@@ -152,11 +152,11 @@ const HomeView = () => {
                 </div>
                 <div className="details">
                   <h3>
-                    Este es la oferta
+                    Papa Huancaina
                     <br />
-                    <span>este es la descripcion</span>
+                    <span>Queso , papa y aceituna</span>
                   </h3>
-                  <h4>5:00hrs</h4>
+                  <h4>1:00hrs</h4>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
@@ -165,11 +165,11 @@ const HomeView = () => {
                 </div>
                 <div className="details">
                   <h3>
-                    Este es la oferta
+                    Ceviche de pota
                     <br />
-                    <span>este es la descripcion</span>
+                    <span>Fresco y picante </span>
                   </h3>
-                  <h4>5:00hrs</h4>
+                  <h4>1:00hrs</h4>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
@@ -178,11 +178,11 @@ const HomeView = () => {
                 </div>
                 <div className="details">
                   <h3>
-                    Este es la oferta
+                    Lomo saltado
                     <br />
-                    <span>este es la descripcion</span>
+                    <span>cocinada con carne premiun</span>
                   </h3>
-                  <h4>5:00hrs</h4>
+                  <h4>10:00hrs</h4>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
@@ -191,11 +191,11 @@ const HomeView = () => {
                 </div>
                 <div className="details">
                   <h3>
-                    Este es la oferta
+                    Juanes
                     <br />
-                    <span>este es la descripcion</span>
+                    <span>Pollo ,platano y aceitunas</span>
                   </h3>
-                  <h4>5:00hrs</h4>
+                  <h4>20:00hrs</h4>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
@@ -204,11 +204,11 @@ const HomeView = () => {
                 </div>
                 <div className="details">
                   <h3>
-                    Este es la oferta
+                    Chupe de pescado
                     <br />
-                    <span>este es la descripcion</span>
+                    <span>Pescado Bonito con calamares</span>
                   </h3>
-                  <h4>5:00hrs</h4>
+                  <h4>3:00hrs</h4>
                 </div>
               </SwiperSlide>
               <SwiperSlide>
@@ -217,11 +217,11 @@ const HomeView = () => {
                 </div>
                 <div className="details">
                   <h3>
-                    Este es la oferta
+                    Sopa de Kion
                     <br />
                     <span>este es la descripcion</span>
                   </h3>
-                  <h4>5:00hrs</h4>
+                  <h4>2:00hrs</h4>
                 </div>
               </SwiperSlide>
             </Swiper>
@@ -304,7 +304,7 @@ const HomeView = () => {
             className="src"
             type="text"
             name="search"
-            placeholder="Search for food, coffe, etc"
+            placeholder="Buscar comidas,bebidas,categorias"
             autoComplete="off"
             value={Busqueda}
             onChange={handleChange}
@@ -318,6 +318,8 @@ const HomeView = () => {
                     <div class="contenido-texto-card">
                         <h4>{product.nameProduct}</h4>
                         <p>{product.description}</p>
+                        <h5>$/. {product.priceProduct}</h5>
+                    
                     </div>
                 </div>
   ))}
