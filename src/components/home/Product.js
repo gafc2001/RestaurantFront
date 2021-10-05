@@ -14,11 +14,7 @@ const Product = ({ data, addToCart}) => {
       <div className="card-info">
         <p className="product-name">{nameProduct}</p>
         <p className="product-price">${priceProduct}.00</p>
-<<<<<<< HEAD
         <p className="product-available">{category.nameCategory}</p>
-=======
-        <p className="product-desc">{description}</p>
->>>>>>> c1c22195fb8fb576c6e5fa0aa74ce0e721e000d0
       </div>
       <div className="btn-container">
         <button className="btn btn-primary " onClick={() => (addToCart(idProduct)) }>
