@@ -1,0 +1,39 @@
+.summary-container {
+    margin-bottom: 2rem;
+}
+.summary{
+    padding: 1.5rem;
+}
+.filter-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--form-border);
+}
+.summary-title{
+    font-size: 1.6rem;
+    width: 90%;
+}
+.summary-content{
+    padding: 1rem 0;
+}
+.summary-item {
+    display:flex;
+    align-items:center;
+    margin-bottom: 2rem;
+}
+.summary-desc{
+    line-height: 2rem;
+}
+.summary-item .name{
+    font-size: 1.4rem;
+}   
+.summary-item .qty{
+    font-size: 1.2rem;
+    color:var(--text-light);
+}
+.summary-product{
+    width: 20%;
+}

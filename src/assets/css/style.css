@@ -78,15 +78,24 @@ body{
     min-height: 100vh;
     padding: 2rem 4rem 2rem 11rem;
     background-color: var(--base-dark-secondary);
+    
+}
+.f-column{
     display: flex;
     flex-direction: column;
 }
 
+.width-100{
+    width: 100%;
+}
+.height-100{
+    height: 100%;
+}
 .box-content{
     background-color: var(--base-dark-primary);
     border-radius: 8px;
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
 .center{
@@ -120,6 +129,7 @@ body{
     border: var(--primary-color) 1px solid;
     border-radius: 8px;
     color: var(--primary-color);
+    background-color: var(--base-dark-primary);
 }
 .btn-filter{
     border-radius: 15px;
@@ -129,7 +139,7 @@ body{
     width: 18rem;
     max-width: 20rem;
     justify-content: space-between;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: var(--text-semi-bold);
 }
 .btn-filter path{
@@ -157,7 +167,18 @@ body{
     border: none;
     color: var(--text-white);
 }
-
+.column-1{
+    flex: 4;
+    background-color: var(--base-dark-secondary);
+}
+.column-2{
+    flex: 2.5;
+    padding: 1rem 4rem;
+    color: var(--text-white);
+}
+.bg-primary{
+    background-color: var(--base-dark-primary);
+}
 /*Main column*/
 
 .header{
