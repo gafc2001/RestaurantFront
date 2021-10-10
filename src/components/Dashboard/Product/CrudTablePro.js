@@ -42,9 +42,9 @@ const CrudTablePro = ({
     setIsOpen(true);
   }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-  }
+  // function afterOpenModal() {
+  //   references are now sync'd and can be accessed.
+  // }
 
   function closeModal() {
     setIsOpen(false);
@@ -62,8 +62,8 @@ const CrudTablePro = ({
         </div>
         <Modal
           isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
-          onRequestClose={closeModal}
+          // onAfterOpen={afterOpenModal}
+          // onRequestClose={closeModal}
           style={customStyles}
           contentLabel="Example Modal"
         >
@@ -71,6 +71,7 @@ const CrudTablePro = ({
             createData={createData}
             updateData={updateData}
             setDataToEdit={setDataToEdit}
+            closeModal={closeModal}
           />
         </Modal>
         {data.length > 0 ? (

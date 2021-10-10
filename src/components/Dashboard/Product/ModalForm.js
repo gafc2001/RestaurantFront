@@ -20,6 +20,7 @@ export const ModalForm = ({
   updateData,
   dataToEdit,
   setDataToEdit,
+  closeModal
 }) => {
   let url = "https://restaurantrestapi.herokuapp.com/api/categories";
   const [db2, setDb2] = useState(null);
@@ -124,6 +125,9 @@ export const ModalForm = ({
           />
         )}
         <h2 className="page-name">{dataToEdit ? "Edit" : "Add"}</h2>
+        <div onClick={closeModal}>
+          <h2 className="page-name">X</h2>
+        </div>
       </div>
       <form onSubmit={handleSubmit}>
         {db2 && (
