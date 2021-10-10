@@ -31,14 +31,14 @@ a{
     /*Extras colors*/
     --green-color : #50D1AA;
     --red-color : #FF7CA3;
-    --orange-color : #FF7CA3;
+    --orange-color : #FFB572;
     --blue-color : #65B0F6;
     --purple-color : #9290FE;
     
     --background-extra-green : #6BE2BE3D;
     --background-extra-purple : #9290FE33;
     --background-extra-orange : #FFB57233;
-    
+    --background-extra-red : #ff64713d;
     /*Text colors*/
     --text-dark : #3B5162;
     --text-gray : #3B5162;
@@ -46,7 +46,7 @@ a{
     --text-white: #FFFFFF;
 
     /*Font family*/
-    --text-family: 'Barlow', sans-serif;
+    --text-family: 'Barlow ', sans-serif;
     --text-ligth: 300;
     --text-regular: 400;
     --text-medium: 500;
@@ -68,6 +68,9 @@ button{
 }
 body{
     font-family: var(--text-family);
+}
+.d-flex{
+    display: flex;
 }
 .parent{
     display: flex;
