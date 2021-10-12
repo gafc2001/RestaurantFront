@@ -92,10 +92,6 @@ const CrudTablePro = ({
           </tr>
         )}
       </div>
-      {/*<div className="btn-container">
-                <div className="btn btn-secondary">Discar changes</div>
-                <div className="btn btn-primary">Save changes</div>
-                </div>*/}
     </>
   );
 };
