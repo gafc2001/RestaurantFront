@@ -27,12 +27,14 @@
 .navbar-item .name-item{
     color: var(--text-white);
     font-size: 1.6rem;
-    
+    font-weight: var(--text-medium);
 }
 .navbar-item .navbar-icon{
     position: absolute;
     left: -2.8rem;
     top: 0;
+    font-size: 1.6rem;
+    color:var(--text-light);
 }
 .navbar-item path, .desc-item{
     fill: var(--text-light);
@@ -71,9 +73,8 @@
     padding: 2rem;
     gap: 1rem 4rem;
     overflow: scroll;
-    max-height: 50rem;
+    max-height: 80vh;
     border-bottom: 1px solid var(--form-border);
-    margin-bottom: 4rem;
 }
 .product-container::-webkit-scrollbar{
     display: none;
@@ -131,11 +132,11 @@
     font-weight: var(--text-semi-bold);
 }
 .btn-close{
-    color: #fff;
     position: absolute;
     right: 1rem;
     top: .3rem;
     font-size:2rem;
+    color: var(--text-white);
 }
 .btn-product path{
     fill: var(--primary-color);
