@@ -9,7 +9,7 @@ const DashboardNav = () => {
     <>
       <nav className="settings-navbar">
         <ul className="navbar-list">
-          <Link to={`${url}/products`}>
+          <Link to="/maindashboard/dashboard/products">
             <li className="navbar-item">
               <span className="navbar-icon">
                 <svg
@@ -26,12 +26,12 @@ const DashboardNav = () => {
                 </svg>
               </span>
               <div className="navbar-content">
-                <span className="name-item">Crud products</span>
-                <span className="desc-item">Config Appereance</span>
+                <span className="name-item">Editar productos</span>
+                <span className="desc-item">Configuración de Productos</span>
               </div>
             </li>
           </Link>
-          <Link to={`${url}/categories`}>
+          <Link to="/maindashboard/dashboard/categories">
             <li className="navbar-item">
               <span className="navbar-icon">
                 <svg
@@ -48,8 +48,8 @@ const DashboardNav = () => {
                 </svg>
               </span>
               <div className="navbar-content">
-                <span className="name-item">Crud categories</span>
-                <span className="desc-item">Config Appereance</span>
+                <span className="name-item">Editar categories</span>
+                <span className="desc-item">Configuración de Categorias</span>
               </div>
             </li>
           </Link>

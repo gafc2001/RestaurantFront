@@ -93,7 +93,7 @@ const HomeView = () => {
       <section className="home-section">
         <div className="home-bg"></div>
         <div className="contenedor">
-          <div className="row min-vh-100 align-item-center">
+          <div className="row min-vh-100">
             <div className="home-text">
               <h1>Disfruta en Delibakery</h1>
               <p>
@@ -326,112 +326,23 @@ const HomeView = () => {
             </div>
             </div>
         </section>
-        
-        {/* <footer>
+        <footer>
         <div class="contenedor-footer">
             <div class="content-foo">
                 <h4>Phone</h4>
-                <p>292929</p>
+                <p>922098340</p>
             </div>
             <div class="content-foo">
                 <h4>Email</h4>
-                <p>Delibaker@gmail.com</p>
+                <p>Delibakery@gmail.com</p>
             </div>
             <div class="content-foo">
                 <h4>Location</h4>
-                <p>Ancon-Callao</p>
+                <p>Lima-Ancon</p>
             </div>
         </div>
-        <h2 class="titulo-final">&copy; Delibakery | Gustavo Farfan</h2>
-    </footer> */}
-        {/* <section className="column-1 content">
-      <main className="menu">
-        <div className="search-box">
-          <input
-            className="src"
-            type="text"
-            name="search"
-            placeholder="Search for food, coffe, etc"
-            autoComplete="off"
-            value={Busqueda}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="product-list">
-          {Products &&
-            Products.map((product) => (
-              <div key={product.idProduct} className="product-card">
-                <div className="card-image center">
-                  <img
-                    src={`https://restaurantrestapi.herokuapp.com/api/products/${product.idProduct}/image`}
-                    alt={product.nameProduct}
-                  />
-                </div>
-                <div className="card-info">
-                  <p className="product-name">{product.nameProduct}</p>
-                  <p className="product-price">{product.description}</p>
-                  <p className="product-available">
-                    {product.category.nameCategory}
-                  </p>
-                </div>
-              </div>
-            ))}
-        </div>
-      </main>
-      </section>
-      <div className="homeview-header">
-        <div class="textos-header">
-          <h1>Te Damos La Bienvenida disfruta</h1>
-          <h2>Conoce la carta</h2>
-          <div className="search-box">
-            <input
-              className="src"
-              type="text"
-              name="search"
-              value={Busqueda}
-              placeholder="Search for food, coffe, etc"
-              onChange={handleChange}
-              autoComplete="off"
-            />
-          </div>
-        </div>
-        <Swiper
-          effect={"coverflow"}
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView={"auto"}
-          coverflowEffect={{
-            rotate: 60,
-            stretch: 0,
-            depth: 300,
-            modifier: 1,
-            slideShadows: true,
-          }}
-          pagination={true}
-          className="mySwiper"
-        >
-          {Busqueda &&
-            Products &&
-            Products.map((product) => (
-              
-              <SwiperSlide key={product.idProduct}>
-                
-                <div class="imgBx">
-                  <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-                </div>
-                <div class="details" >
-                  <h3>
-                    {product.nameProduct}
-                    <br />
-                    <span>{product.description}</span>
-                  </h3>
-                  <h4>{product.category.nameCategory}</h4>
-                </div>
-              </SwiperSlide>
-            ))}
-        </Swiper>
-      </div> */}
+        <h2 class="titulo-final">&copy;  Delibakery | GustavoFC -  DavidPG</h2>
+    </footer>
     </>
   );
 };

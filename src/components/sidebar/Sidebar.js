@@ -21,11 +21,13 @@ export default function Sidebar()
         
         <nav className="sidebar">
         <ul className="sidebar-menu">
+            <NavLink to="/">
             <li className="sidebar-item">
                 <span className="center logo">
                     <img src={logo} alt="delibakery logo" width="80%"/>
                 </span>
             </li>
+            </NavLink>
             <NavLink to="/home" className="sidebar-item center" activeClassName="sidebar-item-active">
             <li className="center">
                 
@@ -57,7 +59,7 @@ export default function Sidebar()
                 </span>
             </li>
             </NavLink>
-            {role !== 'ROLE_USER' &&<NavLink to="/dashboard" className="sidebar-item center" activeClassName="sidebar-item-active">
+            {role !== 'ROLE_USER' &&<NavLink to="/maindashboard" className="sidebar-item center" activeClassName="sidebar-item-active">
             <li className="center">
                         <span className="center">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
