@@ -73,9 +73,8 @@
     padding: 2rem;
     gap: 1rem 4rem;
     overflow: scroll;
-    max-height: 50rem;
+    max-height: 80vh;
     border-bottom: 1px solid var(--form-border);
-    margin-bottom: 4rem;
 }
 .product-container::-webkit-scrollbar{
     display: none;
