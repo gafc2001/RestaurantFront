@@ -8,7 +8,6 @@ import { Switch, Route } from "react-router-dom";
 
 const DashboardContainer = () => {
   let { topic } = useParams();
-  console.log(topic)
   return (
     <>
       {!topic && <CrudAppPro />}

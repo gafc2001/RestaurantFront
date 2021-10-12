@@ -68,7 +68,7 @@ export const CrudFormCategory = ({createData, updateData,dataToEdit,setDataToEdi
                     </div>
                 </div>
                 <div className="btn-container">
-                    <button type="submit" className="btn btn-primary" >{dataToEdit ? "Edit":"Add"}</button>
+                    <button type="submit" className="btn btn-primary" >{dataToEdit ? "Edit":"Agregar"}</button>
                     <button type="reset" onClick={handleReset} className="btn btn-secondary">Cancelar</button>
                 </div>
                 

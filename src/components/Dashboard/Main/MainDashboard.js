@@ -102,8 +102,8 @@ const MainDashboard = () => {
           <header className="header">
             <div className="header-info">
               <div className="page-info">
-                <h2 className="page-name">Dashboard</h2>
-                <p className="date">Tuesday, 2 Feb 2021</p>
+                <h2 className="page-name">Estadisticas de ventas</h2>
+                <p className="date"> 12 Octubre 2021</p>
               </div>
               <div class=" input-center ">
                 <div className="btn-container">

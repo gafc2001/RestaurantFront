@@ -18,7 +18,7 @@ const Product = ({ data, addToCart}) => {
       </div>
       <div className="btn-container">
         <button className="btn btn-primary " onClick={() => (addToCart(idProduct)) }>
-          <i className="fas fa-shopping-cart"></i>  Add 
+          <i className="fas fa-shopping-cart"></i>  Agregar
         </button>
       </div>
     </div>

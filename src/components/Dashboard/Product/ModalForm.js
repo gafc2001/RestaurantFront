@@ -125,7 +125,7 @@ export const ModalForm = ({
           />
         )}
         <header className="settings-info">
-          <h2 className="page-name">{dataToEdit ? "Edit" : "Add"}</h2>
+          <h2 className="page-name">{dataToEdit ? "Editar" : "Agregar"}</h2>
           <div onClick={closeModal} className="">
             <h2 className="page-name"><i class="far fa-times-circle"></i></h2>
           </div>
@@ -133,7 +133,7 @@ export const ModalForm = ({
       </div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="product">Product</label>
+          <label htmlFor="product">Productos</label>
           <div className="input-container">
             <input
               type="text"
@@ -146,7 +146,7 @@ export const ModalForm = ({
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="price">Price</label>
+          <label htmlFor="price">Precio</label>
           <div className="input-container">
             <input
               type="number"
@@ -160,7 +160,7 @@ export const ModalForm = ({
         </div>
         
         <div className="form-group">
-          <label htmlFor="desct">Description</label>
+          <label htmlFor="desct">Descripción</label>
           <div className="input-container">
             <input
               type="text"
@@ -187,7 +187,7 @@ export const ModalForm = ({
         </div>
 
         <div className="form-group">
-          <label htmlFor="avariable">Availability</label>
+          <label htmlFor="avariable">Disponibilidad:</label>
           <div>
           <input
             type="radio"
@@ -197,7 +197,7 @@ export const ModalForm = ({
             value="available"
             defaultChecked
           />
-          <label htmlFor="sold out">Available</label>
+          <label htmlFor="sold out">Disponible</label>
           </div>
           <div>
           <input
@@ -207,7 +207,7 @@ export const ModalForm = ({
             onClick={handleAvariable}
             value="sold out"
           />
-          <label htmlFor="avariable">Sold out</label>
+          <label htmlFor="avariable">Agotado</label>
           </div>
         </div>
         <div className="form-group">

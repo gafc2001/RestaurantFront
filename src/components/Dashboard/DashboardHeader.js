@@ -5,7 +5,7 @@ export const DashboardHeader = () => {
     <>
       <header className="settings-header">
         <div className="settings-info">
-          <h3 className="settings-title">Products Managment</h3>
+          <h3 className="settings-title">Administración</h3>
           <div className="btn-filter center">
             <span>
               <svg
@@ -21,25 +21,25 @@ export const DashboardHeader = () => {
                 />
               </svg>
             </span>
-            <span>Manage Categories</span>
+            <span>Items</span>
           </div>
         </div>
         <div className="filter">
           <ul className="filter-list">
             <li className="filter-item filter-active">
-              <span>Hot Dishes</span>
+              <span>Productos</span>
             </li>
             <li className="filter-item">
-              <span>Fast Food</span>
+              <span>Bebidas</span>
             </li>
             <li className="filter-item">
-              <span>Soups</span>
+              <span>Sopas</span>
             </li>
             <li className="filter-item">
-              <span>Desserts</span>
+              <span>Postres</span>
             </li>
             <li className="filter-item">
-              <span>Salads</span>
+              <span>Licores</span>
             </li>
           </ul>
         </div>

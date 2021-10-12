@@ -36,7 +36,7 @@ const OrderDetail = () => {
           <header className="header">
             <div className="header-info">
               <div className="page-info">
-                <h2 className="page-name">Details</h2>
+                <h2 className="page-name">Detalles</h2>
               </div>
             </div>
           </header>
@@ -44,7 +44,7 @@ const OrderDetail = () => {
             <div className="noti-container">
               <div className="noti-header">
                 <h2 className="noti-title border-b">
-                  Order {id}
+                  Ordenes {id}
                   <span></span>
                 </h2>
               </div>
@@ -52,10 +52,10 @@ const OrderDetail = () => {
                 <table className="table">
                   <thead>
                     <tr>
-                      <td>Product</td>
-                      <td>Price</td>
-                      <td>Quantity</td>
-                      <td>Category</td>
+                      <td>Producto</td>
+                      <td>Precio</td>
+                      <td>Cantidad</td>
+                      <td>Categorias</td>
                     </tr>
                   </thead>
                   <tbody>

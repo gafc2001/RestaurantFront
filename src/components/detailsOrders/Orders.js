@@ -32,7 +32,7 @@ const Orders = () => {
           <header className="header">
             <div className="header-info">
               <div className="page-info">
-                <h2 className="page-name">Notifications</h2>
+                <h2 className="page-name">Notificaciones</h2>
               </div>
             </div>
           </header>
@@ -40,14 +40,14 @@ const Orders = () => {
             <div className="noti-container">
               <div className="noti-header">
                 <h2 className="noti-title">
-                  Orders <span>:</span>
+                  Ordenes <span>:</span>
                 </h2>
                 <div className="filter">
                   <ul className="filter-list">
-                    <li className="filter-item filter-active">All</li>
-                    <li className="filter-item">Ready for deliver</li>
-                    <li className="filter-item">In process</li>
-                    <li className="filter-item">Delivered</li>
+                    <li className="filter-item filter-active">Todos</li>
+                    <li className="filter-item">Listo para el delivery</li>
+                    <li className="filter-item">En proceso</li>
+                    <li className="filter-item">Completado</li>
                   </ul>
                 </div>
               </div>

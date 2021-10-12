@@ -115,7 +115,7 @@ const orderSubmit = (order) => {
           <Header  filtCategory={filtCategory} removeCategory={removeCategory} />
         <main className="menu">
           <div className="menu-header">
-            <p className="menu-title">Choose Dishes</p>
+            <p className="menu-title">Seleccion de productos</p>
           </div>
           <div className="product-list">
             {Loading && <Loader />}
@@ -145,12 +145,12 @@ const orderSubmit = (order) => {
 
       <div className="column-2 bg-primary">
         <div className="order-title">
-          <p>Orders #31234</p>
+          <p>Ordenes</p>
         </div>
         <div className="order-header order-grid">
           <p className="col-1">Item</p>
-          <p className="col-2">Qty</p>
-          <p className="col-3">Price</p>
+          <p className="col-2">Cantidad</p>
+          <p className="col-3">Precio</p>
         </div>
         <div className="order-list">
          {cart && cart.map((item, index) => (
@@ -159,7 +159,7 @@ const orderSubmit = (order) => {
         </div>
         <div className="order-resume">
           <div className="resume-item">
-            <p className="resume-title">Discount</p>
+            <p className="resume-title">Descuento</p>
             <p className="resume-mon">$0</p>
           </div>
           <div className="resume-item">
@@ -169,7 +169,7 @@ const orderSubmit = (order) => {
         </div>
         <div className="btn-container">
           <button onClick={addToPay} className="btn btn-primary">
-            Confirm you order
+            Confirma tu compra
           </button>
         <PayPalButton 
           createOrder={(data, actions) => createOrder(data, actions)}

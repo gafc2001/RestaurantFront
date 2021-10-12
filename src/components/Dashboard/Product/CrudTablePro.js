@@ -57,7 +57,7 @@ const CrudTablePro = ({
         <div className="product new-product center" onClick={openModal}>
           <div>
             <div className="plus">+</div>
-            <div>Add new dish</div>
+            <div>Agregar nuevo plato</div>
           </div>
         </div>
         <Modal
