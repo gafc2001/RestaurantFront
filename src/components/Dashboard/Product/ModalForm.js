@@ -124,23 +124,14 @@ export const ModalForm = ({
             bgColor="#dc3545"
           />
         )}
-        <h2 className="page-name">{dataToEdit ? "Edit" : "Add"}</h2>
-        <div onClick={closeModal}>
-          <h2 className="page-name">X</h2>
-        </div>
+        <header className="settings-info">
+          <h2 className="page-name">{dataToEdit ? "Edit" : "Add"}</h2>
+          <div onClick={closeModal} className="">
+            <h2 className="page-name"><i class="far fa-times-circle"></i></h2>
+          </div>
+        </header>
       </div>
       <form onSubmit={handleSubmit}>
-        {db2 && (
-          <select value={form.category.idCategory} onChange={selectChange}>
-            <option value="">Seleccione</option>
-            {db2 &&
-              db2.map((Elemento) => (
-                <option key={Elemento.idCategory} value={Elemento.idCategory}>
-                  {Elemento.nameCategory}
-                </option>
-              ))}
-          </select>
-        )}
         <div className="form-group">
           <label htmlFor="product">Product</label>
           <div className="input-container">
@@ -167,12 +158,7 @@ export const ModalForm = ({
             />
           </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="file">File</label>
-          <div className="input-container">
-            <input type="file" name="file0" onChange={fileChange} />
-          </div>
-        </div>
+        
         <div className="form-group">
           <label htmlFor="desct">Description</label>
           <div className="input-container">
@@ -186,9 +172,23 @@ export const ModalForm = ({
             />
           </div>
         </div>
+        <div className="select-container">
+        {db2 && (
+          <select value={form.category.idCategory} onChange={selectChange} className="select-form">
+            <option value="">Seleccione</option>
+            {db2 &&
+              db2.map((Elemento) => (
+                <option key={Elemento.idCategory} value={Elemento.idCategory}>
+                  {Elemento.nameCategory}
+                </option>
+              ))}
+          </select>
+        )}
+        </div>
 
         <div className="form-group">
           <label htmlFor="avariable">Availability</label>
+          <div>
           <input
             type="radio"
             name="Availability"
@@ -197,7 +197,9 @@ export const ModalForm = ({
             value="available"
             defaultChecked
           />
-          <label htmlFor="sold out">avariable</label>
+          <label htmlFor="sold out">Available</label>
+          </div>
+          <div>
           <input
             type="radio"
             name="Availability"
@@ -205,19 +207,26 @@ export const ModalForm = ({
             onClick={handleAvariable}
             value="sold out"
           />
-          <label htmlFor="avariable">sold out</label>
+          <label htmlFor="avariable">Sold out</label>
+          </div>
         </div>
-        <button className="btn btn-primary" value="Enviar" type="submit">
-          Save
-        </button>
-        <button
-          type="reset"
-          className="btn btn-secondary"
-          value="limpiar"
-          onClick={handleReset}
-        >
-          Discard
-        </button>
+        <div className="form-group">
+          <label htmlFor="file" for="file" className="file-content"><i class="fas fa-upload file-icon"></i> Choose a file...
+          <input type="file" name="file0" id="file" onChange={fileChange} /></label>
+        </div>
+        <div class="btn-container">
+          <button className="btn btn-primary" value="Enviar" type="submit">
+            Save
+          </button>
+          <button
+            type="reset"
+            className="btn btn-secondary"
+            value="limpiar"
+            onClick={handleReset}
+          >
+            Discard
+          </button>
+        </div>
       </form>
     </>
   );
