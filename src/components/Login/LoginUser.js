@@ -12,6 +12,7 @@ import "./../../assets/css/style.css";
 //Images
 import logoWhite from "./../../assets/images/logo-white.png";
 import backgroundImg from '../../assets/images/background.jpg';
+import Sidebar from "../sidebar/Sidebar";
 
 
 const initialForm = {
@@ -87,7 +88,9 @@ export const  LoginUser=()=> {
 };
   return (
     <>
+    
     {user && <Redirect to="/home" />}
+    <Sidebar/>
       <img src={backgroundImg} alt="logo" className="background"/>
         <div className="content center">
           

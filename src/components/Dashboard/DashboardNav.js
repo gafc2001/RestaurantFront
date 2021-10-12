@@ -9,25 +9,25 @@ const DashboardNav = () => {
     <>
       <nav className="settings-navbar">
         <ul className="navbar-list">
-          <Link to={`${url}/products`}>
+          <Link to="/maindashboard/dashboard/products">
             <li className="navbar-item">
               <span className="navbar-icon">
                 <i class="fas fa-box-open"></i>
               </span>
               <div className="navbar-content">
-                <span className="name-item">Products</span>
-                <span className="desc-item">Configure products</span>
+                <span className="name-item">Editar productos</span>
+                <span className="desc-item">Configuración de Productos</span>
               </div>
             </li>
           </Link>
-          <Link to={`${url}/categories`}>
+          <Link to="/maindashboard/dashboard/categories">
             <li className="navbar-item">
               <span className="navbar-icon">
                 <i class="fas fa-tags"></i>
               </span>
               <div className="navbar-content">
-                <span className="name-item">Product Categories</span>
-                <span className="desc-item">Configure the categories</span>
+                <span className="name-item">Editar categories</span>
+                <span className="desc-item">Configuración de Categorias</span>
               </div>
             </li>
           </Link>

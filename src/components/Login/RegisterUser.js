@@ -69,6 +69,7 @@ export const  RegisterUser = () => {
     
     <>
     {Login && <Redirect to="/login" />}
+    <Sidebar/>
       <img src={backgroundImg} alt="" className="background"/>
         <div className="content center">
             <div className="content-form">

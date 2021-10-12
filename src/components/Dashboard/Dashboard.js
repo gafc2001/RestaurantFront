@@ -1,12 +1,10 @@
 import React from "react";
 import { useRouteMatch,Switch,Route } from "react-router";
 import Sidebar from "../sidebar/Sidebar";
-import { DashboardContainer } from "./DashboardContainer";
 import { DashboardHeader } from "./DashboardHeader";
 import { DashboardNav } from "./DashboardNav";
+import { DashboardContainer } from "./DashboardContainer";
 const Dashboard = () => {
-//  let {topic}=useParams();
-  let { path} = useRouteMatch();
   return (
     <>
     <Sidebar/>
@@ -15,7 +13,7 @@ const Dashboard = () => {
           <header className="header">
             <div className="header-info">
               <div className="page-info">
-                <h2 className="page-name">Settings</h2>
+                <h2 className="page-name">Configuraciones</h2>
               </div>
             </div>
           </header>
@@ -26,9 +24,7 @@ const Dashboard = () => {
             <div className="col-2">
               <DashboardHeader/>
               <div className="setting-content">
-                <Switch>
-                    <Route path={`${path}/:topic`} component={DashboardContainer}/>
-                </Switch>
+                <DashboardContainer/>
               </div>
             </div>
           </main>

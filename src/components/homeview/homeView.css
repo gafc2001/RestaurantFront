@@ -6,6 +6,7 @@
 .home-section{
   position: relative;
   overflow: hidden;
+  margin-left: 80px;
 
 }
 .contenedor{
@@ -259,8 +260,9 @@ input.src:hover{
 }
 
 /* footer  */
-/* footer{
-  background: #414141;
+footer{
+  font-family: 'Poppins', sans-serif;
+  background: #1F1D2B;
   padding: 60px 0 30px 0;
   margin: auto;
   overflow: hidden;
@@ -272,7 +274,7 @@ input.src:hover{
   justify-content: space-evenly;
   margin: auto;
   padding-bottom: 50px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 0.25rem solid #ea8e69;
 }
 
 .content-foo{
@@ -281,13 +283,15 @@ input.src:hover{
 
 .content-foo h4{
   color: #fff;
-  border-bottom: 3px solid #af20d3;
+  font-size: 15px;
+  border-bottom: 0.23rem solid #EA7C69;
   padding-bottom: 5px;
   margin-bottom: 10px;
 }
 
 .content-foo p{
   color: #ccc;
+  font-size: 15px;
 }
 
 .titulo-final{
@@ -295,7 +299,7 @@ input.src:hover{
   font-size: 24px;
   margin: 20px 0 0 0;
   color: #9e9797;
-} */
+} 
 
 
 
