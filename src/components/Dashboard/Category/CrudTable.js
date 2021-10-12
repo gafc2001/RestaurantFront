@@ -8,9 +8,9 @@ const CrudTable = ({data,setDataToEdit,deleteData}) => {
             <table className="table-content">
                 <thead className="thead">
                     <tr>
-                        <th>Name Category</th>
-                        <th>description</th>
-                        <th>Action</th>
+                        <th>Nombre Categoria</th>
+                        <th>Descripcion</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody className="tbody">

@@ -8,7 +8,6 @@ export default function Sidebar()
 
 {
     let role =sessionStorage.getItem('role');
-
     const logoutSession =()=>{
         sessionStorage.removeItem("id");
         sessionStorage.removeItem("username");
@@ -17,6 +16,7 @@ export default function Sidebar()
     }
    
     //(sessionStorage.getItem('role')).includes('ROLE_USER')
+    
     return (
         
         <nav className="sidebar">

@@ -32,13 +32,13 @@ export const Header = ({ filtCategory,removeCategory }) => {
       <div className="header-info">
         <div className="page-info">
           <h2 className="page-name">{sessionStorage.getItem("username")}</h2>
-          <p className="date">Tuesday, 2 Feb 2021</p>
+          <p className="date">Martes, 12 Octubre 2021</p>
         </div>
       </div>
       <div className="filter">
         <ul className="filter-list">
           <li class="filter-item" onClick={()=>removeCategory(null)}>
-            <span>All</span>
+            <span>Todos</span>
           </li>
           {category &&
             category.map((item, index) => (

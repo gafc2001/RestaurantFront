@@ -329,15 +329,15 @@ const HomeView = () => {
         <footer>
         <div class="contenedor-footer">
             <div class="content-foo">
-                <h4>Phone</h4>
+                <h4>Celular</h4>
                 <p>922098340</p>
             </div>
             <div class="content-foo">
-                <h4>Email</h4>
+                <h4>Correo </h4>
                 <p>Delibakery@gmail.com</p>
             </div>
             <div class="content-foo">
-                <h4>Location</h4>
+                <h4>Direccion</h4>
                 <p>Lima-Ancon</p>
             </div>
         </div>

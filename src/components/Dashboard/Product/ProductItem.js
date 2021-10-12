@@ -63,7 +63,7 @@ export const ProductItem = ({
           <span className="product-name">{nameProduct}</span>
           <span className="product-details">
             <span>${priceProduct}</span> &bull;
-            {availableProduct ? <span>Available</span> : <span>Sold out</span>}
+            {availableProduct ? <span>Disponible</span> : <span>Agotado</span>}
           </span>
         </div>
       </div>
@@ -85,7 +85,7 @@ export const ProductItem = ({
             />
           </svg>
         </span>
-        Edit dish
+        Editar plato
       </button>
       <Modal
         isOpen={modalIsOpen}
