@@ -13,10 +13,10 @@ const Order = ({db}) => {
             <img src={clipboard} />
           </div>
           <div className="product-info">
-            <span className="product-name">Enviar a: {user.username}</span>
+            <span className="product-name">En proceso</span>
             <span className="product-details">
-              <span>${totalPrice}</span> &bull;
-              <span>{description}</span>
+              <span>PAYPAL</span> &bull;
+              <span> ${totalPrice}</span>
             </span>
           </div>
           </Link>
