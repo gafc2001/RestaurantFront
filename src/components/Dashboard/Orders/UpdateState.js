@@ -24,7 +24,8 @@ const UpdateState = () => {
     const updateOrder = (data) => {
         let endpoint = `${url}/${data.idOrder}/status`;
         //console.log(endpoint);
-        var raw = data.statusOrder;
+        
+        let raw = {status:data.statusOrder};
         let options = {
           body: raw,
           headers: { "content-type": "application/json" },

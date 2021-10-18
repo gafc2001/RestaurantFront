@@ -1,12 +1,18 @@
-import React from "react";
+import React,{ useState } from "react";
 import clipboard from "../../assets/images/clipboard.png";
 import { Link } from "react-router-dom";
-import userEvent from "@testing-library/user-event";
+
 const Order = ({db}) => {
-    let {idOrder,totalPrice,statusOrder,description,user} =db
+    let {idOrder,totalPrice,statusOrder,description} =db
+        let  style = {
+      "COMPLETADO": "completed",
+      "PENDIENTE": "pending",
+      "ENVIANDO": "delivering",
+      "PREPARANDO": "preparing" 
+    }
     return (
-      <div className="product product-item completed">
-          
+      <div className={`product product-item ${style[statusOrder]}`}>
+
         <Link  to={"/notifications/order/"+idOrder} className="product-content"  >
           <h2 className="center product-title">#{idOrder}</h2>
           <div className="product-image center">

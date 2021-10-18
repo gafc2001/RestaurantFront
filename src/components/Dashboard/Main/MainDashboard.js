@@ -1,9 +1,11 @@
-import React, { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { PieChart, Pie, Sector } from "recharts";
 import Sidebar from "./../../sidebar/Sidebar";
 import "./maindashboard.css";
-import { useRouteMatch} from "react-router";
+import React, { useCallback, useState } from "react";
+import { MostOrders } from "./MostOrders";
+import {ReportOrder} from "./ReportOrder";
+
 const data = [
   { name: "Group A", value: 400 },
   { name: "Group B", value: 300 },
@@ -84,8 +86,7 @@ const renderActiveShape = (props) => {
   );
 };
 const MainDashboard = () => {
-
-  let { url } = useRouteMatch();
+  //grafico estadistico
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = useCallback(
     (_, index) => {
@@ -93,7 +94,6 @@ const MainDashboard = () => {
     },
     [setActiveIndex]
   );
-  
   return (
     <>
       <Sidebar />
@@ -105,13 +105,13 @@ const MainDashboard = () => {
                 <h2 className="page-name">Estadisticas de ventas</h2>
                 <p className="date"> 12 Octubre 2021</p>
               </div>
-              <div class=" input-center ">
+              <div className=" input-center ">
                 <div className="btn-container">
-                <Link to={`${url}/dashboard/products`}>
-                  <button className="btn btn-primary ">
-                     Ir a Configuraciones
-                  </button>
-                </Link>
+                  <Link to="maindashboard/dashboard/products">
+                    <button className="btn btn-primary ">
+                      Ir a Configuraciones
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -133,7 +133,7 @@ const MainDashboard = () => {
                         cy="12"
                         r="9"
                         stroke="#3B5162"
-                        stroke-width="1.8"
+                        strokeWidth="1.8"
                       />
                       <path
                         d="M10.459 9.94112C10.459 9.34702 10.916 8.97489 11.5362 8.90307V10.9988C11.471 10.9857 11.4122 10.9661 11.3534 10.9465C10.7593 10.7507 10.459 10.4112 10.459 9.94112ZM13.7233 14.015C13.7233 14.6548 13.2337 15.0792 12.5417 15.1379V12.8855C12.5874 12.8986 12.6331 12.9116 12.6722 12.9182C13.4034 13.1206 13.7233 13.4796 13.7233 14.015ZM12.5547 17.3772L12.5482 16.5481C14.337 16.3783 15.473 15.3925 15.473 13.8387C15.473 12.2588 14.4088 11.5929 13.0966 11.3121L12.5417 11.1946V8.91613C13.2337 9.02712 13.6189 9.54941 13.6385 10.0717H15.3098C15.2837 8.71374 14.2195 7.68222 12.5678 7.50595V6.65723H11.5101V7.49942C9.9302 7.64305 8.68976 8.51136 8.68976 10.0782C8.68976 11.5602 9.76046 12.3175 10.9748 12.5852L11.5362 12.7093V15.1379C10.7006 15.0269 10.2632 14.5242 10.2305 13.9236H8.52002C8.53308 15.1314 9.34263 16.4045 11.5036 16.5611L11.4971 17.3772H12.5547Z"
@@ -237,163 +237,17 @@ const MainDashboard = () => {
                 </div>
               </section>
             </div>
-            <div className="box-content order-report">
-              <header className="filter-header">
-                <h4 className="summary-title">Reporte de ordenes</h4>
-                <div class="btn-filter center">
-                  <span>
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M18.2374 14.0725C20.3126 14.0725 21.9996 15.7377 21.9996 17.7862C21.9996 19.8336 20.3126 21.5 18.2374 21.5C16.1621 21.5 14.4751 19.8336 14.4751 17.7862C14.4751 15.7377 16.1621 14.0725 18.2374 14.0725ZM18.2374 15.8144C17.135 15.8144 16.2397 16.6981 16.2397 17.7862C16.2397 18.8732 17.135 19.7581 18.2374 19.7581C19.3397 19.7581 20.235 18.8732 20.235 17.7862C20.235 16.6981 19.3397 15.8144 18.2374 15.8144ZM10.1172 16.9149C10.6042 16.9149 10.9995 17.3051 10.9995 17.7859C10.9995 18.2667 10.6042 18.6568 10.1172 18.6568H2.88316C2.39611 18.6568 2.00082 18.2667 2.00082 17.7859C2.00082 17.3051 2.39611 16.9149 2.88316 16.9149H10.1172ZM5.76229 2.5C7.83754 2.5 9.52457 4.16643 9.52457 6.21376C9.52457 8.26109 7.83754 9.92753 5.76229 9.92753C3.68821 9.92753 2 8.26109 2 6.21376C2 4.16643 3.68821 2.5 5.76229 2.5ZM5.76229 4.24192C4.66113 4.24192 3.76467 5.12681 3.76467 6.21376C3.76467 7.30072 4.66113 8.18561 5.76229 8.18561C6.86462 8.18561 7.7599 7.30072 7.7599 6.21376C7.7599 5.12681 6.86462 4.24192 5.76229 4.24192ZM21.1177 5.34304C21.6047 5.34304 22 5.73323 22 6.214C22 6.69476 21.6047 7.08495 21.1177 7.08495H13.8825C13.3954 7.08495 13.0002 6.69476 13.0002 6.214C13.0002 5.73323 13.3954 5.34304 13.8825 5.34304H21.1177Z"
-                        fill="#3B5162"
-                      ></path>
-                    </svg>
-                  </span>
-                  <span>Filtrar ordenes</span>
-                </div>
-              </header>
-              <table className="dashboard-table">
-                <thead className="table-header">
-                  <tr className="table-row">
-                    <td className="customer-col">Cliente</td>
-                    <td className="order-col">Orden</td>
-                    <td className="total-col">Total</td>
-                    <td className="status-col">Estado</td>
-                  </tr>
-                </thead>
-                <tbody className="table-body">
-                  <tr className="row">
-                    <td className="customer-col customer-data">
-                      <div className="profile-image">
-                        <img src="https://randomuser.me/api/portraits/thumb/men/2.jpg" />
-                      </div>
-                      <span>Nombre cliente</span>
-                    </td>
-                    <td className="order-col">
-                      lorem ipsum dolor sit amet, consectetur adip
-                    </td>
-                    <td className="total-col">$125</td>
-                    <td className="status-col">
-                      <span className="color-status completed">Completado</span>
-                    </td>
-                  </tr>
-                  <tr className="row">
-                    <td className="customer-col customer-data">
-                      <div className="profile-image">
-                        <img src="https://randomuser.me/api/portraits/thumb/men/3.jpg" />
-                      </div>
-                      <span>Nombre cliente</span>
-                    </td>
-                    <td className="order-col">
-                      lorem ipsum dolor sit amet, consectetur adip
-                    </td>
-                    <td className="total-col">$125</td>
-                    <td className="status-col">
-                      <span className="color-status preparing">Completado</span>
-                    </td>
-                  </tr>
-                  <tr className="row">
-                    <td className="customer-col customer-data">
-                      <div className="profile-image">
-                        <img src="https://randomuser.me/api/portraits/thumb/men/5.jpg" />
-                      </div>
-                      <span>Nombre cliente</span>
-                    </td>
-                    <td className="order-col">
-                      lorem ipsum dolor sit amet, consectetur adip
-                    </td>
-                    <td className="total-col">$125</td>
-                    <td className="status-col">
-                      <span className="color-status pending">Completado</span>
-                    </td>
-                  </tr>
-                  <tr className="row">
-                    <td className="customer-col customer-data">
-                      <div className="profile-image">
-                        <img src="https://randomuser.me/api/portraits/thumb/men/7.jpg" />
-                      </div>
-                      <span>Nombre cliente</span>
-                    </td>
-                    <td className="order-col">
-                      lorem ipsum dolor sit amet, consectetur adip
-                    </td>
-                    <td className="total-col">$125</td>
-                    <td className="status-col">
-                      <span className="color-status completed">Completado</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <ReportOrder />
           </main>
         </div>
         <div className="column-2">
           <div className="height-100">
-            <div className="box-content summary-container">
-              <div className="summary">
-                <header className="filter-header">
-                  <h4 className="summary-title">Mas ordenados</h4>
-                  <div class="btn-filter center">
-                    <span>
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M18.2374 14.0725C20.3126 14.0725 21.9996 15.7377 21.9996 17.7862C21.9996 19.8336 20.3126 21.5 18.2374 21.5C16.1621 21.5 14.4751 19.8336 14.4751 17.7862C14.4751 15.7377 16.1621 14.0725 18.2374 14.0725ZM18.2374 15.8144C17.135 15.8144 16.2397 16.6981 16.2397 17.7862C16.2397 18.8732 17.135 19.7581 18.2374 19.7581C19.3397 19.7581 20.235 18.8732 20.235 17.7862C20.235 16.6981 19.3397 15.8144 18.2374 15.8144ZM10.1172 16.9149C10.6042 16.9149 10.9995 17.3051 10.9995 17.7859C10.9995 18.2667 10.6042 18.6568 10.1172 18.6568H2.88316C2.39611 18.6568 2.00082 18.2667 2.00082 17.7859C2.00082 17.3051 2.39611 16.9149 2.88316 16.9149H10.1172ZM5.76229 2.5C7.83754 2.5 9.52457 4.16643 9.52457 6.21376C9.52457 8.26109 7.83754 9.92753 5.76229 9.92753C3.68821 9.92753 2 8.26109 2 6.21376C2 4.16643 3.68821 2.5 5.76229 2.5ZM5.76229 4.24192C4.66113 4.24192 3.76467 5.12681 3.76467 6.21376C3.76467 7.30072 4.66113 8.18561 5.76229 8.18561C6.86462 8.18561 7.7599 7.30072 7.7599 6.21376C7.7599 5.12681 6.86462 4.24192 5.76229 4.24192ZM21.1177 5.34304C21.6047 5.34304 22 5.73323 22 6.214C22 6.69476 21.6047 7.08495 21.1177 7.08495H13.8825C13.3954 7.08495 13.0002 6.69476 13.0002 6.214C13.0002 5.73323 13.3954 5.34304 13.8825 5.34304H21.1177Z"
-                          fill="#3B5162"
-                        ></path>
-                      </svg>
-                    </span>
-                    <span>Hoy</span>
-                  </div>
-                </header>
-                <div className="summary-content">
-                  <div className="summary-item">
-                    <div className="product-image center summary-product">
-                      <img src="https://restaurantrestapi.herokuapp.com/api/products/5/image" />
-                    </div>
-                    <div className="summary-desc">
-                      <div className="name">Descripcion para el plato</div>
-                      <div className="qty">200 platos ordenados</div>
-                    </div>
-                  </div>
-                  <div className="summary-item">
-                    <div className="product-image center summary-product">
-                      <img src="https://restaurantrestapi.herokuapp.com/api/products/15/image" />
-                    </div>
-                    <div className="summary-desc">
-                      <div className="name">Descripcion para el plato</div>
-                      <div className="qty">200 platos ordenados</div>
-                    </div>
-                  </div>
-                  <div className="summary-item">
-                    <div className="product-image center summary-product">
-                      <img src="https://restaurantrestapi.herokuapp.com/api/products/25/image" />
-                    </div>
-                    <div className="summary-desc">
-                      <div className="name">Descripcion para el plato</div>
-                      <div className="qty">200 platos ordenados</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="btn btn-secondary">Ver todos</div>
-              </div>
-            </div>
+            <MostOrders />
             <div className="box-content summary-container">
               <div className="summary">
                 <header className="filter-header">
                   <h4 className="summary-title">Mayor tipo de orden</h4>
-                  <div class="btn-filter center">
+                  <div className="btn-filter center">
                     <span>
                       <svg
                         width="24"

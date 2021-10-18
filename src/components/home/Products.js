@@ -81,7 +81,7 @@ export const Products = () => {
 
   const onApprove = async(data, actions) => {
     const order = await actions.order.capture();
-    console.log(order)
+    //console.log(order)
     orderSubmit(order);
   //return actions.order.capture();
 }
@@ -91,7 +91,8 @@ const orderSubmit = (order) => {
 
   let order_detail={
     iduser:sessionStorage.getItem("id"),
-    status:order.status,
+    status:"PENDIENTE",
+    //status:order.status,
     subtotal: parseFloat(order.purchase_units[0].amount.value),
     orders:products,
     create_time:order.create_time,

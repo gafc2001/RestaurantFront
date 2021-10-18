@@ -24,15 +24,20 @@
     color: var(--green-color)!important;
 }
 .preparing .btn-product{
-    background-color: var(--background-extra-purple);
-    color: var(--purple-color)!important;
+    color: var(--orange-color);
+    background-color: var(--background-extra-orange)!important;
 }
 .preparing .product-image i{
     color: var(--purple-color)!important;
 }
 .pending .btn-product{
-    background-color: var(--background-extra-orange);
-    color: var(--primary-color)!important;
+    background-color: var(--background-extra-purple);
+    color: var(--purple-color)!important;
+}
+
+.delivering .btn-product{
+    background-color: var(--background-extra-lightblue);
+    color: var(--blue-color)!important;
 }
 .noti-container .product-image img{
     border-radius: unset!important;
