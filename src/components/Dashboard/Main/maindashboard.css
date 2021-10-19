@@ -102,7 +102,7 @@
     width: 15%;
 }
 .row td{
-    padding:1.5rem;
+    padding:1.5rem 0;
 }
 .customer-col img{
     width: 40px;
@@ -116,6 +116,7 @@
     margin-right: 1rem;
 }
 .color-status{
+    display: inline-block;
     width: 13rem;
     border-radius: 5rem;
     text-align: center;

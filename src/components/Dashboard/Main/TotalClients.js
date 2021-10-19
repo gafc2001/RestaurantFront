@@ -44,7 +44,7 @@ const TotalClients = () => {
               />
             </svg>
           </span>
-          {UserDetails&&<span className="porcentage positive">{UserDetails.percentage}</span>}
+          {UserDetails&&<span className="porcentage positive">{UserDetails.percentage.toFixed(2)}%</span>}
           <span className="icon-status positive">
             <svg
               width="100%"

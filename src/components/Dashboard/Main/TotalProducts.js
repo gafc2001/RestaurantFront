@@ -42,7 +42,7 @@ const TotalProducts = () => {
                       />
                     </svg>
                   </span>
-                  {OrderDetails&&<span className="porcentage negative">{OrderDetails.percentage}</span>}
+                  {OrderDetails&&<span className="porcentage negative">{OrderDetails.percentage.toFixed(2)}%</span>}
                   <span className="icon-status negative">
                     <svg
                       width="24"

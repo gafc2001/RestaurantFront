@@ -43,7 +43,7 @@ const TotalPrice = () => {
             />
           </svg>
         </span>
-        {totalPrice && <span className="porcentage negative">{totalPrice.percentage}</span>}
+        {totalPrice && <span className="porcentage negative">{totalPrice.percentage.toFixed(2)}%</span>}
         <span className="icon-status negative">
           <svg
             width="24"
@@ -60,7 +60,7 @@ const TotalPrice = () => {
         </span>
       </header>
       <div className="total-content">
-        {totalPrice && <span className="total-number">{totalPrice.current}</span>}
+        {totalPrice && <span className="total-number">${totalPrice.current}</span>}
         <span className="total-msg">Ganancias totales</span>
       </div>
     </section>
