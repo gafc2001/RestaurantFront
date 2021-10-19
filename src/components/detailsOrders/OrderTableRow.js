@@ -14,6 +14,7 @@ const OrderTableRowOrder = ({item,quantity}) => {
           <td>$ {priceProduct}</td>
           <td>{quantity}</td>
           <td>{category.nameCategory}</td>
+          <td>{priceProduct*quantity}</td>
         </tr>
       );
     };

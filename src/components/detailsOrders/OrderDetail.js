@@ -11,6 +11,8 @@ const OrderDetail = () => {
   const [Details, setDetails] = useState(null);
   const [Error, setError] = useState(null);
   let iduser = sessionStorage.getItem("id");
+
+
   let url = `https://restaurantrestapi.herokuapp.com/api/order/users/${iduser}`;
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const OrderDetail = () => {
             <div className="noti-container">
               <div className="noti-header">
                 <h2 className="noti-title border-b">
-                  Ordenes {id}
+                  Orden  #{id}
                   <span></span>
                 </h2>
               </div>
@@ -56,6 +58,7 @@ const OrderDetail = () => {
                       <td>Precio</td>
                       <td>Cantidad</td>
                       <td>Categorias</td>
+                      <td>Total</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -63,6 +66,7 @@ const OrderDetail = () => {
                         <OrderTableRowOrder key={item.product.idProduct}  item={item.product} quantity={item.quantity}/>))}
                   </tbody>
                 </table>
+                {Details&&<h1>SUBTOTAL: {Details.totalPrice} </h1>}
               </div>
             </div>
           </div>

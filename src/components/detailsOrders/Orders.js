@@ -40,7 +40,7 @@ const Orders = () => {
             <div className="noti-container">
               <div className="noti-header">
                 <h2 className="noti-title">
-                  <span>Ordenes </span>
+                  {db&&<span>Ordenes totales  {db.length}</span>}
                 </h2>
                 <div className="filter">
                   <ul className="filter-list">

@@ -41,10 +41,13 @@ const UpdateForm = ({ updateOrder, dataToEdit }) => {
     <div className="content-form">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="EstatusOrder">Estado de la orden</label>
+        <label htmlFor="IdOrder">Orden: {form.idOrder?(form.idOrder):("SELECCIONE UNA ORDEN")}</label>
+        {form.idOrder &&<label htmlFor="EstatusOrder">Cliente: {form.user.username}</label>}
+          <label htmlFor="EstatusOrder">Estados</label>
           <select className="select-form" onChange={selectChange}>
-          <option selected disabled >Cambiar el estado de la orden</option>
-          <option  value="PENDIENTE">Pago Efectuado</option>
+            <option selected>
+              Seleccione un cambio de estado en la orden
+            </option>
             <option value="PREPARANDO">Preparando Orden</option>
             <option value="ENVIANDO">Orden Lista para enviar </option>
             <option value="COMPLETADO">Orden Completada</option>
@@ -59,7 +62,7 @@ const UpdateForm = ({ updateOrder, dataToEdit }) => {
             onClick={handleReset}
             className="btn btn-secondary"
           >
-            CANCELAR
+            LIMPIAR
           </button>
         </div>
       </form>
