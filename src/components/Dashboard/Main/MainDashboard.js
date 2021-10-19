@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Sidebar from "./../../sidebar/Sidebar";
 import "./maindashboard.css";
-import React, {  useState, useEffect } from "react";
+import React  from "react";
 import { MostOrders } from "./MostOrders";
 import {ReportOrder} from "./ReportOrder";
 import TotalPrice from "./TotalPrice";

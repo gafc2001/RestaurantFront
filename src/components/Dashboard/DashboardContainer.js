@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams,useRouteMatch } from "react-router";
+import { useParams} from "react-router";
 import { CrudCategory } from "./Category/CrudCategory";
 import { CrudAppPro } from "./Product/CrudAppPro";
 //import { propTypes } from 'react-bootstrap/esm/Image';

@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouteMatch,Switch,Route } from "react-router";
 import Sidebar from "../sidebar/Sidebar";
 import { DashboardHeader } from "./DashboardHeader";
 import { DashboardNav } from "./DashboardNav";

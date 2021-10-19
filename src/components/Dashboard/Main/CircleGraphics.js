@@ -1,7 +1,5 @@
 import React, { useCallback, useState, useEffect } from 'react'
 import { PieChart, Pie, Sector } from "recharts";
-import { Message } from "../Message";
-import { Loader } from "../Loader";
 import { helpHttp } from "../../helpers/helpHttp";
 // const data = [
 //     { name: "Group A", value: 400 },
@@ -12,24 +10,17 @@ import { helpHttp } from "../../helpers/helpHttp";
 const CircleGraphics = () => {
 
     let url = "https://restaurantrestapi.herokuapp.com/api/categories/chart";
-    const [dataEstadistics, setdataEstadistics] = useState(null);
-    const [Error, setError] = useState(null);
-    const [Loading, setLoading] = useState(false);
-  
+    const [dataEstadistics, setdataEstadistics] = useState(null);  
   
     useEffect(() => {
-      setLoading(true);
       helpHttp()
         .get(url)
         .then((res) => {
           if (!res.err) {
             setdataEstadistics(res);
-            setError(null);
           } else {
             setdataEstadistics(null);
-            setError(res);
           }
-          setLoading(false);
         });
     }, [url]);
 

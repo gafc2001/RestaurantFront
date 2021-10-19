@@ -1,10 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useRouteMatch} from "react-router";
-
 
 const DashboardNav = () => {
-    let { url } = useRouteMatch();
   return (
     <>
       <nav className="settings-navbar">
