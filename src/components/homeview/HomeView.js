@@ -32,7 +32,7 @@ import oferta5 from "../../assets/images/oferta5.png";
 import oferta6 from "../../assets/images/oferta6.png";
 import oferta7 from "../../assets/images/oferta7.png";
 import oferta8 from "../../assets/images/oferta8.png";
-
+import { Message } from "../Dashboard/Message";
 
 SwiperCore.use([EffectCoverflow, Pagination]);
 
@@ -41,10 +41,8 @@ const HomeView = () => {
   const [TableProducts, setTableProducts] = useState([]);
   const [Busqueda, setBusqueda] = useState("");
   const [Error, setError] = useState(null);
-  const [Loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     const getDataProducts = async () => {
       await helpHttp()
         .get("https://restaurantrestapi.herokuapp.com/api/products")
@@ -55,7 +53,6 @@ const HomeView = () => {
           } else {
             setError(res);
           }
-          setLoading(false);
         });
     };
     getDataProducts();
@@ -103,7 +100,7 @@ const HomeView = () => {
                 experiencias únicas para fidelizar a nuestros clientes y hacer
                 más grande la familia Delibakery.
               </p>
-              <a className="boton boton-default">Conoce la carta</a>
+              <div className="boton boton-default">Conoce la carta</div>
             </div>
             <Swiper
               effect={"coverflow"}
@@ -122,7 +119,7 @@ const HomeView = () => {
             >
               <SwiperSlide>
                 <div className="imgBx">
-                  <img src={oferta1} />
+                  <img src={oferta1} alt="oferta1"/>
                 </div>
                 <div className="details">
                   <h3>
@@ -134,8 +131,8 @@ const HomeView = () => {
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className="imgBx">
-                  <img src={oferta2} />
+                <div className="imgBx" >
+                  <img src={oferta2} alt="oferta2"/>
                 </div>
                 <div className="details">
                   <h3>
@@ -148,7 +145,7 @@ const HomeView = () => {
               </SwiperSlide>
               <SwiperSlide>
                 <div className="imgBx">
-                  <img src={oferta3} />
+                  <img src={oferta3} alt="oferta3" />
                 </div>
                 <div className="details">
                   <h3>
@@ -161,7 +158,7 @@ const HomeView = () => {
               </SwiperSlide>
               <SwiperSlide>
                 <div className="imgBx">
-                  <img src={oferta4} />
+                  <img src={oferta4}  alt="oferta4"/>
                 </div>
                 <div className="details">
                   <h3>
@@ -174,7 +171,7 @@ const HomeView = () => {
               </SwiperSlide>
               <SwiperSlide>
                 <div className="imgBx">
-                  <img src={oferta5} />
+                  <img src={oferta5} alt="oferta5"/>
                 </div>
                 <div className="details">
                   <h3>
@@ -187,7 +184,7 @@ const HomeView = () => {
               </SwiperSlide>
               <SwiperSlide>
                 <div className="imgBx">
-                  <img src={oferta6} />
+                  <img src={oferta6} alt="oferta6" />
                 </div>
                 <div className="details">
                   <h3>
@@ -200,7 +197,7 @@ const HomeView = () => {
               </SwiperSlide>
               <SwiperSlide>
                 <div className="imgBx">
-                  <img src={oferta7} />
+                  <img src={oferta7} alt="oferta7" />
                 </div>
                 <div className="details">
                   <h3>
@@ -213,7 +210,7 @@ const HomeView = () => {
               </SwiperSlide>
               <SwiperSlide>
                 <div className="imgBx">
-                  <img src={oferta8} />
+                  <img src={oferta8} alt="oferta8"/>
                 </div>
                 <div className="details">
                   <h3>
@@ -229,120 +226,127 @@ const HomeView = () => {
         </div>
       </section>
       <section className="categorias">
-            <div className="contenedor2">
-              <div className="section-title">
-                <h2  data-title="Ordene Ahora">Nuestras Categorias</h2>
-                </div>
-                <div className="galeria-port">
-                    <div className="imagen-port">
-                        <img src={bebidas} alt=""/>
-                        <div className="hover-galeria">
-                            <h2>Bebidas</h2>
-                            <p>Gran variedad de bebidas frías</p>
-                        </div>
-                    </div>
-                    <div className="imagen-port">
-                        <img src={bebidascalientes} alt=""/>
-                        <div className="hover-galeria">
-                        <h2>Bebidas calientes</h2>
-                            <p>Bebidas calientes contra el frio</p>
-                        </div>
-                    </div>
-                    <div className="imagen-port">
-                        <img src={bocadillos} alt=""/>
-                        <div className="hover-galeria">
-                        <h2>Bocadillos</h2>
-                            <p>Tortas de jamon y mucho más</p>
-                        </div>
-                    </div>
-                    <div className="imagen-port">
-                        <img src={comidas} alt=""/>
-                        <div className="hover-galeria">
-                        <h2>Comidas</h2>
-                            <p>De todas las regiones del pais</p>
-                        </div>
-                    </div>
-                    <div className="imagen-port">
-                        <img src={ensaladas} alt=""/>
-                        <div className="hover-galeria">
-                        <h2>Ensaladas</h2>
-                            <p>Comidas saludables para ti</p>
-                        </div>
-                    </div>
-                    <div className="imagen-port">
-                        <img src={mariscos} alt=""/>
-                        <div className="hover-galeria">
-                        <h2>Mariscos</h2>
-                            <p>Del mar a tus manos</p>
-                        </div>
-                    </div>
-                    <div className="imagen-port">
-                        <img src={postres} alt=""/>
-                        <div className="hover-galeria">
-                        <h2>Postres</h2>
-                            <p>Todo tipo de postres </p>
-                        </div>
-                    </div>
-                    <div className="imagen-port">
-                        <img src={sopas} alt=""/>
-                        <div className="hover-galeria">
-                        <h2>Sopas</h2>
-                            <p>Sopas veganas y vegetarianas</p>
-                        </div>
-                    </div>
-                </div>
+        <div className="contenedor2">
+          <div className="section-title">
+            <h2 data-title="Ordene Ahora">Nuestras Categorias</h2>
+          </div>
+          <div className="galeria-port">
+            <div className="imagen-port">
+              <img src={bebidas} alt="" />
+              <div className="hover-galeria">
+                <h2>Bebidas</h2>
+                <p>Gran variedad de bebidas frías</p>
+              </div>
             </div>
-        </section>
-        <section class="productos">
-          <div className="contenedor3">
-
-        <div className="section-title">
-                <h2  data-title="Ordene Ahora">Nuestros Productos</h2>
-                </div>
-                <div className="search-box">
-          <input
-            className="src"
-            type="text"
-            name="search"
-            placeholder="Buscar comidas,bebidas,categorias"
-            autoComplete="off"
-            value={Busqueda}
-            onChange={handleChange}
-          />
+            <div className="imagen-port">
+              <img src={bebidascalientes} alt="" />
+              <div className="hover-galeria">
+                <h2>Bebidas calientes</h2>
+                <p>Bebidas calientes contra el frio</p>
+              </div>
+            </div>
+            <div className="imagen-port">
+              <img src={bocadillos} alt="" />
+              <div className="hover-galeria">
+                <h2>Bocadillos</h2>
+                <p>Tortas de jamon y mucho más</p>
+              </div>
+            </div>
+            <div className="imagen-port">
+              <img src={comidas} alt="" />
+              <div className="hover-galeria">
+                <h2>Comidas</h2>
+                <p>De todas las regiones del pais</p>
+              </div>
+            </div>
+            <div className="imagen-port">
+              <img src={ensaladas} alt="" />
+              <div className="hover-galeria">
+                <h2>Ensaladas</h2>
+                <p>Comidas saludables para ti</p>
+              </div>
+            </div>
+            <div className="imagen-port">
+              <img src={mariscos} alt="" />
+              <div className="hover-galeria">
+                <h2>Mariscos</h2>
+                <p>Del mar a tus manos</p>
+              </div>
+            </div>
+            <div className="imagen-port">
+              <img src={postres} alt="" />
+              <div className="hover-galeria">
+                <h2>Postres</h2>
+                <p>Todo tipo de postres </p>
+              </div>
+            </div>
+            <div className="imagen-port">
+              <img src={sopas} alt="" />
+              <div className="hover-galeria">
+                <h2>Sopas</h2>
+                <p>Sopas veganas y vegetarianas</p>
+              </div>
+            </div>
+          </div>
         </div>
-            <div class="cards">
+      </section>
+      <section class="productos">
+        <div className="contenedor3">
+          <div className="section-title">
+            <h2 data-title="Ordene Ahora">Nuestros Productos</h2>
+          </div>
+          <div className="search-box">
+            <input
+              className="src"
+              type="text"
+              name="search"
+              placeholder="Buscar comidas,bebidas,categorias"
+              autoComplete="off"
+              value={Busqueda}
+              onChange={handleChange}
+            />
+          </div>
+          {Error && (
+        <Message
+          msg="Error al cargar"
+          bgColor="#dc3545"
+        />
+      )}
+          <div class="cards">
             {Products &&
-            Products.map((product) => (
-                <div  key={product.idProduct}  class="card">
-                    <img src={`https://restaurantrestapi.herokuapp.com/api/products/${product.idProduct}/image`} alt={product.nameProduct}/>
-                    <div class="contenido-texto-card">
-                        <h4>{product.nameProduct}</h4>
-                        <p>{product.description}</p>
-                        <h5>$/. {product.priceProduct}</h5>
-                    
-                    </div>
+              Products.map((product) => (
+                <div key={product.idProduct} class="card">
+                  <img
+                    src={`https://restaurantrestapi.herokuapp.com/api/products/${product.idProduct}/image`}
+                    alt={product.nameProduct}
+                  />
+                  <div class="contenido-texto-card">
+                    <h4>{product.nameProduct}</h4>
+                    <p>{product.description}</p>
+                    <h5>$/. {product.priceProduct}</h5>
+                  </div>
                 </div>
-  ))}
-            </div>
-            </div>
-        </section>
-        <footer>
-        <div class="contenedor-footer">
-            <div class="content-foo">
-                <h4>Celular</h4>
-                <p>922098340</p>
-            </div>
-            <div class="content-foo">
-                <h4>Correo </h4>
-                <p>Delibakery@gmail.com</p>
-            </div>
-            <div class="content-foo">
-                <h4>Direccion</h4>
-                <p>Lima-Ancon</p>
-            </div>
+              ))}
+          </div>
         </div>
-        <h2 class="titulo-final">&copy;  Delibakery | GustavoFC -  DavidPG</h2>
-    </footer>
+      </section>
+      <footer>
+        <div class="contenedor-footer">
+          <div class="content-foo">
+            <h4>Celular</h4>
+            <p>922098340</p>
+          </div>
+          <div class="content-foo">
+            <h4>Correo </h4>
+            <p>Delibakery@gmail.com</p>
+          </div>
+          <div class="content-foo">
+            <h4>Direccion</h4>
+            <p>Lima-Ancon</p>
+          </div>
+        </div>
+        <h2 class="titulo-final">&copy; Delibakery | GustavoFC - DavidPG</h2>
+      </footer>
     </>
   );
 };

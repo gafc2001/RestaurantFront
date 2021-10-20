@@ -7,7 +7,7 @@ const OrderTableRowOrder = ({item,quantity}) => {
         <tr>
           <td className="card-image product-cell" colSpan="2">
             <img
-              src={`https://restaurantrestapi.herokuapp.com/api/products/${idProduct}/image`}
+              src={`https://restaurantrestapi.herokuapp.com/api/products/${idProduct}/image`} alt={nameProduct}
             />
             <span>{nameProduct}</span>
           </td>

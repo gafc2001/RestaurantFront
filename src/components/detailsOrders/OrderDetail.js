@@ -6,7 +6,7 @@ import { helpHttp } from "../helpers/helpHttp";
 import { useParams } from "react-router";
 
 const OrderDetail = () => {
-  let { id } = useParams();
+  let { idOrder } = useParams();
 
   const [Details, setDetails] = useState(null);
   const [Error, setError] = useState(null);
@@ -21,14 +21,14 @@ const OrderDetail = () => {
       .then((res) => {
         if (res.length > 0) {
           res.map((detail) =>
-            detail.idOrder == id ? setDetails(detail) : null
+            detail.idOrder === idOrder ? setDetails(detail) : null
           );
           setError(null);
         } else {
           setError(res);
         }
       });
-  }, []);
+  }, [url]);
   return (
     <>
       <Sidebar />
@@ -42,11 +42,12 @@ const OrderDetail = () => {
               </div>
             </div>
           </header>
+          {Error&&<h1>ha ocurrido un error</h1>}
           <div className="col-1 box-content">
             <div className="noti-container">
               <div className="noti-header">
                 <h2 className="noti-title border-b">
-                  Orden  #{id}
+                  Orden  #{idOrder}
                   <span></span>
                 </h2>
               </div>

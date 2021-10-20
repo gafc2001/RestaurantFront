@@ -127,7 +127,7 @@ export const ModalForm = ({
         <header className="settings-info">
           <h2 className="page-name">{dataToEdit ? "Editar" : "Agregar"}</h2>
           <div onClick={closeModal} className="">
-            <h2 className="page-name"><i class="far fa-times-circle"></i></h2>
+            <h2 className="page-name"><i className="far fa-times-circle"></i></h2>
           </div>
         </header>
       </div>
@@ -214,7 +214,7 @@ export const ModalForm = ({
           <label htmlFor="file" for="file" className="file-content"><i class="fas fa-upload file-icon"></i> Choose a file...
           <input type="file" name="file0" id="file" onChange={fileChange} /></label>
         </div>
-        <div class="btn-container">
+        <div className="btn-container">
           <button className="btn btn-primary" value="Enviar" type="submit">
             Save
           </button>

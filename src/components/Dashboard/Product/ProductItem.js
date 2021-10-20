@@ -51,7 +51,7 @@ export const ProductItem = ({
   }
   return (
     <div className="product product-item">
-      <span className="btn-close" onClick={() => deleteData(idProduct)}><i class="fas fa-trash-alt"></i></span>
+      <span className="btn-close" onClick={() => deleteData(idProduct)}><i className="fas fa-trash-alt"></i></span>
       <div className="product-content">
         <div className="product-image center">
           <img

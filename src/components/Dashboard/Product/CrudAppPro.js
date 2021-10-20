@@ -2,10 +2,7 @@ import React from "react";
 import { useState, useEffect, useReducer } from "react";
 import CrudTablePro from "./CrudTablePro";
 import { helpHttp } from "../../helpers/helpHttp";
-import { Message } from "../Message";
 
-import { DashboardNav } from "./../DashboardNav";
-import Sidebar from "./../../sidebar/Sidebar";
 import { crudInitialState, crudReducer } from "../../../reducers/crudReducer";
 import { TYPES } from "../../../acctions/crudAction";
 
@@ -35,7 +32,7 @@ export const CrudAppPro = () => {
           setError(null);
         } else {
           dispatch({ type: TYPES.NO_DATA });
-          setError(res);
+  
         }
         setLoading(false);
       });
@@ -143,6 +140,7 @@ export const CrudAppPro = () => {
           //para diferenciar entre create y update necesitamos pasarle la variable de estado y la funcion que actualiza datatoedit
           dataToEdit={dataToEdit}
           Loading={Loading}
+          Error={Error}
         />
       )}
     </>

@@ -4,6 +4,7 @@ import "./../../assets/css/notification.css";
 import { useEffect,useState } from "react";
 import { helpHttp } from "../helpers/helpHttp";
 import Order from "./Order";
+import { Message } from "../Dashboard/Message";
 
 const Orders = () => {
   const [db, setDb] = useState(null);
@@ -36,6 +37,12 @@ const Orders = () => {
               </div>
             </div>
           </header>
+          {Error && (
+        <Message
+          msg={`Error a recargar`}
+          bgColor="#dc3545"
+        />
+      )}
           <div className="col-1 box-content">
             <div className="noti-container">
               <div className="noti-header">

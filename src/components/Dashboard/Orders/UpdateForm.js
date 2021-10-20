@@ -45,7 +45,7 @@ const UpdateForm = ({ updateOrder, dataToEdit }) => {
         {form.idOrder &&<label htmlFor="EstatusOrder">Cliente: {form.user.username}</label>}
           <label htmlFor="EstatusOrder">Estados</label>
           <select className="select-form" onChange={selectChange}>
-            <option selected>
+            <option defaultvalued="">
               Seleccione un cambio de estado en la orden
             </option>
             <option value="PREPARANDO">Preparando Orden</option>

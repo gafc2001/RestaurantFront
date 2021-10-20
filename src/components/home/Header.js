@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { FilterCategory } from "./FilterCategory";
 import { TYPES } from "../../acctions/shoppingAction";
 import { helpHttp } from "../helpers/helpHttp";
@@ -37,7 +37,7 @@ export const Header = ({ filtCategory,removeCategory }) => {
       </div>
       <div className="filter">
         <ul className="filter-list">
-          <li class="filter-item" onClick={()=>removeCategory(null)}>
+          <li className="filter-item" onClick={()=>removeCategory(null)}>
             <span>Todos</span>
           </li>
           {category &&

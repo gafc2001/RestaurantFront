@@ -9,7 +9,7 @@ const DashboardNav = () => {
           <Link to="/maindashboard/dashboard/products">
             <li className="navbar-item">
               <span className="navbar-icon">
-                <i class="fas fa-box-open"></i>
+                <i className="fas fa-box-open"></i>
               </span>
               <div className="navbar-content">
                 <span className="name-item">Editar productos</span>
@@ -31,7 +31,7 @@ const DashboardNav = () => {
           <Link to="/maindashboard/dashboard/statusorder">
             <li className="navbar-item">
               <span className="navbar-icon">
-                <i class="fas fa-tags"></i>
+                <i className="fas fa-tags"></i>
               </span>
               <div className="navbar-content">
                 <span className="name-item">Estados de las ordenes</span>
