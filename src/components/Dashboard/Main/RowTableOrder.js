@@ -1,6 +1,7 @@
 import React from 'react'
 
 const RowTableOrder = ({report}) => {
+    console.log(report);
     let {user,total,status,description} = report
     let  style = {
       "COMPLETADO": "completed",
@@ -12,7 +13,7 @@ const RowTableOrder = ({report}) => {
         <tr className="row">
           <td className="customer-col customer-data">
             <div className="profile-image">
-              <img src="https://randomuser.me/api/portraits/thumb/men/2.jpg" alt={user.username} />
+              <img src={`https://restaurantrestapi.herokuapp.com/api/users/${user.idUser}/image`} alt={user.username} />
             </div>
             <span>{user.username}</span>
           </td>
