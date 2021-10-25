@@ -32,10 +32,10 @@ const UpdateState = () => {
         };
     
         helpHttp().patch(endpoint, options).then((res) => {
-          console.log(res)
+          //console.log(res)
           if (!res.err) {
             let newData = db.map((el) =>
-              el.idOrder === data.idOrder ? data : el
+              el.idOrder === res.idOrder ? res : el
             );
             setDb(newData);
           }

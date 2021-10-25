@@ -1,9 +1,11 @@
 import React from "react";
 import clipboard from "../../assets/images/clipboard.png";
 import { Link } from "react-router-dom";
+import Moment from 'react-moment';
+import 'moment/locale/es-mx';
 
 const Order = ({db}) => {
-    let {idOrder,totalPrice,statusOrder} =db
+    let {idOrder,totalPrice,statusOrder,createdAt} =db
         let  style = {
       "COMPLETADO": "completed",
       "PENDIENTE": "pending",
@@ -19,10 +21,10 @@ const Order = ({db}) => {
             <img src={clipboard} alt="clipboard"/>
           </div>
           <div className="product-info">
-            <span className="product-name">En proceso</span>
+            <span className="product-name"></span>
             <span className="product-details">
-              <span>PAYPAL</span> &bull;
-              <span> ${totalPrice}</span>
+              <span><Moment fromNow>{createdAt}</Moment></span> &bull;
+              <span> Subtotal: ${totalPrice}</span>
             </span>
           </div>
           </Link>
