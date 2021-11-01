@@ -1,7 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "moment/locale/es-mx";
+import "moment/locale/es";
 import Moment from "react-moment";
+import StepNavegation from "./StepNavegation";
+import "./stepOrder.css";
 const initialForm = {
   idOrder: null,
   statusOrder: "",
@@ -9,6 +11,8 @@ const initialForm = {
 
 const UpdateForm = ({ updateOrder, dataToEdit }) => {
   const [form, setform] = useState(initialForm);
+
+  const labelArray = ["PENDIENTE", "PREPARANDO", "ENVIANDO", "COMPLETADO"];
 
   useEffect(() => {
     if (dataToEdit) {
@@ -81,6 +85,13 @@ const UpdateForm = ({ updateOrder, dataToEdit }) => {
             <label htmlFor="date">
               ULTIMA ACTUALIZACION: <Moment fromNow>{form.updateAt}</Moment>
             </label>
+
+            <div className="Graphic-step">
+              <StepNavegation
+                labelArray={labelArray}
+                formStatus={form}
+              ></StepNavegation>
+            </div>
           </div>
         ) : (
           <div className="form-group">
