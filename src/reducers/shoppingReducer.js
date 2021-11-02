@@ -29,6 +29,7 @@ export const shoppingInitialState = {
       },
     ]
   },
+  totalquantity:0,
   subtotal:0
 };
 
@@ -76,6 +77,17 @@ export function shoppingReducer(state, action) {
             ],
           };
     }
+
+
+    case TYPES.ADD_TO_QUANTITY: {
+      let sumquantity =0;
+       state.cart.map((item) =>sumquantity+=item.quantity)
+      return {
+        ...state,
+        totalquantity: sumquantity
+      };
+    }
+
     case TYPES.REMOVE_ONE_FROM_CART: {
       let itemToDelete = state.cart.find(
         (item) => item.idProduct === action.payload

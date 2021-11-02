@@ -25,7 +25,7 @@ export const Products = () => {
   const [Loading, setLoading] = useState(false);
   const [toggleCart,setToggleCart] = useState(false);
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
-  const { db, cart,purchase_units,subtotal,onecategory } = state;
+  const { db, cart,purchase_units,subtotal,onecategory,totalquantity } = state;
   //const [role,setrole] = useState(localStorage.getItem("role"))
   //para las respuestas de paypal
   //const [Order,setOrder]=useState(null);
@@ -62,6 +62,9 @@ export const Products = () => {
   };
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+  };
+  const totalQuantity = () => {
+    dispatch({ type: TYPES.ADD_TO_QUANTITY});
   };
   const delFromCart = (id, all = false) => {
     if (all) {
@@ -139,12 +142,14 @@ const orderSubmit = (order) => {
                   key={product.idProduct}
                   data={product}
                   addToCart={addToCart}
+                  totalQuantity={totalQuantity}
                 />
               ))):db && (db.map((product) => (
                 <Product
                   key={product.idProduct}
                   data={product}
                   addToCart={addToCart}
+                  totalQuantity={totalQuantity}
                 />
               )))}
           </div>
