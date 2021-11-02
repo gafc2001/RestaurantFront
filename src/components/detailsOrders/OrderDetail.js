@@ -13,6 +13,7 @@ import preparacion from "../../assets/images/seguimiento/preparacion.png";
 import "./tracker.css";
 import "./invoicing.css";
 import logo from"../../assets/images/logo-white.png";
+import OrderTracking from "./OrderTracking";
 const OrderDetail = () => {
   let { id } = useParams();
 
@@ -388,6 +389,7 @@ const OrderDetail = () => {
                   </div>
                 </div>
               </div>
+              <OrderTracking Details={Details}/>
             </div>
           </div>
         </div>

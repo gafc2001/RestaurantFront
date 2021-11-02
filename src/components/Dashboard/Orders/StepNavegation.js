@@ -1,10 +1,12 @@
 import React from 'react';
 import Step from './Step';
-const StepNavegation = ({labelArray,statusIndex}) => {
+
+const StepNavegation = ({labelArray,formStatus}) => {
+    let {statusOrder} =formStatus
     return (
         <div className="stepWrapper">
             {
-            labelArray.map((item,index) => (<Step key={index} index={index} label={item}  selected={statusIndex === index + 1}></Step>))}
+            labelArray.map((item,index) => (<Step key={index} index={index} label={item}  selected={item.includes(statusOrder)}></Step>))}
         </div>
     )
 }
