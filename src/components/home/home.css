@@ -80,13 +80,27 @@
 .col-3{
     grid-column: 4 / 5;
 }
-.column-2.toggleRight{
-    position: absolute;
-    right: -57rem;
+.column-2.products{
+    transition: 1s;
+    position: fixed;
+    height: 100vh;
 }
-.column-2.toggleLeft{
-    position: absolute;
-    right: 0rem;
+.column-2.toggleOrderRight{
+    right: -102.7rem;
+}
+.column-2.toggleOrderLeft{
+    right: -47.7rem;
+}
+.column-2.togglePaymentRight{
+    right: 0!important;
+}
+.column-2.products{
+    display: flex;
+    justify-content: space-between;
+}
+.order-container{
+    border-right: 1px solid var(--text-light);
+    padding-right: 3rem;
 }
 .order-item{
     margin-bottom: 2rem;
@@ -171,4 +185,54 @@
     position: absolute;
     left: -10rem;
     width: fit-content;
+}
+
+/*Order payment*/
+.order-payment{
+    min-width: 43rem;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.list-payment-methods{
+    display: flex;
+    justify-content: space-between;
+}
+.payment-methods h3{
+    font-size:2rem;
+    margin-bottom: 1rem;
+}
+.payment-method{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--form-border);
+    border-radius: .8rem;
+    width: 10rem;
+    padding: .4rem 0 ;
+    color: var(--text-light);
+    font-size: 1.2rem;
+    font-weight: var(--text-medium);
+}
+.payment-method path{
+    fill: var(--text-light);
+}
+.payment-method.active{
+    position: relative;
+    border: 2px solid var(--text-light);
+    background-color: var(--form-color);
+}
+.payment-method.active::after{
+    position:absolute;
+    top: .5rem;
+    right: .5rem;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; 
+    content: "\f058";
+    color: var(--primary-color);
+}
+.payment-method.active path{
+    fill: var(--text-white);
 }
