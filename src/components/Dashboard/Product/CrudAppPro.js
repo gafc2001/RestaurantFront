@@ -2,10 +2,9 @@ import React from "react";
 import { useState, useEffect, useReducer } from "react";
 import CrudTablePro from "./CrudTablePro";
 import { helpHttp } from "../../helpers/helpHttp";
-
+import {DashboardHeader} from "../DashboardHeader"
 import { crudInitialState, crudReducer } from "../../../reducers/crudReducer";
 import { TYPES } from "../../../acctions/crudAction";
-
 export const CrudAppPro = () => {
   //const [db, setDb] = useState(null);
   const [state, dispatch] = useReducer(crudReducer, crudInitialState);
@@ -38,6 +37,12 @@ export const CrudAppPro = () => {
       });
   }, [url]);
 
+  // const filtCategory=(idCategory)=>{
+  //   dispatch({ type: TYPES.READ_ONE_CATEGORY,payload:idCategory});
+  // }
+  // const removeCategory=(state)=>{
+  //   dispatch({ type: TYPES.REMOVE_CATEGORY,payload:state});
+  // }
   const createData = (data) => {
     let options = {
       body: data,
@@ -126,8 +131,11 @@ export const CrudAppPro = () => {
     }
   };
 
+
+
   return (
     <>
+    <DashboardHeader/>
       {db && (
         <CrudTablePro
           data={db}
