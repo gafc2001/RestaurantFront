@@ -16,12 +16,11 @@ const Mainchat = () => {
                     <aside className="side-chat">
                         <div className="contact-chat">
                             <div className="profile-picture chat-picture">
-                                {/* <img src="https://restaurantrestapi.herokuapp.com/api/users/55/image" alt="profile-picture"/> */}
-                                <img src="https://picsum.photos/id/200/200/200" alt="profile-picture"/>
+                                <img src="https://restaurantrestapi.herokuapp.com/api/users/55/image" alt="profile-picture"/>
                                 <p className="chat-status"></p>
                             </div>
                             <div className="chat-content">
-                                <span className="chat-user">Herber Navarro</span>
+                                <span className="chat-user">Herbert Navarro</span>
                                 <p className="chat-message">lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit amet, consectetur adip</p>
                             </div>
                             <div className="chat-info">
@@ -31,11 +30,11 @@ const Mainchat = () => {
                         </div>
                         <div className="contact-chat">
                             <div className="profile-picture chat-picture">
-                                <img src="https://picsum.photos/id/100/200/200" alt="profile-picture"/>
+                                <img src="https://restaurantrestapi.herokuapp.com/api/users/65/image" alt="profile-picture"/>
                                 <p class="chat-status"></p>
                             </div>
                             <div className="chat-content">
-                                <span className="chat-user">Herber Navarro</span>
+                                <span className="chat-user">El Gato cuba</span>
                                 <p className="chat-message">lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit amet, consectetur adip</p>
                             </div>
                             <div className="chat-info">
@@ -45,11 +44,11 @@ const Mainchat = () => {
                         </div>
                         <div className="contact-chat">
                             <div className="profile-picture chat-picture">
-                                <img src="https://picsum.photos/id/1/200/200" alt="profile-picture"/>
+                                <img src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTQyMDA0NDgwMzUzNzcyNjA2/mark-zuckerberg_gettyimages-512304736jpg.jpg" alt="profile-picture"/>
                                 <p class="chat-status"></p>
                             </div>
                             <div className="chat-content">
-                                <span className="chat-user">Herber Navarro</span>
+                                <span className="chat-user">Marck Zuckerberg</span>
                                 <p className="chat-message">lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit amet, consectetur adiplorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit amet, consectetur adiplorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit amet, consectetur adip</p>
                             </div>
                             <div className="chat-info">
@@ -59,11 +58,11 @@ const Mainchat = () => {
                         </div>
                         <div className="contact-chat">
                             <div className="profile-picture chat-picture">
-                                <img src="https://picsum.photos/id/341/200/200" alt="profile-picture"/>
+                                <img src="https://images-na.ssl-images-amazon.com/images/S/amzn-author-media-prod/gtv9ql5vn2302qnk12os724bhh._SX450_.jpg" alt="profile-picture"/>
                                 <p class="chat-status"></p>
                             </div>
                             <div className="chat-content">
-                                <span className="chat-user">Herber Navarro</span>
+                                <span className="chat-user">Bill gates</span>
                                 <p className="chat-message">lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit amet, consectetur adip</p>
                             </div>
                             <div className="chat-info">

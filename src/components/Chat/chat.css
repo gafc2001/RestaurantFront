@@ -2,6 +2,7 @@
 .container-chat{
     display: flex;
     min-height:100vh;
+    height:100vh;
     padding-left: 8rem;
 }
 .col-1-chat{
@@ -89,13 +90,14 @@
 .content-chat{
     height:100%;
     position: relative;
+    /* height:56rem; */
     flex:5;
     display: flex;
     flex-direction: column;
     background-color:var(--form-border);
 }
 .list-messages{
-    overflow-y: scroll;
+    overflow-y: scroll;;
     flex: 12;
     padding: 2rem;
     display: flex;
@@ -156,12 +158,12 @@
     color: var(--text-light);
     font-size: 3rem;
 }
-.input-container{
+.container-chat .input-container{
     width: 100%;
     margin: 0 1rem;
     padding: 1rem;
 }
-.input-container textarea.input{
+.container-chat .input-container textarea.input{
     width: 100%;
     font-size:1.4rem;
     resize: none;
@@ -174,6 +176,7 @@
 }
 .profile-picture img{
     width:4rem;
+    height: 4rem;
     border-radius:6rem;
 }
 .profile-info{
