@@ -11,9 +11,6 @@ export const FilterCategory =({data,filtCategory})=>{
           </li>*/}
           <li className="filter-item " onClick={() =>filtCategory(idCategory)}>{nameCategory}</li>
           </>
-          
-        
-      
     );
 
     

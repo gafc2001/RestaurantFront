@@ -4,22 +4,16 @@ import OrderTableRowOrder from "./OrderTableRow";
 import { useEffect } from "react";
 import { helpHttp } from "../helpers/helpHttp";
 import { useParams } from "react-router";
-import pagadoactual from "../../assets/images/seguimiento/pagadoactual.gif";
-import finalizado from "../../assets/images/seguimiento/finalizado.gif";
-import pagado from "../../assets/images/seguimiento/pagado.png";
-import noenviado from "../../assets/images/seguimiento/noenviado.png";
-import enviado from "../../assets/images/seguimiento/enviado.png";
-import preparacion from "../../assets/images/seguimiento/preparacion.png";
-import "./invoicing.css";
-import logo from"../../assets/images/logo-white.png";
+import logo from "./../../assets/images/logo-white.png";
 import OrderTracking from "./OrderTracking";
+import Invoicing from "./Invoicing";
 const OrderDetail = () => {
   let { id } = useParams();
 
   const [Details, setDetails] = useState(null);
   const [Error, setError] = useState(null);
   let iduser = sessionStorage.getItem("id");
-  const [toggle,setToggle] = useState(false);
+  const [toggle, setToggle] = useState(false);
   let url = `https://restaurantrestapi.herokuapp.com/api/order/users/${iduser}`;
   useEffect(() => {
     helpHttp()
@@ -83,7 +77,6 @@ const OrderDetail = () => {
                   </tbody>
                 </table>
               </div>
-              
               <OrderTracking Details={Details}/>
               <div onClick={() => {setToggle(!toggle)}} className="btn-toggle">
                 <div className="btn btn-primary">Ver boleta</div>
@@ -201,6 +194,7 @@ const OrderDetail = () => {
                   </div>
                 </div>
               </div>
+              {Details&&<Invoicing Details={Details}/>}
             </div>
           </div>
         </div>

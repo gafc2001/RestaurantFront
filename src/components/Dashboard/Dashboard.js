@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../sidebar/Sidebar";
-import { DashboardHeader } from "./DashboardHeader";
+
 import { DashboardNav } from "./DashboardNav";
 import { DashboardContainer } from "./DashboardContainer";
 const Dashboard = () => {
@@ -21,7 +21,7 @@ const Dashboard = () => {
               <DashboardNav/>
             </div>
             <div className="col-2">
-              <DashboardHeader/>
+            
               <div className="setting-content">
                 <DashboardContainer/>
               </div>

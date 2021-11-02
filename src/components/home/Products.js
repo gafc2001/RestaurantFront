@@ -110,8 +110,7 @@ const orderSubmit = (order) => {
     body: order_detail,
     headers: { "content-type": "application/json" },
   };
-  console.log(JSON.stringify(order_detail))
-  console.log(order_detail)
+
   helpHttp().post('https://restaurantrestapi.herokuapp.com/api/order', options).then((res) => {console.log(res)
   });
   

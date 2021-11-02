@@ -1,6 +1,32 @@
-import React from "react";
+import React, { useEffect, useReducer } from "react";
+import { FilterCategory } from "../home/FilterCategory";
+import { TYPES } from "../../acctions/crudAction";
+import { helpHttp } from "../helpers/helpHttp";
 
-export const DashboardHeader = () => {
+import {
+  crudReducer,
+  crudInitialState,
+} from "../../reducers/crudReducer";
+
+export const DashboardHeader = ({ filtCategory,removeCategory }) => {
+  let url = "https://restaurantrestapi.herokuapp.com/api/categories";
+  useEffect(() => {
+    //setLoading(true);
+    helpHttp()
+      .get(url)
+      .then((res) => {
+        if (res.length > 0) {
+          dispatch({ type: TYPES.READ_ALL_CATEGORY, payload: res });
+          //setError(null);
+        } else {
+          dispatch({ type: TYPES.NO_DATA });
+          //setError(res);
+        }
+        //setLoading(false);
+      });
+  }, [url]);
+  const [state, dispatch] = useReducer(crudReducer, crudInitialState);
+  const { category } = state;
   return (
     <>
       <header className="settings-header">
@@ -25,24 +51,20 @@ export const DashboardHeader = () => {
           </div>
         </div>
         <div className="filter">
-          <ul className="filter-list">
-            <li className="filter-item filter-active">
-              <span>Productos</span>
-            </li>
-            <li className="filter-item">
-              <span>Bebidas</span>
-            </li>
-            <li className="filter-item">
-              <span>Sopas</span>
-            </li>
-            <li className="filter-item">
-              <span>Postres</span>
-            </li>
-            <li className="filter-item">
-              <span>Licores</span>
-            </li>
-          </ul>
-        </div>
+        <ul className="filter-list">
+          <li className="filter-item" onClick={()=>removeCategory(null)}>
+            <span>Todos</span>
+          </li>
+          {category &&
+            category.map((item, index) => (
+              <FilterCategory
+                key={index}
+                data={item}
+                filtCategory={filtCategory}
+              />
+            ))}
+        </ul>
+      </div>
       </header>
     </>
   );
