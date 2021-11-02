@@ -20,7 +20,6 @@ const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 export const Products = () => {
   let url = "https://restaurantrestapi.herokuapp.com/api/products";
-  // let url = ""
   //const [db, setDb] = useState(null);
   const [Error, setError] = useState(null);
   const [Loading, setLoading] = useState(false);
@@ -112,9 +111,6 @@ const orderSubmit = (order) => {
     body: order_detail,
     headers: { "content-type": "application/json" },
   };
-
-  // helpHttp().post('https://restaurantrestapi.herokuapp.com/api/order', options).then((res) => {console.log(res)
-  // });
   
 }
   return (
@@ -159,7 +155,10 @@ const orderSubmit = (order) => {
             setToggleCart(!toggleCart);
             setTooglePayment(false)
           }}>
+          <span className="total-cart center">4</span>
           <i class="fas fa-shopping-cart"></i>
+          <p>Mi carrito</p>
+
         </div>
         <div className="order-container">
           <div className="order-title">
