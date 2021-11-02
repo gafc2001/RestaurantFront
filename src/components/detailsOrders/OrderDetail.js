@@ -20,8 +20,8 @@ const OrderDetail = () => {
   const [Error, setError] = useState(null);
   let iduser = sessionStorage.getItem("id");
   const [toggle,setToggle] = useState(false);
-  // let url = `https://restaurantrestapi.herokuapp.com/api/order/users/${iduser}`;
-  let url = ""
+  let url = `https://restaurantrestapi.herokuapp.com/api/order/users/${iduser}`;
+  let url = "";
   useEffect(() => {
     helpHttp()
       .get(url)
@@ -278,7 +278,7 @@ const OrderDetail = () => {
                 </div>
                 <div className={`invoicing-content ${toggle?'toggleDown':'toggleUp'}`}>
                   <header className="invoicing-header">
-                    <div className="header-info">
+                    <div className="header-info invoicing">
                       <div className="company-info">
                         <img src={logo} alt="logo"/>
                       </div>

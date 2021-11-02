@@ -14,26 +14,37 @@
     overflow: hidden;
     color: var(--text-white);
 }
+.header-info.invoicing{
+    position: relative;
+}
 .company-info{
+    position: absolute;
+    left: 0;
+    top: 0;
     background-color:var(--form-color);
     flex: 1;
     backface-visibility : hidden;
-    height:1.5;
-    padding:4rem 4rem 4rem 10rem;
+    padding:4rem 10rem;
     margin: 0 0rem 2rem -6rem;
+    width: 64%;
+    height:14rem;
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
 }
 .invoicing-center{
     width:80%;
-    margin: 0 auto;
+    margin: 20rem auto;
 }
 .invoicing-info{
-    height:1.5;
-    padding: 4rem 8rem 4rem 4rem;
+    width: 64%;
+    position: absolute;
+    right: 0;
+    height:14rem;
+    padding: 2rem 8rem;
     backface-visibility : hidden;
     flex: 1;
     margin: 2rem -6rem  0 0rem;
     background-color:var(--primary-color);
-    
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
 }
 .invoicing-detail h3{
     font-size:4rem;
