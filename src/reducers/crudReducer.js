@@ -45,7 +45,7 @@ export function crudReducer(state, action) {
     case TYPES.READ_ONE_CATEGORY: {
       return {
         ...state,
-        db: state.db.filter(
+        onecategory: state.db.filter(
           (products) => products.category.idCategory === action.payload
         ),
       };

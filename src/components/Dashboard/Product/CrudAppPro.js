@@ -8,7 +8,7 @@ import { TYPES } from "../../../acctions/crudAction";
 export const CrudAppPro = () => {
   //const [db, setDb] = useState(null);
   const [state, dispatch] = useReducer(crudReducer, crudInitialState);
-  const { db } = state;
+  const { db,onecategory } = state;
 
   //variable de estado cuando sea null va  insertar de lo contrario actualizara
   const [dataToEdit, setDataToEdit] = useState(null);
@@ -37,12 +37,12 @@ export const CrudAppPro = () => {
       });
   }, [url]);
 
-  // const filtCategory=(idCategory)=>{
-  //   dispatch({ type: TYPES.READ_ONE_CATEGORY,payload:idCategory});
-  // }
-  // const removeCategory=(state)=>{
-  //   dispatch({ type: TYPES.REMOVE_CATEGORY,payload:state});
-  // }
+  const filtCategory=(idCategory)=>{
+    dispatch({ type: TYPES.READ_ONE_CATEGORY,payload:idCategory});
+  }
+  const removeCategory=(state)=>{
+    dispatch({ type: TYPES.REMOVE_CATEGORY,payload:state});
+  }
   const createData = (data) => {
     let options = {
       body: data,
@@ -135,8 +135,22 @@ export const CrudAppPro = () => {
 
   return (
     <>
-    <DashboardHeader/>
-      {db && (
+    <DashboardHeader filtCategory={filtCategory} removeCategory={removeCategory}/>
+      {onecategory?(onecategory && (
+        <CrudTablePro
+          data={onecategory}
+          //funcion para actualizar laa  nueva renderizacion sin el elemento renderizado
+          setDataToEdit={setDataToEdit}
+          //pasamos el deletedata para eliminar un id
+          deleteData={deleteData}
+          createData={createData}
+          updateData={updateData}
+          //para diferenciar entre create y update necesitamos pasarle la variable de estado y la funcion que actualiza datatoedit
+          dataToEdit={dataToEdit}
+          Loading={Loading}
+          Error={Error}
+        />
+      )):(db && (
         <CrudTablePro
           data={db}
           //funcion para actualizar laa  nueva renderizacion sin el elemento renderizado
@@ -150,7 +164,7 @@ export const CrudAppPro = () => {
           Loading={Loading}
           Error={Error}
         />
-      )}
+      ))}
     </>
   );
 };
