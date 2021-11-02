@@ -8,7 +8,8 @@ import preparacion from "../../assets/images/seguimiento/preparacion.png";
 import "./orderTracking.css";
 const OrderTracking = ({ Details }) => {
   return (
-    <>
+    <div className="order-tracking-container">
+      
       <div className="segui-header">
         <h2 className="segui-title border-c">Historial de seguimiento:</h2>
       </div>
@@ -134,7 +135,7 @@ const OrderTracking = ({ Details }) => {
           )}
         </div>
       )}
-    </>
+    </div>
   );
 };
 
