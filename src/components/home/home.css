@@ -183,10 +183,27 @@
 
 .btn-cart{
     position: absolute;
-    left: -10rem;
+    left: -20rem;
+    top: 2rem;
     width: fit-content;
 }
-
+.total-cart{
+    position:absolute;
+    top: -1rem;
+    right: -1.5rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 4rem;
+    font-size: 2.5rem;
+    background-color:rgb(255, 45, 45);
+}
+.btn-cart:hover .total-cart{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 6rem;
+    font-size: 3.5rem;
+    transition: .5s;
+}
 /*Order payment*/
 .order-payment{
     min-width: 43rem;
