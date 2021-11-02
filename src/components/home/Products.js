@@ -13,17 +13,18 @@ import Sidebar from "../sidebar/Sidebar";
 
 import "../../assets/css/style.css";
 import "../home/home.css";
-import "../home/sidebar.css"
 import { Header } from "./Header";
 //paypal
 import ReactDOM from "react-dom";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 export const Products = () => {
-  let url = "https://restaurantrestapi.herokuapp.com/api/products";
+  // let url = "https://restaurantrestapi.herokuapp.com/api/products";
+  let url = ""
   //const [db, setDb] = useState(null);
   const [Error, setError] = useState(null);
   const [Loading, setLoading] = useState(false);
+  const [toggleCart,setToggleCart] = useState(false);
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
   const { db, cart,purchase_units,subtotal,onecategory } = state;
   //const [role,setrole] = useState(localStorage.getItem("role"))
@@ -84,7 +85,15 @@ export const Products = () => {
     //console.log(order)
     orderSubmit(order);
   //return actions.order.capture();
-}
+
+  
+  }
+
+  const toggle = () => {
+    setToggleCart(!toggleCart);
+  }
+
+
 const orderSubmit = (order) => {
   let products =[]
   order.purchase_units[0].items.map(product=>products.push({idproduct:product.sku,quantity:product.quantity}))
@@ -106,14 +115,14 @@ const orderSubmit = (order) => {
   console.log(order_detail)
   helpHttp().post('https://restaurantrestapi.herokuapp.com/api/order', options).then((res) => {console.log(res)
   });
-
+  
 }
   return (
     <>
     <Sidebar/>
     <div className="parent">
       <div className="column-1 content f-column">
-          <Header  filtCategory={filtCategory} removeCategory={removeCategory} />
+          <Header  filtCategory={filtCategory} removeCategory={removeCategory}  toggle={toggle}/>
         <main className="menu">
           <div className="menu-header">
             <p className="menu-title">Seleccion de productos</p>
@@ -144,7 +153,10 @@ const orderSubmit = (order) => {
         </main>
       </div>
 
-      <div className="column-2 bg-primary">
+      <div className={`column-2 bg-primary products ${toggleCart?"toggleLeft":"toggleRight"}`}>
+        <div className="btn btn-primary btn-cart" onClick={toggle}>
+          <i class="fas fa-shopping-cart"></i>
+        </div>
         <div className="order-title">
           <p>Ordenes</p>
         </div>

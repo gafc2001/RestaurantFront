@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useState,useEffect, useReducer } from "react";
 import { FilterCategory } from "./FilterCategory";
 import { TYPES } from "../../acctions/shoppingAction";
 import { helpHttp } from "../helpers/helpHttp";
@@ -7,8 +7,9 @@ import {
   shoppingInitialState,
 } from "../../reducers/shoppingReducer";
 
-export const Header = ({ filtCategory,removeCategory }) => {
-  let url = "https://restaurantrestapi.herokuapp.com/api/categories";
+export const Header = ({ filtCategory,removeCategory}) => {
+  // let url = "https://restaurantrestapi.herokuapp.com/api/categories";
+  let url = "";
   useEffect(() => {
     //setLoading(true);
     helpHttp()
@@ -25,6 +26,7 @@ export const Header = ({ filtCategory,removeCategory }) => {
       });
   }, [url]);
 
+
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
   const { category } = state;
   return (
@@ -33,6 +35,8 @@ export const Header = ({ filtCategory,removeCategory }) => {
         <div className="page-info">
           <h2 className="page-name">{sessionStorage.getItem("username")}</h2>
           <p className="date">Martes, 12 Octubre 2021</p>
+        </div>
+        <div>
         </div>
       </div>
       <div className="filter">

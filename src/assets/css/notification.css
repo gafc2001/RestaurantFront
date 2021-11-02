@@ -1,6 +1,6 @@
 .noti-container{
     padding: 3rem;
-    
+    overflow-x: scroll;
 }
 .noti-title{
     color: var(--text-white);

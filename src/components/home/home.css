@@ -14,7 +14,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10rem 2rem;
-    
 }
 .product-card{
     background-color: var(--base-dark-primary);
@@ -81,7 +80,16 @@
 .col-3{
     grid-column: 4 / 5;
 }
-
+.column-2{
+    position: absolute;
+    transition: 1s;
+}
+.column-2.toggleRight{
+    right: -57rem;
+}
+.column-2.toggleLeft{
+    right: 0rem;
+}
 .order-item{
     margin-bottom: 2rem;
 }
@@ -161,3 +169,8 @@
     font-size : 1.6rem;
 }
 
+.btn-cart{
+    position: absolute;
+    left: -10rem;
+    width: fit-content;
+}

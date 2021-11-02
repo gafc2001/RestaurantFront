@@ -68,10 +68,16 @@ button{
     outline: none;
     border: none;
 }
+.App{
+    overflow-x: hidden;
+}
 .d-flex{
     display: flex;
 }
 .parent{
+    position: relative;
+    width: 100vw;
+    overflow-x: hidden;
     display: flex;
     justify-content: space-between;
 }
@@ -238,8 +244,30 @@ button{
     height: 100%;
 }
 
-
-
+@media(max-width: 768px){
+    body{
+        background-color: var(--base-dark-secondary);
+    }
+    .content{
+        padding: 2rem;
+        padding-top: 8rem;
+    }
+    .parent{
+        position: relative;
+        z-index: 1;
+    }
+    /* .parent::before{
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(14, 14, 14, 0.247);
+        z-index: 100;
+    } */ 
+}
 
 
 

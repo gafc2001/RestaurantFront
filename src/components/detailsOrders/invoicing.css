@@ -1,14 +1,15 @@
 .invoicing-container{
     width: 75rem;
+    height: 100%;
     margin: 0 auto;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 .btn-toggle{
     position: relative;
     z-index: 5;
 }
 .invoicing-content{
-    height: 112.5rem;
+    
     background-color: black;
     margin-top: 2rem;
     overflow: hidden;

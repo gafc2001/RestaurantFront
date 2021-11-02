@@ -20,7 +20,8 @@ const OrderDetail = () => {
   const [Error, setError] = useState(null);
   let iduser = sessionStorage.getItem("id");
   const [toggle,setToggle] = useState(false);
-  let url = `https://restaurantrestapi.herokuapp.com/api/order/users/${iduser}`;
+  // let url = `https://restaurantrestapi.herokuapp.com/api/order/users/${iduser}`;
+  let url = ""
   useEffect(() => {
     helpHttp()
       .get(url)
@@ -85,10 +86,10 @@ const OrderDetail = () => {
               </div>
               
               <OrderTracking Details={Details}/>
+              <div onClick={() => {setToggle(!toggle)}} className="btn-toggle">
+                <div className="btn btn-primary">Ver boleta</div>
+              </div>
               <div className="invoicing-container">
-                <div onClick={() => {setToggle(!toggle)}} className="btn-toggle">
-                  <div className="btn btn-primary">Ver boleta</div>
-                </div>
                 <div className={`invoicing-content ${toggle?'toggleDown':'toggleUp'}`}>
                   <header className="invoicing-header">
                     <div className="header-info invoicing">
