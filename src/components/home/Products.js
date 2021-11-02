@@ -50,6 +50,13 @@ export const Products = () => {
       });
   }, [url]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log('colocar la clase ')
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [totalquantity]);
+
   const filtCategory=(idCategory)=>{
     dispatch({ type: TYPES.READ_ONE_CATEGORY,payload:idCategory});
   }
@@ -58,21 +65,26 @@ export const Products = () => {
   }
 
   //para paypal
-
+  const totalQuantity = () => {
+    dispatch({ type: TYPES.INCREASE_QUANTITY});
+  };
   const addToPay = () => {
+    
     dispatch({ type: TYPES.ADD_TO_PAY});
   };
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+    totalQuantity()
   };
-  const totalQuantity = () => {
-    dispatch({ type: TYPES.ADD_TO_QUANTITY});
-  };
+
+
   const delFromCart = (id, all = false) => {
     if (all) {
       dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id });
+      totalQuantity()
     } else {
       dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+      totalQuantity()
     }
   };
 
@@ -93,9 +105,6 @@ export const Products = () => {
   
   }
 
-  const toggle = () => {
-    
-  }
 
 
 const orderSubmit = (order) => {
@@ -125,7 +134,7 @@ const orderSubmit = (order) => {
     <Sidebar/>
     <div className="parent">
       <div className="column-1 content f-column">
-          <Header  filtCategory={filtCategory} removeCategory={removeCategory}  toggle={toggle}/>
+          <Header  filtCategory={filtCategory} removeCategory={removeCategory}/>
         <main className="menu">
           <div className="menu-header">
             <p className="menu-title">Seleccion de productos</p>
@@ -144,14 +153,12 @@ const orderSubmit = (order) => {
                   key={product.idProduct}
                   data={product}
                   addToCart={addToCart}
-                  totalQuantity={totalQuantity}
                 />
               ))):db && (db.map((product) => (
                 <Product
                   key={product.idProduct}
                   data={product}
                   addToCart={addToCart}
-                  totalQuantity={totalQuantity}
                 />
               )))}
           </div>

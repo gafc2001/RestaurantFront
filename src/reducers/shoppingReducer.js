@@ -79,15 +79,13 @@ export function shoppingReducer(state, action) {
     }
 
 
-    case TYPES.ADD_TO_QUANTITY: {
-      let sumquantity =0;
-       state.cart.map((item) =>sumquantity+=item.quantity)
+    case TYPES.INCREASE_QUANTITY: {
+        let sumquantity=(state.cart).length
       return {
         ...state,
         totalquantity: sumquantity
       };
     }
-
     case TYPES.REMOVE_ONE_FROM_CART: {
       let itemToDelete = state.cart.find(
         (item) => item.idProduct === action.payload
