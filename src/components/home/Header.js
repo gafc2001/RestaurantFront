@@ -8,8 +8,7 @@ import {
 } from "../../reducers/shoppingReducer";
 
 export const Header = ({ filtCategory,removeCategory}) => {
-  // let url = "https://restaurantrestapi.herokuapp.com/api/categories";
-  let url = "";
+  let url = "https://restaurantrestapi.herokuapp.com/api/categories";
   useEffect(() => {
     //setLoading(true);
     helpHttp()

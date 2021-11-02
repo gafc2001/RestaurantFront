@@ -20,8 +20,7 @@ const OrderDetail = () => {
   const [Error, setError] = useState(null);
   let iduser = sessionStorage.getItem("id");
   const [toggle,setToggle] = useState(false);
-  // let url = `https://restaurantrestapi.herokuapp.com/api/order/users/${iduser}`;
-  let url = ""
+  let url = `https://restaurantrestapi.herokuapp.com/api/order/users/${iduser}`;
   useEffect(() => {
     helpHttp()
       .get(url)
