@@ -16,11 +16,11 @@ const Mainchat = () => {
     ws.onclose = (event) => {
         console.log('Close: ', event);
     };
-
+    
     const send = () => {
         const requestMessage = {
-            "sender": localStorage.getItem("id"),
-            'recipient': "David",
+            "sender": sessionStorage.getItem("id"),
+            'recipient': 15,
             "message": message,
             "datetime": new Date()
         };
@@ -114,7 +114,7 @@ const Mainchat = () => {
 
                             {listMessages.map((e,i) => 
                                 
-                                <div key={i} className="message right">
+                                <div key={i} className={`message ${e.sender==sessionStorage.getItem("id")?"right":"left"}`}>
                                     <div className="message-profile">
                                         <img src="https://picsum.photos/id/1/200/200" />
                                     </div>
