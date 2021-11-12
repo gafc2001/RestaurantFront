@@ -170,6 +170,7 @@ input.src:hover{
 
 .imagen-port{
   width: 24%;
+  min-width: 240px;
   margin-bottom: 10px;
   overflow: hidden;
   position: relative;
@@ -231,6 +232,7 @@ input.src:hover{
 .cards .card{
   background: #1F1D2B;
   display: flex;
+  min-width: 460px;
   width: 46%;
   height: 218px;
   align-items: center;
@@ -316,4 +318,15 @@ footer{
   box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
   transform: translateY(-8%);
 
+}
+
+
+@media (max-width: 768px){
+  .home-section{
+    margin-left: 0;
+  }
+  .contenedor-footer{
+    flex-direction: column;
+    width: 62%;
+  }
 }

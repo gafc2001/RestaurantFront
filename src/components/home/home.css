@@ -271,3 +271,8 @@
         top: 7.5rem;
     }
 }
+@media (max-width: 768px){
+    .order-payment{
+        min-width: 90vw;
+    }
+}
