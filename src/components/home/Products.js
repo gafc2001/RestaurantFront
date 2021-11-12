@@ -26,6 +26,13 @@ export const Products = () => {
   const [Loading, setLoading] = useState(false);
   const [toggleCart, setToggleCart] = useState(false);
   const [togglePayment, setTooglePayment] = useState(false);
+
+  let activeClassPayment={
+    "PAYPAL":1,
+    "CONTRAENTREGA": 2,
+    "TARGETA": 3
+  }
+  const [Payment, setPayment] = useState("");
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
   const { db, cart, purchase_units, subtotal, onecategory, totalquantity } =
     state;
@@ -112,8 +119,11 @@ export const Products = () => {
       headers: { "content-type": "application/json" },
     };
 
-    // helpHttp().post('https://restaurantrestapi.herokuapp.com/api/order', options).then((res) => {console.log(res)
-    // });
+    helpHttp()
+      .post("https://restaurantrestapi.herokuapp.com/api/order", options)
+      .then((res) => {
+        console.log(res);
+      });
   };
   return (
     <>
@@ -217,7 +227,7 @@ export const Products = () => {
               <div className="payment-methods">
                 <h3>Metodos de pagos</h3>
                 <ul className="list-payment-methods">
-                  <li className="payment-method active">
+                  <li className={`payment-method ${activeClassPayment[Payment]===3?"active":""}`} onClick={()=>{setPayment("TARGETA")}}>
                     <svg
                       width="24"
                       height="24"
@@ -234,7 +244,7 @@ export const Products = () => {
                     </svg>
                     <span>Tarjeta</span>
                   </li>
-                  <li className="payment-method">
+                  <li className={`payment-method ${activeClassPayment[Payment]===1?"active":""}`} onClick={()=>{setPayment("PAYPAL")}}>
                     <svg
                       width="18"
                       height="20"
@@ -253,7 +263,8 @@ export const Products = () => {
 
                     <span>Paypal</span>
                   </li>
-                  <li className="payment-method">
+                  <li className={`payment-method ${activeClassPayment[Payment]===2?"active":""}`} onClick={()=>{setPayment("CONTRAENTREGA")}}>
+                  
                     <svg
                       width="20"
                       height="20"
@@ -317,13 +328,18 @@ export const Products = () => {
               >
                 Cancelar
               </button>
-              <PayPalButton
-                createOrder={(data, actions) => createOrder(data, actions)}
-                onApprove={(data, actions) => onApprove(data, actions)}
-              />
-              {/* <button type="button" className="btn btn-primary">
-                Confirmar pago
-              </button> */}
+              {Payment==="PAYPAL"&&
+                <PayPalButton
+                  createOrder={(data, actions) => createOrder(data, actions)}
+                  s
+                  onApprove={(data, actions) => onApprove(data, actions)}
+                />
+              }
+              {Payment==="CONTRAENTREGA"&&
+                <button type="button" className="btn btn-primary">
+                  Confirmar pago
+                </button>
+              }
             </div>
           </div>
         </div>
