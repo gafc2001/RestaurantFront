@@ -50,6 +50,13 @@
 .invoicing-detail h3{
     font-size:4rem;
 }
+.invoicing-info-details{
+    width:100%;
+}
+.invoicing-info-detail-item > span{
+    display: inline-block;
+    width:30%;
+}
 .header-description{
     display: flex;
     justify-content:space-between;

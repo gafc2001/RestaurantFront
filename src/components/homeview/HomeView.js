@@ -290,7 +290,7 @@ const HomeView = () => {
           </div>
         </div>
       </section>
-      <section class="productos">
+      <section className="productos">
         <div className="contenedor3">
           <div className="section-title">
             <h2 data-title="Ordene Ahora">Nuestros Productos</h2>
@@ -312,15 +312,15 @@ const HomeView = () => {
           bgColor="#dc3545"
         />
       )}
-          <div class="cards">
+          <div className="cards">
             {Products &&
               Products.map((product) => (
-                <div key={product.idProduct} class="card">
+                <div key={product.idProduct} className="card">
                   <img
                     src={`https://restaurantrestapi.herokuapp.com/api/products/${product.idProduct}/image`}
                     alt={product.nameProduct}
                   />
-                  <div class="contenido-texto-card">
+                  <div className="contenido-texto-card">
                     <h4>{product.nameProduct}</h4>
                     <p>{product.description}</p>
                     <h5>$/. {product.priceProduct}</h5>
@@ -331,21 +331,21 @@ const HomeView = () => {
         </div>
       </section>
       <footer>
-        <div class="contenedor-footer">
-          <div class="content-foo">
+        <div className="contenedor-footer">
+          <div className="content-foo">
             <h4>Celular</h4>
             <p>922098340</p>
           </div>
-          <div class="content-foo">
+          <div className="content-foo">
             <h4>Correo </h4>
             <p>Delibakery@gmail.com</p>
           </div>
-          <div class="content-foo">
+          <div className="content-foo">
             <h4>Direccion</h4>
             <p>Lima-Ancon</p>
           </div>
         </div>
-        <h2 class="titulo-final">&copy; Delibakery | GustavoFC - DavidPG</h2>
+        <h2 className="titulo-final">&copy; Delibakery | GustavoFC - DavidPG</h2>
       </footer>
     </>
   );

@@ -15,7 +15,7 @@ import HomeView from "../components/homeview/HomeView"
 import Orders from "../components/detailsOrders/Orders"
 import OrderDetail from "../components/detailsOrders/OrderDetail";
 import {MainDashboard} from "../components/Dashboard/Main/MainDashboard";
-
+import {Profile} from "../components/Profile/Profile";
 import {Mainchat} from "../components/Chat/Mainchat";
 const Routes = () => {
     const isAuth = isAuthenticated();
@@ -32,7 +32,7 @@ const Routes = () => {
       <PrivateRoute exact path="/message" component={Mainchat} />
       <PrivateRoute  path="/maindashboard/dashboard/:topic" component={Dashboard} />
       <PrivateRoute path="/maindashboard" component={MainDashboard} />
-
+      <PrivateRoute path="/profile" component={Profile} />
       <Route exact path="/404" component={Error} />
       <Route
        

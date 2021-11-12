@@ -21,32 +21,34 @@ const Invoicing = ({Details}) => {
               <div className="invoicing-info">
                 <div className="invoicing-detail">
                   <h3>Boleta</h3>
-                  <tr>
-                    <td>Nro Boleta</td>
-                    <td>#{idOrder}</td>
-                  </tr>
-                  <tr>
-                    <td>Numero de cuenta</td>
-                    <td>1234 1234 1234 1234</td>
-                  </tr>
-                  <tr>
-                    <td>Fecha boleta</td>
-                    <td>{createdAt}</td>
-                  </tr>
+                  <div className="invoicing-info-details">
+                    <div className="invoicing-info-detail-item">
+                      <span>Nro Boleta</span>
+                      <span>#{idOrder}</span>
+                    </div>
+                    <div className="invoicing-info-detail-item">
+                      <span>Numero de cuenta</span>
+                      <span>1234 1234 1234 1234</span>
+                    </div>
+                    <div className="invoicing-info-detail-item">
+                      <span>Fecha boleta</span>
+                      <span>{createdAt}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </header>
-          <div class="invoicing-center">  
-            <div class="header-description">
-              <div class="invoice-user-detail">
+          <div className="invoicing-center">  
+            <div className="header-description">
+              <div className="invoice-user-detail">
                 <h4>Boleta a:</h4>
                 <p className="invoice-name">{user.username}</p>
                 <p className="invoice-detail">Direccion Aeropuerto</p>
                 <p className="invoice-detail">Phone +51 976543212</p>
                 <p className="invoice-detail">Email: {user.email}</p>
               </div>
-              <div class="invoice-payment-method">
+              <div className="invoice-payment-method">
                 <h3>Metodo de pago</h3>
                 <p>Nmro de cuenta: 1234 1234 1234 1234</p>
                 <p>Nombre de cuenta: {user.username}</p>
@@ -56,11 +58,13 @@ const Invoicing = ({Details}) => {
             <div className="invoicing-table-container">
                 <table className="invoicing-table">
                   <thead>
-                    <td>Nombre</td>
-                    <td>Descripcion Unidad</td>
-                    <td>Precio Unit.</td>
-                    <td>Cant.</td>
-                    <td>Total</td>
+                    <tr>
+                      <td>Nombre</td>
+                      <td>Descripcion Unidad</td>
+                      <td>Precio Unit.</td>
+                      <td>Cant.</td>
+                      <td>Total</td>
+                    </tr>
                   </thead>
                   <tbody>
                   {Details &&
