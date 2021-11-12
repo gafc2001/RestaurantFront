@@ -54,7 +54,7 @@ const Mainchat = () => {
                         <div className="contact-chat">
                             <div className="profile-picture chat-picture">
                                 <img src="https://restaurantrestapi.herokuapp.com/api/users/65/image" alt="profile-picture" />
-                                <p class="chat-status"></p>
+                                <p className="chat-status"></p>
                             </div>
                             <div className="chat-content">
                                 <span className="chat-user">El Gato cuba</span>
@@ -68,7 +68,7 @@ const Mainchat = () => {
                         <div className="contact-chat">
                             <div className="profile-picture chat-picture">
                                 <img src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTQyMDA0NDgwMzUzNzcyNjA2/mark-zuckerberg_gettyimages-512304736jpg.jpg" alt="profile-picture" />
-                                <p class="chat-status"></p>
+                                <p className="chat-status"></p>
                             </div>
                             <div className="chat-content">
                                 <span className="chat-user">Marck Zuckerberg</span>
@@ -82,7 +82,7 @@ const Mainchat = () => {
                         <div className="contact-chat">
                             <div className="profile-picture chat-picture">
                                 <img src="https://images-na.ssl-images-amazon.com/images/S/amzn-author-media-prod/gtv9ql5vn2302qnk12os724bhh._SX450_.jpg" alt="profile-picture" />
-                                <p class="chat-status"></p>
+                                <p className="chat-status"></p>
                             </div>
                             <div className="chat-content">
                                 <span className="chat-user">Bill gates</span>
@@ -102,7 +102,7 @@ const Mainchat = () => {
                                 <img src="https://picsum.photos/id/10/200/200" alt="profile-picture" />
                             </div>
                             <div className="profile-info">
-                                <span className="name">Gustavo Farfan <i class="fas fa-circle"></i></span>
+                                <span className="name">Gustavo Farfan <i className="fas fa-circle"></i></span>
                                 <span className="user-status">Activo ahora</span>
                             </div>
 
@@ -129,11 +129,11 @@ const Mainchat = () => {
 
                         </div>
                         <div className="input-message">
-                            <span className="emoji"><i class="far fa-grin"></i></span>
+                            <span className="emoji"><i className="far fa-grin"></i></span>
                             <div className="input-container">
                                 <textarea type="text" className="input" placeholder="Escribe un mensaje aqui" onChange={(e) => { setMessage(e.target.value) }}></textarea>
                             </div>
-                            <span className="send" onClick={() => send()}><i class="fas fa-paper-plane"></i></span>
+                            <span className="send" onClick={() => send()}><i className="fas fa-paper-plane"></i></span>
                         </div>
                     </main>
                 </div>

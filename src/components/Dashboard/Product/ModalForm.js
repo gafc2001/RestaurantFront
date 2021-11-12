@@ -211,7 +211,7 @@ export const ModalForm = ({
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="file" for="file" className="file-content"><i class="fas fa-upload file-icon"></i> Choose a file...
+          <label htmlFor="file" for="file" className="file-content"><i className="fas fa-upload file-icon"></i> Choose a file...
           <input type="file" name="file0" id="file" onChange={fileChange} /></label>
         </div>
         <div className="btn-container">

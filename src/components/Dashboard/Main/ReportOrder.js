@@ -68,10 +68,10 @@ export const ReportOrder = () => {
       <table className="dashboard-table">
         <thead className="table-header">
           <tr className="table-row">
-            <td className="customer-col">Cliente</td>
-            <td className="order-col">Orden</td>
-            <td className="total-col">Total</td>
-            <td className="status-col">Estado</td>
+            <th className="customer-col">Cliente</th>
+            <th className="order-col">Orden</th>
+            <th className="total-col">Total</th>
+            <th className="status-col">Estado</th>
           </tr>
         </thead>
         <tbody className="table-body">
