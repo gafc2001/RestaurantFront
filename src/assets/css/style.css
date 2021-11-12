@@ -219,6 +219,7 @@ button{
     font-size: 1.4rem;
     margin-top: 4rem;
     color: var(--text-white);
+    
 }
 .filter-list{
     display: flex;
@@ -256,17 +257,14 @@ button{
         position: relative;
         z-index: 1;
     }
-    /* .parent::before{
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        display: block;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(14, 14, 14, 0.247);
-        z-index: 100;
-    } */ 
+    .filter{
+        max-width: 768px;
+        overflow-x: scroll;
+    }
+    .filter-list{
+        min-width: 568px;
+        overflow-y: scroll;
+    }
 }
 
 

@@ -19,11 +19,11 @@ export default function Sidebar()
     
     return (
     <>
-        
-        <nav className={`sidebar ${toggle ? "toggleRight" : "toggleLeft"}`}>
-            <div className="menu-responsive center" onClick={() => {setToggle(!toggle)}}>
+        <div className="menu-responsive center" onClick={() => {setToggle(!toggle)}}>
                 <i className="fas fa-bars"></i>
-            </div>
+        </div>
+        <nav className={`sidebar ${toggle ? "toggleRight" : "toggleLeft"}`}>
+            
             <ul className="sidebar-menu">
                 <NavLink to="/">
                 <li className="sidebar-item">

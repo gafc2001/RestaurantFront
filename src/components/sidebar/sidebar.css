@@ -10,6 +10,9 @@
 .sidebar-menu{
     padding: 1rem 0 1rem 1rem;
 }
+.menu-responsive{
+    display: none;
+}
 .logo{
     background-color: #FFF;
     border-radius: inherit;
@@ -44,6 +47,9 @@
     
 }
 @media(max-width: 768px){
+    .sidebar{
+        padding-top:6rem;
+    }
     .sidebar.toggleLeft{
         transform: translateX(-8rem);
         transition: 1s;
@@ -54,28 +60,16 @@
     }
     div.menu-responsive{
         display: block!important;
-        z-index: 100;
+        z-index: 110;
         background-color:var(--base-dark-primary);
-        padding: 1rem;
-        border-radius: 1rem;
-        height:5rem;
-        width:5rem;
-        position: absolute;
-        color: #fff;
-        font-size:3rem;
-        top: 2rem;
-        left: 9rem;
-    }
-    /* nav.sidebar{
-        position: fixed;
-        height:8rem;
+        height:6rem;
+        padding: 0 2.6rem;
         width:100%;
-        bottom: 0;
-        
+        position: fixed;
+        color: #fff;
+        font-size:4rem;
+        top: 0rem;
+        left: 0rem;
     }
-    .sidebar .sidebar-menu{
-        display: flex;
-        justify-content:center
-    } */
     
 }   

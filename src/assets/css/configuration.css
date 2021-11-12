@@ -141,3 +141,11 @@
 .btn-product path{
     fill: var(--primary-color);
 }
+
+/*Responsive*/
+
+@media (max-width: 639px){
+    .product-container{
+        justify-content: center;
+    }
+}
