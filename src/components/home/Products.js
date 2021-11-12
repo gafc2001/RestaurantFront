@@ -22,7 +22,7 @@ import ReactDOM from "react-dom";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 export const Products = () => {
-  let url = "https://restaurantrestapi.herokuapp.com/api/productsss";
+  let url = "https://restaurantrestapi.herokuapp.com/api/products";
   // let url = ""
   //const [db, setDb] = useState(null);
   const [Error, setError] = useState(null);
