@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
+//para visa
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+
 import { Loader } from "../Dashboard/Loader";
 import { Message } from "../Dashboard/Message";
 import { helpHttp } from "../helpers/helpHttp";
@@ -19,7 +22,7 @@ import ReactDOM from "react-dom";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 export const Products = () => {
-  let url = "https://restaurantrestapi.herokuapp.com/api/products";
+  let url = "https://restaurantrestapi.herokuapp.com/api/productsss";
   // let url = ""
   //const [db, setDb] = useState(null);
   const [Error, setError] = useState(null);
@@ -27,18 +30,26 @@ export const Products = () => {
   const [toggleCart, setToggleCart] = useState(false);
   const [togglePayment, setTooglePayment] = useState(false);
 
-  let activeClassPayment={
-    "PAYPAL":1,
-    "CONTRAENTREGA": 2,
-    "TARGETA": 3
-  }
+  const initialForm = {
+    fullname: "",
+    lastname: "",
+    address: "",
+    phone: "",
+  };
+  const [Form, setForm] = useState(initialForm);
+  //state para la targeta
+  const stripe = useStripe();
+  const elements = useElements();
+
+  let activeClassPayment = {
+    PAYPAL: 1,
+    CONTRAENTREGA: 2,
+    TARGETA: 3,
+  };
   const [Payment, setPayment] = useState("");
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
   const { db, cart, purchase_units, subtotal, onecategory, totalquantity } =
     state;
-  //const [role,setrole] = useState(localStorage.getItem("role"))
-  //para las respuestas de paypal
-  //const [Order,setOrder]=useState(null);
 
   //para productos
   useEffect(() => {
@@ -84,6 +95,53 @@ export const Products = () => {
       totalQuantity();
     }
   };
+  //para la targeta
+  const cartSubmit = async () => {
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardElement),
+      billing_details: {
+        address: {
+          city: "lima",
+          country: "PE",
+          line1: Form.address,
+        },
+        email: sessionStorage.getItem("email"),
+        name: `${Form.fullname} ${Form.lastname}`,
+        phone: Form.phone,
+      },
+    });
+    setLoading(true);
+    if (!error) {
+      const { id } = paymentMethod;
+      try {
+        let carddetails = {
+          iduser: sessionStorage.getItem("id"),
+          status: "PENDIENTE",
+          idcard: id,
+          amount: subtotal, //cents
+          items: cart,
+        };
+        let options = {
+          body: carddetails,
+          headers: { "content-type": "application/json" },
+        };
+        helpHttp()
+          .post(
+            "https://restaurantrestapi.herokuapp.com/api/payments/stripe",
+            options
+          )
+          .then((res) => {
+            console.log(res);
+          });
+
+        elements.getElement(CardElement).clear();
+      } catch (error) {
+        console.log("Error", error);
+      }
+      setLoading(false);
+    }
+  };
 
   //para paypal
   const createOrder = (data, actions) => {
@@ -124,6 +182,38 @@ export const Products = () => {
       .then((res) => {
         console.log(res);
       });
+  };
+  const handleChange = (e) => {
+    setForm({
+      ...Form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let userDetails = {
+      firstName: Form.fullname,
+      lastName: Form.lastname,
+      phoneNumber: Form.phone,
+      address: Form.address,
+    };
+    let options = {
+      body: userDetails,
+      headers: { "content-type": "application/json" },
+    };
+    let idcli = sessionStorage.getItem("id");
+    if (idcli) {
+      helpHttp()
+        .post(
+          `https://restaurantrestapi.herokuapp.com/api/users/${idcli}/profile`,
+          options
+        )
+        .then((res) => {
+          console.log(res);
+        });
+    }
+    //console.log(Form)
   };
   return (
     <>
@@ -227,7 +317,14 @@ export const Products = () => {
               <div className="payment-methods">
                 <h3>Metodos de pagos</h3>
                 <ul className="list-payment-methods">
-                  <li className={`payment-method ${activeClassPayment[Payment]===3?"active":""}`} onClick={()=>{setPayment("TARGETA")}}>
+                  <li
+                    className={`payment-method ${
+                      activeClassPayment[Payment] === 3 ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      setPayment("TARGETA");
+                    }}
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -244,7 +341,14 @@ export const Products = () => {
                     </svg>
                     <span>Tarjeta</span>
                   </li>
-                  <li className={`payment-method ${activeClassPayment[Payment]===1?"active":""}`} onClick={()=>{setPayment("PAYPAL")}}>
+                  <li
+                    className={`payment-method ${
+                      activeClassPayment[Payment] === 1 ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      setPayment("PAYPAL");
+                    }}
+                  >
                     <svg
                       width="18"
                       height="20"
@@ -263,8 +367,14 @@ export const Products = () => {
 
                     <span>Paypal</span>
                   </li>
-                  <li className={`payment-method ${activeClassPayment[Payment]===2?"active":""}`} onClick={()=>{setPayment("CONTRAENTREGA")}}>
-                  
+                  <li
+                    className={`payment-method ${
+                      activeClassPayment[Payment] === 2 ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      setPayment("CONTRAENTREGA");
+                    }}
+                  >
                     <svg
                       width="20"
                       height="20"
@@ -282,42 +392,64 @@ export const Products = () => {
                 </ul>
               </div>
               <div className="payment-user-info">
-                <div className="form-group">
-                  <label className="label">Nombre</label>
-                  <div className="input-container">
-                    <input
-                      type="text"
-                      className="input"
-                      placeholder="Su nombre"
-                    />
+                <form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label className="label">Nombre</label>
+                    <div className="input-container">
+                      <input
+                        type="text"
+                        name="fullname"
+                        className="input"
+                        placeholder="Su nombre"
+                        onChange={handleChange}
+                        value={Form.fullname}
+                      ></input>
+                    </div>
                   </div>
-                </div>
-                <div className="form-group">
-                  <label className="label">Dni</label>
-                  <div className="input-container">
-                    <input type="text" className="input" placeholder="Su dni" />
+                  <div className="form-group">
+                    <label className="label">Apellidos</label>
+                    <div className="input-container">
+                      <input
+                        type="text"
+                        name="lastname"
+                        className="input"
+                        placeholder="Sus apellidos"
+                        onChange={handleChange}
+                        value={Form.lastname}
+                      ></input>
+                    </div>
                   </div>
-                </div>
-                <div className="form-group">
-                  <label className="label">Direccion</label>
-                  <div className="input-container">
-                    <input
-                      type="text"
-                      className="input"
-                      placeholder="Ejmp: Av. Faucett Cdr. 5"
-                    />
+                  <div className="form-group">
+                    <label className="label">Direccion</label>
+                    <div className="input-container">
+                      <input
+                        type="text"
+                        name="address"
+                        className="input"
+                        placeholder="Ejmp: Av. Faucett Cdr. 5"
+                        onChange={handleChange}
+                        value={Form.address}
+                      ></input>
+                    </div>
                   </div>
-                </div>
-                <div className="form-group">
-                  <label className="label">Telefono</label>
-                  <div className="input-container">
-                    <input
-                      type="text"
-                      className="input"
-                      placeholder="Su Telefono"
-                    />
+                  <div className="form-group">
+                    <label className="label">Telefono</label>
+                    <div className="input-container">
+                      <input
+                        type="number"
+                        name="phone"
+                        className="input"
+                        placeholder="Su Telefono"
+                        onChange={handleChange}
+                        value={Form.phone}
+                      ></input>
+                    </div>
                   </div>
-                </div>
+                  {Payment === "TARGETA" && <CardElement />}
+                  <button type="submit" className="btn btn-primary">
+                    confirmar datos
+                  </button>
+                </form>
               </div>
             </div>
             <div className="btn-container">
@@ -328,18 +460,28 @@ export const Products = () => {
               >
                 Cancelar
               </button>
-              {Payment==="PAYPAL"&&
+              {Payment === "PAYPAL" && (
                 <PayPalButton
                   createOrder={(data, actions) => createOrder(data, actions)}
                   s
                   onApprove={(data, actions) => onApprove(data, actions)}
                 />
-              }
-              {Payment==="CONTRAENTREGA"&&
-                <button type="button" className="btn btn-primary">
-                  Confirmar pago
+              )}
+              {Payment === "TARGETA" && (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => cartSubmit()}
+                >
+                  {Loading ? (
+                    <div>
+                      <span className="sr-only">Loading...</span>
+                    </div>
+                  ) : (
+                    "Pagar con visa"
+                  )}
                 </button>
-              }
+              )}
             </div>
           </div>
         </div>

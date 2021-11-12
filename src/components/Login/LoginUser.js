@@ -49,8 +49,8 @@ export const  LoginUser=()=> {
           setError(true)
           
         }else{
-
           sessionStorage.setItem("id",result.id);
+          sessionStorage.setItem("email",result.email);
           sessionStorage.setItem("username",result.username);
           sessionStorage.setItem("token",result.accessToken);
           sessionStorage.setItem("role",result.roles);
