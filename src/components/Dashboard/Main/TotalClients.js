@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { helpHttp } from "../../helpers/helpHttp";
-
+//URL DELYBAKERY
+import { URL } from "../../../api/apiDB";
 const TotalClients = () => {
-  let url = "https://restaurantrestapi.herokuapp.com/api/users/summary";
   let initialDetails = { status: "", percentage: null, current: null };
   const [UserDetails, setUserDetails] = useState(initialDetails);
   useEffect(() => {
     helpHttp()
-      .get(url)
+      .get(URL.USERS_SUMARY)
       .then((res) => {
         if (!res.err) {
           setUserDetails(res);
@@ -15,7 +15,7 @@ const TotalClients = () => {
           setUserDetails(initialDetails);
         }
       });
-  }, [url]);
+  }, []);
 
   return (
     <section className="box-content total-summary-item">

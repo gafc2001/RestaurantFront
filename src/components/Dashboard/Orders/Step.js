@@ -14,7 +14,6 @@ const Step = ({selected,index,label}) => {
       </div>
       <span>{label}</span>
       <p>{description[label]}</p>
-      
     </div>
   );
 };

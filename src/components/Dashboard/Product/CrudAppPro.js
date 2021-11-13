@@ -5,6 +5,10 @@ import { helpHttp } from "../../helpers/helpHttp";
 import {DashboardHeader} from "../DashboardHeader"
 import { crudInitialState, crudReducer } from "../../../reducers/crudReducer";
 import { TYPES } from "../../../acctions/crudAction";
+
+//URL DELYBAKERY
+import { URL } from "../../../api/apiDB";
+
 export const CrudAppPro = () => {
   //const [db, setDb] = useState(null);
   const [state, dispatch] = useReducer(crudReducer, crudInitialState);
@@ -18,13 +22,13 @@ export const CrudAppPro = () => {
   const [Loading, setLoading] = useState(false);
 
   let api = helpHttp();
-  let url = "https://restaurantrestapi.herokuapp.com/api/products";
+
 
   //controlar respuestas del servidor
   useEffect(() => {
     setLoading(true);
     helpHttp()
-      .get(url)
+      .get(URL.PRODUCT_DB)
       .then((res) => {
         if (res.length > 0) {
           dispatch({ type: TYPES.READ_ALL_DATA, payload: res });
@@ -35,7 +39,7 @@ export const CrudAppPro = () => {
         }
         setLoading(false);
       });
-  }, [url]);
+  }, []);
 
   const filtCategory=(idCategory)=>{
     dispatch({ type: TYPES.READ_ONE_CATEGORY,payload:idCategory});
@@ -49,7 +53,7 @@ export const CrudAppPro = () => {
       headers: { "content-type": "application/json" },
     };
 
-    api.post(url, options).then((res) => {
+    api.post(URL.PRODUCT_DB, options).then((res) => {
       if (!res.err) {
         dispatch({ type: TYPES.CREATE_DATA, payload: res });
 
@@ -62,7 +66,7 @@ export const CrudAppPro = () => {
             method: "POST",
           };
           fetch(
-            `https://restaurantrestapi.herokuapp.com/api/products/${res.idProduct}/image`,
+            `${URL.PRODUCT_DB}/${res.idProduct}/image`,
             requestOptions
           )
             .then((resp) => resp)
@@ -78,7 +82,7 @@ export const CrudAppPro = () => {
   };
 
   const updateData = (data) => {
-    let endpoint = `${url}/${data.idProduct}`;
+    let endpoint = `${URL.PRODUCT_DB}/${data.idProduct}`;
     let options = {
       body: data,
       headers: { "content-type": "application/json" },
@@ -97,7 +101,7 @@ export const CrudAppPro = () => {
             method: "POST",
           };
           fetch(
-            `https://restaurantrestapi.herokuapp.com/api/products/${data.idProduct}/image`,
+            `${URL.PRODUCT_DB}/${data.idProduct}/image`,
             requestOptions
           )
             .then((resp) => resp)
@@ -112,9 +116,9 @@ export const CrudAppPro = () => {
     });
   };
   const deleteData = (id) => {
-    let isDelete = window.confirm(`Desea eliminar registro ${id}?"`);
+    let isDelete = window.confirm(`Desea eliminar registro ${id}?`);
     if (isDelete) {
-      let endpoint = `${url}/${id}`;
+      let endpoint = `${URL.PRODUCT_DB}/${id}`;
       let options = {
         headers: { "content-type": "application/json" },
       };
@@ -130,9 +134,6 @@ export const CrudAppPro = () => {
       return;
     }
   };
-
-
-
   return (
     <>
     <DashboardHeader filtCategory={filtCategory} removeCategory={removeCategory}/>

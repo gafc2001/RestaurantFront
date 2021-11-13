@@ -1,25 +1,28 @@
 import "../home/home.css";
 import "../../assets/css/style.css";
+import { URL } from "../../api/apiDB";
+
 const CartItem = ({ data, delFromCart }) => {
-  let { idProduct, nameProduct, priceProduct, quantity,total } = data;
+  let { idProduct, nameProduct, priceProduct, quantity, total } = data;
   return (
     <div className="order-item order-grid">
       <div className="order-img">
-      <img
-          src={`https://restaurantrestapi.herokuapp.com/api/products/${idProduct}/image`}
-          alt={nameProduct}
-        />
+        <img src={`${URL.PRODUCT_DB}/${idProduct}/image`} alt={nameProduct} />
       </div>
       <div className="order-info">
         <p>{nameProduct}</p>
         <p className="order-price">$ {priceProduct}</p>
       </div>
       <div className="order-qty input-container">
-        <input type="text" name="quantity" placeholder={quantity} disabled className="input" />
+        <input
+          type="text"
+          name="quantity"
+          placeholder={quantity}
+          disabled
+          className="input"
+        />
       </div>
-      <div className="order-total ">
-        $ {total}
-      </div>
+      <div className="order-total ">$ {total}</div>
       <div className="order-msg input-container input-center">
         <input
           type="text"
@@ -27,10 +30,16 @@ const CartItem = ({ data, delFromCart }) => {
           className="input"
         />
       </div>
-      <div className="btn-order order-delete center"  onClick={() => delFromCart(idProduct)}>
+      <div
+        className="btn-order order-delete center"
+        onClick={() => delFromCart(idProduct)}
+      >
         <i className="fas fa-minus-square"></i>
       </div>
-      <div className="btn-order order-delete-category center" onClick={() => delFromCart(idProduct, true)}>
+      <div
+        className="btn-order order-delete-category center"
+        onClick={() => delFromCart(idProduct, true)}
+      >
         <svg
           width="24"
           height="24"

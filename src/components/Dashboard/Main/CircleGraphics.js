@@ -1,20 +1,13 @@
 import React, { useCallback, useState, useEffect } from 'react'
 import { PieChart, Pie, Sector } from "recharts";
 import { helpHttp } from "../../helpers/helpHttp";
-// const data = [
-//     { name: "Group A", value: 400 },
-//     { name: "Group B", value: 300 },
-//     { name: "Group C", value: 300 },
-//     { name: "Group D", value: 200 },
-//   ];
+import { URL } from "../../../api/apiDB";
 const CircleGraphics = () => {
-
-    let url = "https://restaurantrestapi.herokuapp.com/api/categories/chart";
     const [dataEstadistics, setdataEstadistics] = useState(null);  
   
     useEffect(() => {
       helpHttp()
-        .get(url)
+        .get(URL.CHART_CATEGORY)
         .then((res) => {
           if (!res.err) {
             setdataEstadistics(res);
@@ -22,7 +15,7 @@ const CircleGraphics = () => {
             setdataEstadistics(null);
           }
         });
-    }, [url]);
+    }, []);
 
     const renderActiveShape = (props) => {
         const RADIAN = Math.PI / 180;

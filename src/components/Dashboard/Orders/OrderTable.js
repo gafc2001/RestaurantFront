@@ -1,6 +1,5 @@
 import React from 'react'
 import OrderTableRow from './OrderTableRow'
-
 const OrderTable = ({data,setDataToEdit}) => {
     return (
         <div className="table-container">

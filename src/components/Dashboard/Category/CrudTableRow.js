@@ -2,7 +2,6 @@ import React from "react";
 
 const CrudTableRow = ({el,setDataToEdit,deleteData}) => {
     let {nameCategory,description,idCategory }=el;
-
   return (
       <tr>
         <td>{nameCategory}</td>

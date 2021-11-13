@@ -1,7 +1,8 @@
 import React from 'react'
+//URL DELYBAKERY
+import { URL } from "../../../api/apiDB";
 
 const RowTableOrder = ({report}) => {
-    console.log(report);
     let {user,total,status,description} = report
     let  style = {
       "COMPLETADO": "completed",
@@ -13,7 +14,7 @@ const RowTableOrder = ({report}) => {
         <tr className="row">
           <td className="customer-col customer-data">
             <div className="profile-image">
-              <img src={`https://restaurantrestapi.herokuapp.com/api/users/${user.idUser}/image`} alt={user.username} />
+              <img src={`${URL.USERS_DB}/${user.idUser}/image`}alt={user.username} />
             </div>
             <span>{user.username}</span>
           </td>
@@ -29,3 +30,4 @@ const RowTableOrder = ({report}) => {
 }
 
 export default RowTableOrder
+//{`https://restaurantrestapi.herokuapp.com/api/users/${user.idUser}/image`}

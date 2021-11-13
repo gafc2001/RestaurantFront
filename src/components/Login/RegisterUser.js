@@ -2,6 +2,8 @@ import { useState } from "react";
 //import "bootstrap/dist/css/bootstrap.min.css"
 import { Redirect } from "react-router";
 
+//URL DELYBAKERY
+import { URL } from "../../api/apiDB";
 //Styles
 import "./../../assets/css/form.css";
 import "./../../assets/css/style.css";
@@ -39,7 +41,7 @@ export const  RegisterUser = () => {
       redirect: 'follow'
     };
 
-    fetch("https://restaurantrestapi.herokuapp.com/api/auth/signup", requestOptions)
+    fetch(URL.SIGNUP_AUTH, requestOptions)
       .then(response => response.text())
       .then(result => {
         let user = JSON.parse(result)

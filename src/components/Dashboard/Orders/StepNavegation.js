@@ -1,6 +1,5 @@
 import React from 'react';
 import Step from './Step';
-
 const StepNavegation = ({labelArray,formStatus}) => {
     let {statusOrder} =formStatus
     return (

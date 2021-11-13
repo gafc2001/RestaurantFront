@@ -15,8 +15,6 @@ export default function Sidebar()
         sessionStorage.removeItem("role");
     }
     const [toggle, setToggle] = useState(false);
-    //(sessionStorage.getItem('role')).includes('ROLE_USER')
-    
     return (
     <>
         <div className="menu-responsive center" onClick={() => {setToggle(!toggle)}}>

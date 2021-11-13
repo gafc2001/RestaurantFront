@@ -1,13 +1,16 @@
 import React from "react";
 import "../home/home.css";
 import "../../assets/css/style.css";
+//URL DELIBAKERY
+import { URL } from "../../api/apiDB";
+
 const Product = ({ data, addToCart}) => {
   let { idProduct, nameProduct, priceProduct,category,availableProduct} = data;
   return (
     <div className="product-card">
       <div className="card-image center">
         <img
-          src={`https://restaurantrestapi.herokuapp.com/api/products/${idProduct}/image`}
+          src={`${URL.PRODUCT_DB}/${idProduct}/image`}
           alt={nameProduct}
         />
       </div>

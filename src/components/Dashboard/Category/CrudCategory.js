@@ -10,6 +10,8 @@ import { Loader } from "../Loader";
 // import { DashboardContainer } from "../DashboardContainer";
 import "./../../../assets/css/style.css";
 import "./../../../assets/css/configuration.css";
+//URL DELYBAKERY
+import { URL } from "../../../api/apiDB";
 
 export const CrudCategory = () => {
   const [db, setDb] = useState(null);
@@ -20,13 +22,13 @@ export const CrudCategory = () => {
   //  cargando
   const [Loading, setLoading] = useState(false);
   let api = helpHttp();
-  let url = "https://restaurantrestapi.herokuapp.com/api/categories";
+
 
   //controlar respuestas del servidor
   useEffect(() => {
     setLoading(true);
     helpHttp()
-      .get(url)
+      .get(URL.PRODUCT_CATEGORY)
       .then((res) => {
         if (!res.err) {
           setDb(res);
@@ -37,7 +39,7 @@ export const CrudCategory = () => {
         }
         setLoading(false);
       });
-  }, [url]);
+  }, []);
 
   //esta funcion crea un nuevo registro
   const createData = (data) => {
@@ -49,7 +51,7 @@ export const CrudCategory = () => {
       headers: { "content-type": "application/json" },
     };
 
-    api.post(url, options).then((res) => {
+    api.post(URL.PRODUCT_CATEGORY, options).then((res) => {
       //console.log(res)
       if (!res.err) {
         setDb([...db, res]);
@@ -59,7 +61,7 @@ export const CrudCategory = () => {
     });
   };
   const updateData = (data) => {
-    let endpoint = `${url}/${data.idCategory}`;
+    let endpoint = `${URL.PRODUCT_CATEGORY}/${data.idCategory}`;
     //console.log(endpoint);
 
     let options = {
@@ -83,7 +85,7 @@ export const CrudCategory = () => {
     let isDelete = window.confirm(`Desea eliminar registro ${id} ?"`);
 
     if (isDelete) {
-      let endpoint = `${url}/${id}`;
+      let endpoint = `${URL.PRODUCT_CATEGORY}/${id}`;
       let options = {
         headers: { "content-type": "application/json" },
       };
