@@ -3,7 +3,11 @@ import React, { useState, useEffect, useReducer } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 //URL DELYBAKERY
 import { URL } from "../../api/apiDB";
-
+import {
+  CustomCardCvc,
+  CustomCardNumber,
+  CustomExpiry,
+} from "./StripeElement/CustomCardElements";
 import { Loader } from "../Dashboard/Loader";
 import { Message } from "../Dashboard/Message";
 import { helpHttp } from "../helpers/helpHttp";
@@ -236,7 +240,7 @@ export const Products = () => {
         .then((res) => {
           console.log(res);
           if (!res.err) {
-            alert("datos confirmados")
+            alert("datos confirmados");
             handleReset();
           }
         });
@@ -482,59 +486,78 @@ export const Products = () => {
               </div>
               <div className="payment-user-info">
                 <form onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <label className="label">Nombre</label>
-                    <div className="input-container">
-                      <input
-                        type="text"
-                        name="fullname"
-                        className="input"
-                        placeholder="Su nombre"
-                        onChange={handleChange}
-                        value={Form.fullname}
-                      ></input>
+                  <div className="container-scroll">
+                    <div className="form-group">
+                      <label className="label">Nombre</label>
+                      <div className="input-container">
+                        <input
+                          type="text"
+                          name="fullname"
+                          className="input"
+                          placeholder="Su nombre"
+                          onChange={handleChange}
+                          value={Form.fullname}
+                        ></input>
+                      </div>
                     </div>
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Apellidos</label>
-                    <div className="input-container">
-                      <input
-                        type="text"
-                        name="lastname"
-                        className="input"
-                        placeholder="Sus apellidos"
-                        onChange={handleChange}
-                        value={Form.lastname}
-                      ></input>
+                    <div className="form-group">
+                      <label className="label">Apellidos</label>
+                      <div className="input-container">
+                        <input
+                          type="text"
+                          name="lastname"
+                          className="input"
+                          placeholder="Sus apellidos"
+                          onChange={handleChange}
+                          value={Form.lastname}
+                        ></input>
+                      </div>
                     </div>
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Direccion</label>
-                    <div className="input-container">
-                      <input
-                        type="text"
-                        name="address"
-                        className="input"
-                        placeholder="Ejmp: Av. Faucett Cdr. 5"
-                        onChange={handleChange}
-                        value={Form.address}
-                      ></input>
+                    <div className="form-group">
+                      <label className="label">Direccion</label>
+                      <div className="input-container">
+                        <input
+                          type="text"
+                          name="address"
+                          className="input"
+                          placeholder="Ejmp: Av. Faucett Cdr. 5"
+                          onChange={handleChange}
+                          value={Form.address}
+                        ></input>
+                      </div>
                     </div>
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Telefono</label>
-                    <div className="input-container">
-                      <input
-                        type="number"
-                        name="phone"
-                        className="input"
-                        placeholder="Su Telefono"
-                        onChange={handleChange}
-                        value={Form.phone}
-                      ></input>
+                    <div className="form-group">
+                      <label className="label">Telefono</label>
+                      <div className="input-container">
+                        <input
+                          type="number"
+                          name="phone"
+                          className="input"
+                          placeholder="Su Telefono"
+                          onChange={handleChange}
+                          value={Form.phone}
+                        ></input>
+                      </div>
                     </div>
+                    {Payment === "TARGETA" && (
+                      <div>
+                        <div className="form-group">
+                          <label className="label">Numero de tarjeta</label>
+                          <CustomCardNumber />
+                        </div>
+                        <div className="half-form">
+                          <div className="form-group">
+                            <label className="label">Fecha de expiracion</label>
+                            <CustomExpiry />
+                          </div>
+                          <div className="form-group">
+                            <label className="label">Codigo CVC</label>
+                            <CustomCardCvc />
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  {Payment === "TARGETA" && <CardElement />}
                   {Loading && <Loader />}
                   <button type="submit" className="btn btn-primary">
                     confirmar datos

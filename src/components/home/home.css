@@ -254,7 +254,13 @@
 .payment-method.active path{
     fill: var(--text-white);
 }
-
+.container-scroll{
+    max-height: 55vh;
+    overflow-y: scroll;
+}
+.container-scroll::-webkit-scrollbar{
+    display: none;
+}
 
 /*Responsive*/
 
@@ -269,5 +275,10 @@
     .btn-cart{
         left: -13rem;
         top: 7.5rem;
+    }
+}
+@media (max-width: 768px){
+    .order-payment{
+        min-width: 90vw;
     }
 }
