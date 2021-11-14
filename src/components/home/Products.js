@@ -44,9 +44,8 @@ export const Products = () => {
   const elements = useElements();
 
   let activeClassPayment = {
-    PAYPAL: 1,
-    CONTRAENTREGA: 2,
-    TARGETA: 3,
+    PAYPAL: 5,
+    TARGETA: 15,
   };
   const [Payment, setPayment] = useState("TARGETA");
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
@@ -97,55 +96,6 @@ export const Products = () => {
       totalQuantity();
     }
   };
-  //para la targeta
-  // const cartSubmit = async () => {
-  //   const { error, paymentMethod } = await stripe.createPaymentMethod({
-  //     type: "card",
-  //     card: elements.getElement(CardElement),
-  //     billing_details: {
-  //       address: {
-  //         city: "lima",
-  //         country: "PE",
-  //         line1: Form.address,
-  //       },
-  //       email: sessionStorage.getItem("email"),
-  //       name: `${Form.fullname} ${Form.lastname}`,
-  //       phone: Form.phone,
-  //     },
-  //   });
-  //   setLoading(true);
-  //   if (!error) {
-  //     const { id } = paymentMethod;
-
-  //     let carddetails = {
-  //       //iduser: sessionStorage.getItem("id"),
-  //       //status: "PENDIENTE",
-  //       paymentId: id,
-  //       amount: subtotal, //cents
-  //       //items: cart,
-  //     };
-  //     let options = {
-  //       body: carddetails,
-  //       headers: { "content-type": "application/json" },
-  //     };
-  //     helpHttp()
-  //       .post(URL.PAYMENT_STRIPE, options)
-  //       .then((res) => {
-  //         console.log(res);
-  //       });
-
-  //     elements.getElement(CardElement).clear();
-
-  //     setLoading(false);
-  //   } else {
-  //     alert("TARGETA INVALIDA");
-  //     setError(error);
-  //     setLoading(false);
-  //     handleReset();
-  //     return;
-  //   }
-  // };
-
   //para paypal
   const createOrder = (data, actions) => {
     return actions.order.create({
@@ -155,58 +105,105 @@ export const Products = () => {
 
   const onApprove = async (data, actions) => {
     const order = await actions.order.capture();
-    //console.log(order)
-    orderSubmit(order);
-    //return actions.order.capture();
+    console.log(order);
+    orderSubmit();
   };
 
-  const orderSubmit = (order) => {
-    
-    if(order.links){
-      let products = [];
-    order.purchase_units[0].items.map((product) =>
-      products.push({ idproduct: product.sku, quantity: product.quantity })
+  const orderSubmit = () => {
+    let products = [];
+    cart.map((product) =>
+      products.push({
+        idproduct: product.idProduct,
+        quantity: product.quantity,
+      })
     );
     let order_detail = {
       iduser: sessionStorage.getItem("id"),
       status: "PENDIENTE",
-      //status:order.status,
-      subtotal: parseFloat(order.purchase_units[0].amount.value),
+      subtotal: parseFloat(subtotal),
       orders: products,
-      create_time: order.create_time,
-      payment_method: 5,
+      create_time: Date.now(),
+      payment_method: activeClassPayment[Payment],
     };
-    let options = {
+    const options = {
       body: order_detail,
       headers: { "content-type": "application/json" },
     };
-    helpHttp()
-    .post(URL.ALL_ORDERS, options)
-    .then((res) => {
-      console.log(res);
-    });
-    }else{
-      let order_detail = {
-        iduser: sessionStorage.getItem("id"),
-        status: "PENDIENTE",
-        //status:order.status,
-        subtotal: parseFloat(subtotal),
-        orders:cart,
-        create_time:"2021-09-20T07:31:47.000+00:00",
-        payment_method: 6,
-      };
-      let options = {
-        body: order_detail,
-        headers: { "content-type": "application/json" },
-      };
+    if (activeClassPayment[Payment] === 5) {
       helpHttp()
-      .post(URL.ALL_ORDERS, options)
-      .then((res) => {
-        console.log("el pago llego hasta enviar las ordenes")
-        console.log(res);
-      });
+        .post(URL.ALL_ORDERS, options)
+        .then((res) => {
+          console.log(res);
+        });
 
+      return;
     }
+    if (activeClassPayment[Payment] === 15) {
+      helpHttp()
+        .post(URL.ALL_ORDERS, options)
+        .then((res) => {
+          console.log(res);
+          if (!res.err) {
+            setLoading(false);
+            alert("PAGO PROCESADO");
+            return;
+          }
+        });
+    }
+
+    // if (order.links) {
+    //   let products = [];
+    //   order.purchase_units[0].items.map((product) =>
+    //     products.push({ idproduct: product.sku, quantity: product.quantity })
+    //   );
+    //   let order_detail = {
+    //     iduser: sessionStorage.getItem("id"),
+    //     status: "PENDIENTE",
+    //     subtotal: parseFloat(order.purchase_units[0].amount.value),
+    //     orders: products,
+    //     create_time: order.create_time,
+    //     payment_method: 5,
+    //   };
+    //   let options = {
+    //     body: order_detail,
+    //     headers: { "content-type": "application/json" },
+    //   };
+    //   helpHttp()
+    //     .post(URL.ALL_ORDERS, options)
+    //     .then((res) => {
+    //       console.log(res);
+    //     });
+    // } else {
+    //   let products = [];
+    //   cart.map((product) =>
+    //     products.push({
+    //       idproduct: product.idProduct,
+    //       quantity: product.quantity,
+    //     })
+    //   );
+    //   let order_detail = {
+    //     iduser: sessionStorage.getItem("id"),
+    //     status: "PENDIENTE",
+    //     subtotal: parseFloat(subtotal),
+    //     orders: products,
+    //     create_time: Date.now(),
+    //     payment_method: 15,
+    //   };
+    //   let options = {
+    //     body: order_detail,
+    //     headers: { "content-type": "application/json" },
+    //   };
+    //   helpHttp()
+    //     .post(URL.ALL_ORDERS, options)
+    //     .then((res) => {
+    //       console.log(res);
+    //       if (!res.err) {
+    //         setLoading(false);
+    //         alert("PAGO PROCESADO");
+    //       return
+    //       }
+    //     });
+    // }
   };
   const handleChange = (e) => {
     setForm({
@@ -215,23 +212,36 @@ export const Products = () => {
     });
   };
 
-
-
-
-
-
-
-
-
-
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!Form.fullname || !Form.lastname || !Form.phone || !Form.address) {
       alert("datos incompletos");
       return;
-    } else {
+    }
+    const userDetails = {
+      firstName: Form.fullname,
+      lastName: Form.lastname,
+      phoneNumber: Form.phone,
+      address: Form.address,
+    };
+    const idcli = sessionStorage.getItem("id");
+
+    if (activeClassPayment[Payment] === 5) {
+      let options = {
+        body: userDetails,
+        headers: { "content-type": "application/json" },
+      };
+      helpHttp()
+        .post(`${URL.USERS_DB}/${idcli}/profile`, options)
+        .then((res) => {
+          console.log(res);
+          if (!res.err) {
+            alert("datos confirmados")
+            handleReset();
+          }
+        });
+    }
+    if (activeClassPayment[Payment] === 15) {
       const { error, paymentMethod } = await stripe.createPaymentMethod({
         type: "card",
         card: elements.getElement(CardElement),
@@ -247,13 +257,12 @@ export const Products = () => {
         },
       });
       const { id } = paymentMethod;
+      console.log(id);
       setLoading(true);
       if (!error) {
-    
-        let idcli=sessionStorage.getItem("id");
         let carddetails = {
           paymentId: id,
-          amount: parseInt(subtotal), 
+          amount: parseInt(subtotal),
         };
         let options = {
           body: carddetails,
@@ -262,48 +271,35 @@ export const Products = () => {
         helpHttp()
           .post(URL.PAYMENT_STRIPE, options)
           .then((res) => {
-            console.log(res)
-            if(!res.err){
-              let userDetails = {
-                firstName: Form.fullname,
-                lastName: Form.lastname,
-                phoneNumber: Form.phone,
-                address: Form.address,
-              };
+            console.log(res);
+            if (!res.err) {
               let options = {
                 body: userDetails,
                 headers: { "content-type": "application/json" },
               };
               helpHttp()
-              .post(`${URL.USERS_DB}/${idcli}/profile`, options)
-              .then((res) => {
-                if(!res.err){
-                  alert("PAGO PROCESADO")
-                  orderSubmit(cart);
-                }
-              });
+                .post(`${URL.USERS_DB}/${idcli}/profile`, options)
+                .then((res) => {
+                  console.log(res);
+                  if (!res.err) {
+                    orderSubmit();
+                  }
+                });
             }
           });
         elements.getElement(CardElement).clear();
         handleReset();
-        setLoading(false);
         return;
-      } else {
-        alert("TARGETA INCORRECTA")
-        setLoading(false);
       }
+      alert("TARGETA INCORRECTA");
+      setLoading(false);
     }
   };
 
-
-
-
-
-
-
-
-
-
+  const toggle = () => {
+    setTooglePayment(false);
+    handleReset();
+  };
 
   const handleReset = () => {
     setForm(initialForm);
@@ -412,7 +408,7 @@ export const Products = () => {
                 <ul className="list-payment-methods">
                   <li
                     className={`payment-method ${
-                      activeClassPayment[Payment] === 3 ? "active" : ""
+                      activeClassPayment[Payment] === 15 ? "active" : ""
                     }`}
                     onClick={() => {
                       setPayment("TARGETA");
@@ -436,7 +432,7 @@ export const Products = () => {
                   </li>
                   <li
                     className={`payment-method ${
-                      activeClassPayment[Payment] === 1 ? "active" : ""
+                      activeClassPayment[Payment] === 5 ? "active" : ""
                     }`}
                     onClick={() => {
                       setPayment("PAYPAL");
@@ -460,9 +456,9 @@ export const Products = () => {
 
                     <span>Paypal</span>
                   </li>
-                  <li
+                  {/* <li
                     className={`payment-method ${
-                      activeClassPayment[Payment] === 2 ? "active" : ""
+                      activeClassPayment[Payment] === 3 ? "active" : ""
                     }`}
                     onClick={() => {
                       setPayment("CONTRAENTREGA");
@@ -481,7 +477,7 @@ export const Products = () => {
                       />
                     </svg>
                     <span>Contraentrega</span>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
               <div className="payment-user-info">
@@ -539,9 +535,19 @@ export const Products = () => {
                     </div>
                   </div>
                   {Payment === "TARGETA" && <CardElement />}
+                  {Loading && <Loader />}
                   <button type="submit" className="btn btn-primary">
                     confirmar datos
                   </button>
+                  {Payment === "PAYPAL" && (
+                    <PayPalButton
+                      createOrder={(data, actions) =>
+                        createOrder(data, actions)
+                      }
+                      s
+                      onApprove={(data, actions) => onApprove(data, actions)}
+                    />
+                  )}
                 </form>
               </div>
             </div>
@@ -549,17 +555,10 @@ export const Products = () => {
               <button
                 type="button"
                 className="btn btn-secondary"
-                onClick={() => setTooglePayment(false)}
+                onClick={() => toggle()}
               >
                 Cancelar
               </button>
-              {Payment === "PAYPAL" && (
-                <PayPalButton
-                  createOrder={(data, actions) => createOrder(data, actions)}
-                  s
-                  onApprove={(data, actions) => onApprove(data, actions)}
-                />
-              )}
               {/* {Payment === "TARGETA" && (
                 <button
                   type="button"
