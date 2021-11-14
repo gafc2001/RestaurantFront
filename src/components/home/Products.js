@@ -3,7 +3,7 @@ import React, { useState, useEffect, useReducer } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 //URL DELYBAKERY
 import { URL } from "../../api/apiDB";
-
+import { CustomCardCvc,CustomCardNumber,CustomExpiry } from "./StripeElement/CustomCardElements";
 import { Loader } from "../Dashboard/Loader";
 import { Message } from "../Dashboard/Message";
 import { helpHttp } from "../helpers/helpHttp";
@@ -101,7 +101,7 @@ export const Products = () => {
   const cartSubmit = async () => {
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
-      card: elements.getElement(CardElement),
+      // card: elements.getElement(CardElement),
       billing_details: {
         address: {
           city: "lima",
@@ -137,7 +137,7 @@ export const Products = () => {
             console.log(res);
           });
 
-        elements.getElement(CardElement).clear();
+        // elements.getElement(CardElement).clear();
       } catch (error) {
         console.log("Error", error);
       }
@@ -206,17 +206,17 @@ export const Products = () => {
     };
     let idcli = sessionStorage.getItem("id");
     if (idcli) {
-      try{
+      try {
         helpHttp()
-        .post(
-          URL.CLIENT_PROFILE,
-          options
-        )
-        .then((res) => {
-          console.log("datos confirmados con exito",res);
-        });
-      }catch(error){
-        console.log("el error es ",error.err)
+          .post(
+            URL.CLIENT_PROFILE,
+            options
+          )
+          .then((res) => {
+            console.log("datos confirmados con exito", res);
+          });
+      } catch (error) {
+        console.log("el error es ", error.err)
       }
 
     }
@@ -243,29 +243,28 @@ export const Products = () => {
 
               {onecategory
                 ? onecategory &&
-                  onecategory.map((product) => (
-                    <Product
-                      key={product.idProduct}
-                      data={product}
-                      addToCart={addToCart}
-                    />
-                  ))
+                onecategory.map((product) => (
+                  <Product
+                    key={product.idProduct}
+                    data={product}
+                    addToCart={addToCart}
+                  />
+                ))
                 : db &&
-                  db.map((product) => (
-                    <Product
-                      key={product.idProduct}
-                      data={product}
-                      addToCart={addToCart}
-                    />
-                  ))}
+                db.map((product) => (
+                  <Product
+                    key={product.idProduct}
+                    data={product}
+                    addToCart={addToCart}
+                  />
+                ))}
             </div>
           </main>
         </div>
 
         <div
-          className={`column-2 bg-primary products ${
-            toggleCart ? "toggleOrderLeft" : "toggleOrderRight"
-          } ${togglePayment ? "togglePaymentRight" : ""}`}
+          className={`column-2 bg-primary products ${toggleCart ? "toggleOrderLeft" : "toggleOrderRight"
+            } ${togglePayment ? "togglePaymentRight" : ""}`}
         >
           <div
             className="btn btn-primary btn-cart"
@@ -325,9 +324,8 @@ export const Products = () => {
                 <h3>Metodos de pagos</h3>
                 <ul className="list-payment-methods">
                   <li
-                    className={`payment-method ${
-                      activeClassPayment[Payment] === 3 ? "active" : ""
-                    }`}
+                    className={`payment-method ${activeClassPayment[Payment] === 3 ? "active" : ""
+                      }`}
                     onClick={() => {
                       setPayment("TARGETA");
                     }}
@@ -349,9 +347,8 @@ export const Products = () => {
                     <span>Tarjeta</span>
                   </li>
                   <li
-                    className={`payment-method ${
-                      activeClassPayment[Payment] === 1 ? "active" : ""
-                    }`}
+                    className={`payment-method ${activeClassPayment[Payment] === 1 ? "active" : ""
+                      }`}
                     onClick={() => {
                       setPayment("PAYPAL");
                     }}
@@ -375,9 +372,8 @@ export const Products = () => {
                     <span>Paypal</span>
                   </li>
                   <li
-                    className={`payment-method ${
-                      activeClassPayment[Payment] === 2 ? "active" : ""
-                    }`}
+                    className={`payment-method ${activeClassPayment[Payment] === 2 ? "active" : ""
+                      }`}
                     onClick={() => {
                       setPayment("CONTRAENTREGA");
                     }}
@@ -399,60 +395,76 @@ export const Products = () => {
                 </ul>
               </div>
               <div className="payment-user-info">
-                <form onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <label className="label">Nombre</label>
-                    <div className="input-container">
-                      <input
-                        type="text"
-                        name="fullname"
-                        className="input"
-                        placeholder="Su nombre"
-                        onChange={handleChange}
-                        value={Form.fullname}
-                      ></input>
+                <form onSubmit={handleSubmit} >
+                  <div className="container-scroll">
+                    <div className="form-group">
+                      <label className="label">Nombre</label>
+                      <div className="input-container">
+                        <input
+                          type="text"
+                          name="fullname"
+                          className="input"
+                          placeholder="Su nombre"
+                          onChange={handleChange}
+                          value={Form.fullname}
+                        ></input>
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label className="label">Apellidos</label>
+                      <div className="input-container">
+                        <input
+                          type="text"
+                          name="lastname"
+                          className="input"
+                          placeholder="Sus apellidos"
+                          onChange={handleChange}
+                          value={Form.lastname}
+                        ></input>
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label className="label">Direccion</label>
+                      <div className="input-container">
+                        <input
+                          type="text"
+                          name="address"
+                          className="input"
+                          placeholder="Ejmp: Av. Faucett Cdr. 5"
+                          onChange={handleChange}
+                          value={Form.address}
+                        ></input>
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label className="label">Telefono</label>
+                      <div className="input-container">
+                        <input
+                          type="number"
+                          name="phone"
+                          className="input"
+                          placeholder="Su Telefono"
+                          onChange={handleChange}
+                          value={Form.phone}
+                        ></input>
+                      </div>
+                    </div>
+                    {/* {Payment === "TARGETA" && <CardElement />} */}
+                    <div className="form-group">
+                      <label className="label">Numero de tarjeta</label>
+                      <CustomCardNumber/>
+                    </div>
+                    <div className="half-form">
+                      <div className="form-group">
+                        <label className="label">Fecha de expiracion</label>
+                        <CustomExpiry/>
+                      </div>
+                      <div className="form-group">
+                        <label className="label">Codigo CVC</label>
+                        <CustomCardCvc/>
+                      </div>
                     </div>
                   </div>
-                  <div className="form-group">
-                    <label className="label">Apellidos</label>
-                    <div className="input-container">
-                      <input
-                        type="text"
-                        name="lastname"
-                        className="input"
-                        placeholder="Sus apellidos"
-                        onChange={handleChange}
-                        value={Form.lastname}
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Direccion</label>
-                    <div className="input-container">
-                      <input
-                        type="text"
-                        name="address"
-                        className="input"
-                        placeholder="Ejmp: Av. Faucett Cdr. 5"
-                        onChange={handleChange}
-                        value={Form.address}
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label className="label">Telefono</label>
-                    <div className="input-container">
-                      <input
-                        type="number"
-                        name="phone"
-                        className="input"
-                        placeholder="Su Telefono"
-                        onChange={handleChange}
-                        value={Form.phone}
-                      ></input>
-                    </div>
-                  </div>
-                  {Payment === "TARGETA" && <CardElement />}
                   <button type="submit" className="btn btn-primary">
                     confirmar datos
                   </button>
