@@ -8,7 +8,6 @@ const initialForm ={
     idCategory:null,
 }
 
-
 export const CrudFormCategory = ({createData, updateData,dataToEdit,setDataToEdit}) => {
     const [form, setform] = useState(initialForm);
     

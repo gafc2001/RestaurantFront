@@ -9,7 +9,6 @@ const Profile = () => {
         <>
         <Sidebar/>
         <div className="parent content">
-            
         </div>
         </>
     );

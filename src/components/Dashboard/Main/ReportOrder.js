@@ -13,6 +13,9 @@ import {
   reportOrderInitialState,
 } from "../../../reducers/reportOrderReducer";
 
+//URL DELYBAKERY
+import { URL } from "../../../api/apiDB";
+
 export const ReportOrder = () => {
   //variables de estado para manejar la carga y el error
   const [Error, setError] = useState(null);
@@ -28,12 +31,11 @@ export const ReportOrder = () => {
   );
   const { db } = state;
 
-  let url = `https://restaurantrestapi.herokuapp.com/api/order/orderReport?days=${Combo}`;
 
   useEffect(() => {
     setLoading(true);
     helpHttp()
-      .get(url)
+      .get(`${URL.ALL_ORDERS}/orderReport?days=${Combo}`)
 
       .then((res) => {
         if (res.length > 0) {
@@ -45,7 +47,7 @@ export const ReportOrder = () => {
         }
         setLoading(false);
       });
-  }, [url]);
+  }, [Combo]);
 
   const selectChange = (e) => {
     let cantDays = e.target.value;

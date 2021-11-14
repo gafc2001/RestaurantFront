@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { helpHttp } from "../../helpers/helpHttp";
 import "./../../../assets/css/form.css";
 import { Message } from "../Message";
+//URL DELYBAKERY
+import { URL } from "../../../api/apiDB";
 
 const initialForm = {
   idProduct: null,
@@ -14,7 +16,6 @@ const initialForm = {
   description: "",
 };
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 export const ModalForm = ({
   createData,
   updateData,
@@ -22,13 +23,12 @@ export const ModalForm = ({
   setDataToEdit,
   closeModal
 }) => {
-  let url = "https://restaurantrestapi.herokuapp.com/api/categories";
   const [db2, setDb2] = useState(null);
   const [Error, setError] = useState(null);
   //controlar respuestas del servidor
   useEffect(() => {
     helpHttp()
-      .get(url)
+      .get(URL.PRODUCT_CATEGORY)
       .then((res) => {
         if (res.length > 0) {
           setDb2(res);
@@ -38,7 +38,7 @@ export const ModalForm = ({
           setError(res);
         }
       });
-  }, [url]);
+  }, []);
 
   const [form, setform] = useState(initialForm);
 

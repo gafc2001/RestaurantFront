@@ -65,7 +65,6 @@ const UpdateForm = ({ updateOrder, dataToEdit }) => {
         break;
     }
   };
-
   const handleReset = (e) => {
     setform(initialForm);
   };

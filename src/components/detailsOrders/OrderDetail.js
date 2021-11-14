@@ -4,20 +4,20 @@ import OrderTableRowOrder from "./OrderTableRow";
 import { useEffect } from "react";
 import { helpHttp } from "../helpers/helpHttp";
 import { useParams } from "react-router";
-import logo from "./../../assets/images/logo-white.png";
 import OrderTracking from "./OrderTracking";
 import Invoicing from "./Invoicing";
+//URL DELIBAKERY
+import { URL } from "../../api/apiDB";
+
 const OrderDetail = () => {
   let { id } = useParams();
 
   const [Details, setDetails] = useState(null);
   const [Error, setError] = useState(null);
-  let iduser = sessionStorage.getItem("id");
   const [toggle, setToggle] = useState(false);
-  let url = `https://restaurantrestapi.herokuapp.com/api/order/users/${iduser}`;
   useEffect(() => {
     helpHttp()
-      .get(url)
+      .get(URL.CLIENT_ORDERS)
       .then((res) => {
         if (res.length > 0) {
           res.map((Orderselect) =>
@@ -31,7 +31,7 @@ const OrderDetail = () => {
           setError(res);
         }
       });
-  }, [url]);
+  }, []);
   return (
     <>
       <Sidebar />

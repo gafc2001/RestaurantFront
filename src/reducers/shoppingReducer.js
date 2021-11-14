@@ -79,7 +79,7 @@ export function shoppingReducer(state, action) {
     }
 
 
-    case TYPES.INCREASE_QUANTITY: {
+    case TYPES.ADD_TO_QUANTITY: {
         let sumquantity=(state.cart).length
       return {
         ...state,

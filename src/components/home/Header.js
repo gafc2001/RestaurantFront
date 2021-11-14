@@ -1,6 +1,10 @@
 import React, { useState,useEffect, useReducer } from "react";
 import { FilterCategory } from "./FilterCategory";
 import { TYPES } from "../../acctions/shoppingAction";
+
+//URL DELIBAKERY
+import { URL } from "../../api/apiDB";
+
 import { helpHttp } from "../helpers/helpHttp";
 import {
   shoppingReducer,
@@ -8,11 +12,10 @@ import {
 } from "../../reducers/shoppingReducer";
 
 export const Header = ({ filtCategory,removeCategory}) => {
-  let url = "https://restaurantrestapi.herokuapp.com/api/categories";
   useEffect(() => {
     //setLoading(true);
     helpHttp()
-      .get(url)
+      .get(URL.PRODUCT_CATEGORY)
       .then((res) => {
         if (res.length > 0) {
           dispatch({ type: TYPES.READ_ALL_CATEGORY, payload: res });
@@ -23,7 +26,7 @@ export const Header = ({ filtCategory,removeCategory}) => {
         }
         //setLoading(false);
       });
-  }, [url]);
+  }, []);
 
 
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);

@@ -6,7 +6,6 @@ import OrderTableRowInvoicing from './OrderTableRowInvoicing';
 const Invoicing = ({Details}) => {
    let {idOrder,createdAt,user,payment,totalPrice}=Details 
    const [toggle,setToggle] = useState(false);
-
     return (
         <div className="invoicing-container">
         <div onClick={() => {setToggle(!toggle)}} className="btn-toggle">

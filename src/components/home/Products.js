@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useReducer } from "react";
 //para visa
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+//URL DELYBAKERY
+import { URL } from "../../api/apiDB";
 
 import { Loader } from "../Dashboard/Loader";
 import { Message } from "../Dashboard/Message";
@@ -12,6 +14,7 @@ import {
   shoppingInitialState,
 } from "../../reducers/shoppingReducer";
 import { TYPES } from "../../acctions/shoppingAction";
+
 import Sidebar from "../sidebar/Sidebar";
 
 import "../../assets/css/style.css";
@@ -22,7 +25,6 @@ import ReactDOM from "react-dom";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 export const Products = () => {
-  let url = "https://restaurantrestapi.herokuapp.com/api/products";
   // let url = ""
   //const [db, setDb] = useState(null);
   const [Error, setError] = useState(null);
@@ -55,7 +57,7 @@ export const Products = () => {
   useEffect(() => {
     setLoading(true);
     helpHttp()
-      .get(url)
+      .get(URL.PRODUCT_DB)
       .then((res) => {
         if (res.length > 0) {
           dispatch({ type: TYPES.READ_ALL_DATA, payload: res });
@@ -66,7 +68,7 @@ export const Products = () => {
         }
         setLoading(false);
       });
-  }, [url]);
+  }, []);
   const filtCategory = (idCategory) => {
     dispatch({ type: TYPES.READ_ONE_CATEGORY, payload: idCategory });
   };
@@ -76,7 +78,7 @@ export const Products = () => {
 
   //para paypal
   const totalQuantity = () => {
-    dispatch({ type: TYPES.INCREASE_QUANTITY });
+    dispatch({ type: TYPES.ADD_TO_QUANTITY });
   };
   const addToPay = () => {
     dispatch({ type: TYPES.ADD_TO_PAY });
@@ -128,7 +130,7 @@ export const Products = () => {
         };
         helpHttp()
           .post(
-            "https://restaurantrestapi.herokuapp.com/api/payments/stripe",
+            URL.PAYMENT_STRIPE,
             options
           )
           .then((res) => {
@@ -178,7 +180,7 @@ export const Products = () => {
     };
 
     helpHttp()
-      .post("https://restaurantrestapi.herokuapp.com/api/order", options)
+      .post(URL.ALL_ORDERS, options)
       .then((res) => {
         console.log(res);
       });
@@ -204,14 +206,19 @@ export const Products = () => {
     };
     let idcli = sessionStorage.getItem("id");
     if (idcli) {
-      helpHttp()
+      try{
+        helpHttp()
         .post(
-          `https://restaurantrestapi.herokuapp.com/api/users/${idcli}/profile`,
+          URL.CLIENT_PROFILE,
           options
         )
         .then((res) => {
-          console.log(res);
+          console.log("datos confirmados con exito",res);
         });
+      }catch(error){
+        console.log("el error es ",error.err)
+      }
+
     }
     //console.log(Form)
   };

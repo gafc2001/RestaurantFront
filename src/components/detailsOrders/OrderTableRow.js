@@ -1,5 +1,6 @@
 import React from "react";
-
+//URL DELIBAKERY
+import { URL } from "../../api/apiDB";
 const OrderTableRowOrder = ({item,quantity}) => {
     let {idProduct,nameProduct,priceProduct,category}=item
     return (
@@ -7,7 +8,7 @@ const OrderTableRowOrder = ({item,quantity}) => {
         <tr>
           <td className="card-image product-cell" colSpan="2">
             <img
-              src={`https://restaurantrestapi.herokuapp.com/api/products/${idProduct}/image`} alt={nameProduct}
+               src={`${URL.PRODUCT_DB}/${idProduct}/image`} alt={nameProduct}
             />
             <span>{nameProduct}</span>
           </td>

@@ -3,6 +3,7 @@ import "./../../../assets/css/style.css";
 import "./../../../assets/css/configuration.css";
 import Modal from "react-modal";
 import { ModalForm } from "./ModalForm";
+import { URL } from "../../../api/apiDB";
 Modal.setAppElement("#root");
 export const ProductItem = ({
   el,
@@ -55,7 +56,7 @@ export const ProductItem = ({
       <div className="product-content">
         <div className="product-image center">
           <img
-            src={`https://restaurantrestapi.herokuapp.com/api/products/${idProduct}/image`}
+            src={`${URL.PRODUCT_DB}/${idProduct}/image`}
             alt={nameProduct}
           />
         </div>
@@ -102,8 +103,6 @@ export const ProductItem = ({
           closeModal={closeModal}
         />
       </Modal>
-
-
     </div>
   );
 };

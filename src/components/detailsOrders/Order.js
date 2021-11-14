@@ -14,7 +14,6 @@ const Order = ({db}) => {
     }
     return (
       <div className={`product product-item ${style[statusOrder]}`}>
-
         <Link  to={"/notifications/order/"+idOrder} className="product-content"  >
           <h2 className="center product-title">#{idOrder}</h2>
           <div className="product-image center">

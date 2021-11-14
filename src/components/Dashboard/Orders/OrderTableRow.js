@@ -1,7 +1,6 @@
 import React from 'react'
 
 const OrderTableRow = ({el,setDataToEdit}) => {
-
     return (
         <tr>
         <td>{el.idOrder}</td>

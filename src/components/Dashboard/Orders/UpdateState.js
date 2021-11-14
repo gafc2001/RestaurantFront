@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { helpHttp } from "../../helpers/helpHttp";
 import OrderTable from "./OrderTable";
 import UpdateForm from "./UpdateForm";
+import { URL } from "../../../api/apiDB";
 const UpdateState = () => {
   const [db, setDb] = useState(null);
   const [dataToEdit, setDataToEdit] = useState(null);
 
-  let url = "https://restaurantrestapi.herokuapp.com/api/order";
   //controlar respuestas del servidor
   useEffect(() => {
     helpHttp()
-      .get(url)
+      .get(URL.ALL_ORDERS)
       .then((res) => {
         if (!res.err) {
           setDb(res);
@@ -18,10 +18,10 @@ const UpdateState = () => {
           setDb(null);
         }
       });
-  }, [url]);
+  }, []);
 
   const updateOrder = (data) => {
-    let endpoint = `${url}/${data.idOrder}/status`;
+    let endpoint = `${URL.ALL_ORDERS}/${data.idOrder}/status`;
     //console.log(endpoint);
 
     let raw = { status: data.statusOrder };

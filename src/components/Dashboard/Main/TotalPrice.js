@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 
 import { helpHttp } from "../../helpers/helpHttp";
+//URL DELYBAKERY
+import { URL } from "../../../api/apiDB";
 
 const TotalPrice = () => {
-  let url = "https://restaurantrestapi.herokuapp.com/api/order/summary";
   let initialPrice = { status: "", percentage: null, current: null };
   const [totalPrice, settotalPrice] = useState(initialPrice);
 
   useEffect(() => {
     helpHttp()
-      .get(url)
+      .get(URL.ORDERS_SUMARY)
       .then((res) => {
         if (!res.err) {
           settotalPrice(res);
@@ -17,7 +18,7 @@ const TotalPrice = () => {
           settotalPrice(initialPrice);
         }
       });
-  }, [url]);
+  }, []);
 
   return (
     <section className="box-content total-summary-item">

@@ -2,6 +2,8 @@ import React, { useEffect, useReducer } from "react";
 import { FilterCategory } from "../home/FilterCategory";
 import { TYPES } from "../../acctions/crudAction";
 import { helpHttp } from "../helpers/helpHttp";
+//URL DELYBAKERY
+import { URL } from "../../api/apiDB";
 
 import {
   crudReducer,
@@ -9,22 +11,17 @@ import {
 } from "../../reducers/crudReducer";
 
 export const DashboardHeader = ({ filtCategory,removeCategory }) => {
-  let url = "https://restaurantrestapi.herokuapp.com/api/categories";
   useEffect(() => {
-    //setLoading(true);
     helpHttp()
-      .get(url)
+      .get(URL.PRODUCT_CATEGORY)
       .then((res) => {
         if (res.length > 0) {
           dispatch({ type: TYPES.READ_ALL_CATEGORY, payload: res });
-          //setError(null);
         } else {
           dispatch({ type: TYPES.NO_DATA });
-          //setError(res);
         }
-        //setLoading(false);
       });
-  }, [url]);
+  }, []);
   const [state, dispatch] = useReducer(crudReducer, crudInitialState);
   const { category } = state;
   return (

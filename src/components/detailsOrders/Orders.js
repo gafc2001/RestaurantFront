@@ -5,16 +5,17 @@ import { useEffect,useState } from "react";
 import { helpHttp } from "../helpers/helpHttp";
 import Order from "./Order";
 import { Message } from "../Dashboard/Message";
+//URL DELIBAKERY
+import { URL } from "../../api/apiDB";
 
 const Orders = () => {
   const [db, setDb] = useState(null);
   const [Error, setError] = useState(null);
   let iduser = sessionStorage.getItem("id");
   
-  let url = `https://restaurantrestapi.herokuapp.com/api/order/users/${iduser}`;
   useEffect(() => {
     helpHttp()
-      .get(url)
+      .get(URL.CLIENT_ORDERS)
       .then((res) => {
         if (res.length > 0) {
           setDb(res);
@@ -23,7 +24,7 @@ const Orders = () => {
           setError(res);
         }
       });
-  }, [url]);
+  }, []);
 
   return (
     <>

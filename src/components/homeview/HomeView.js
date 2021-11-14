@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { helpHttp } from "../helpers/helpHttp";
+//URL DELIBAKERY
+import { URL } from "../../api/apiDB";
 import "./homeView.css";
 // swiper importaciones
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -45,7 +47,7 @@ const HomeView = () => {
   useEffect(() => {
     const getDataProducts = async () => {
       await helpHttp()
-        .get("https://restaurantrestapi.herokuapp.com/api/products")
+        .get(URL.PRODUCT_DB)
         .then((res) => {
           if (res.length > 0) {
             setProducts(res);

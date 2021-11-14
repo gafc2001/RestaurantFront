@@ -13,13 +13,13 @@ import {
   mostOrdersInitialState,
 } from "../../../reducers/mostOrderReducer";
 
+import { URL } from "../../../api/apiDB";
 export const MostOrders = () => {
   //most order
   const [Error, setError] = useState(null);
   const [Loading, setLoading] = useState(false);
   const [Combo, setCombo] = useState(1);
 
-  let url = `https://restaurantrestapi.herokuapp.com/api/order/mostOrdered?days=${Combo}`;
 
   const [state, dispatch] = useReducer(
     mostOrdersReducer,
@@ -30,7 +30,7 @@ export const MostOrders = () => {
   useEffect(() => {
     setLoading(true);
     helpHttp()
-      .get(url)
+      .get(`${URL.ALL_ORDERS}/mostOrdered?days=${Combo}`)
       .then((res) => {
         if (res.length > 0) {
           dispatch({ type: TYPES.READ_ALL_DATA, payload: res });
@@ -41,7 +41,7 @@ export const MostOrders = () => {
         }
         setLoading(false);
       });
-  }, [url]);
+  }, [Combo]);
 
   const selectChange = (e) => {
     let cantDays = e.target.value;
