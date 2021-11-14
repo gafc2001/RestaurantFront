@@ -4,7 +4,7 @@ export const URL ={
     ALL_ORDERS:`${sourceURL}/api/order`,
     CLIENT_ORDERS:`${sourceURL}/api/order/users/${sessionStorage.getItem("id")}`,
     PAYMENT_STRIPE:`${sourceURL}/api/payments/stripe`,
-    CLIENT_PROFILE:`${sourceURL}/api/users/${sessionStorage.getItem("id")}/profile`,
+    //CLIENT_PROFILE:`${sourceURL}/api/users`,
     USERS_DB:`${sourceURL}/api/users`,
     PRODUCT_CATEGORY:`${sourceURL}/api/categories`,
     SIGNIN_AUTH:`${sourceURL}/api/auth/signin`,

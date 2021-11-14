@@ -48,7 +48,7 @@ export const Products = () => {
     CONTRAENTREGA: 2,
     TARGETA: 3,
   };
-  const [Payment, setPayment] = useState("");
+  const [Payment, setPayment] = useState("TARGETA");
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
   const { db, cart, purchase_units, subtotal, onecategory, totalquantity } =
     state;
@@ -98,52 +98,53 @@ export const Products = () => {
     }
   };
   //para la targeta
-  const cartSubmit = async () => {
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement),
-      billing_details: {
-        address: {
-          city: "lima",
-          country: "PE",
-          line1: Form.address,
-        },
-        email: sessionStorage.getItem("email"),
-        name: `${Form.fullname} ${Form.lastname}`,
-        phone: Form.phone,
-      },
-    });
-    setLoading(true);
-    if (!error) {
-      const { id } = paymentMethod;
-      try {
-        let carddetails = {
-          iduser: sessionStorage.getItem("id"),
-          status: "PENDIENTE",
-          idcard: id,
-          amount: subtotal, //cents
-          items: cart,
-        };
-        let options = {
-          body: carddetails,
-          headers: { "content-type": "application/json" },
-        };
-        helpHttp()
-          .post(
-            URL.PAYMENT_STRIPE,
-            options
-          )
-          .then((res) => {
-            console.log(res);
-          });
+  // const cartSubmit = async () => {
+  //   const { error, paymentMethod } = await stripe.createPaymentMethod({
+  //     type: "card",
+  //     card: elements.getElement(CardElement),
+  //     billing_details: {
+  //       address: {
+  //         city: "lima",
+  //         country: "PE",
+  //         line1: Form.address,
+  //       },
+  //       email: sessionStorage.getItem("email"),
+  //       name: `${Form.fullname} ${Form.lastname}`,
+  //       phone: Form.phone,
+  //     },
+  //   });
+  //   setLoading(true);
+  //   if (!error) {
+  //     const { id } = paymentMethod;
 
-        elements.getElement(CardElement).clear();
-      } catch (error) {
-        console.log("Error", error);
-      }
-      setLoading(false);
-    }
-  };
+  //     let carddetails = {
+  //       //iduser: sessionStorage.getItem("id"),
+  //       //status: "PENDIENTE",
+  //       paymentId: id,
+  //       amount: subtotal, //cents
+  //       //items: cart,
+  //     };
+  //     let options = {
+  //       body: carddetails,
+  //       headers: { "content-type": "application/json" },
+  //     };
+  //     helpHttp()
+  //       .post(URL.PAYMENT_STRIPE, options)
+  //       .then((res) => {
+  //         console.log(res);
+  //       });
+
+  //     elements.getElement(CardElement).clear();
+
+  //     setLoading(false);
+  //   } else {
+  //     alert("TARGETA INVALIDA");
+  //     setError(error);
+  //     setLoading(false);
+  //     handleReset();
+  //     return;
+  //   }
+  // };
 
   //para paypal
   const createOrder = (data, actions) => {
@@ -160,11 +161,12 @@ export const Products = () => {
   };
 
   const orderSubmit = (order) => {
-    let products = [];
+    
+    if(order.links){
+      let products = [];
     order.purchase_units[0].items.map((product) =>
       products.push({ idproduct: product.sku, quantity: product.quantity })
     );
-
     let order_detail = {
       iduser: sessionStorage.getItem("id"),
       status: "PENDIENTE",
@@ -178,12 +180,33 @@ export const Products = () => {
       body: order_detail,
       headers: { "content-type": "application/json" },
     };
-
     helpHttp()
+    .post(URL.ALL_ORDERS, options)
+    .then((res) => {
+      console.log(res);
+    });
+    }else{
+      let order_detail = {
+        iduser: sessionStorage.getItem("id"),
+        status: "PENDIENTE",
+        //status:order.status,
+        subtotal: parseFloat(subtotal),
+        orders:cart,
+        create_time:"2021-09-20T07:31:47.000+00:00",
+        payment_method: 6,
+      };
+      let options = {
+        body: order_detail,
+        headers: { "content-type": "application/json" },
+      };
+      helpHttp()
       .post(URL.ALL_ORDERS, options)
       .then((res) => {
+        console.log("el pago llego hasta enviar las ordenes")
         console.log(res);
       });
+
+    }
   };
   const handleChange = (e) => {
     setForm({
@@ -192,35 +215,98 @@ export const Products = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let userDetails = {
-      firstName: Form.fullname,
-      lastName: Form.lastname,
-      phoneNumber: Form.phone,
-      address: Form.address,
-    };
-    let options = {
-      body: userDetails,
-      headers: { "content-type": "application/json" },
-    };
-    let idcli = sessionStorage.getItem("id");
-    if (idcli) {
-      try{
-        helpHttp()
-        .post(
-          URL.CLIENT_PROFILE,
-          options
-        )
-        .then((res) => {
-          console.log("datos confirmados con exito",res);
-        });
-      }catch(error){
-        console.log("el error es ",error.err)
-      }
 
+
+
+
+
+
+
+
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!Form.fullname || !Form.lastname || !Form.phone || !Form.address) {
+      alert("datos incompletos");
+      return;
+    } else {
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
+        type: "card",
+        card: elements.getElement(CardElement),
+        billing_details: {
+          address: {
+            city: "lima",
+            country: "PE",
+            line1: Form.address,
+          },
+          email: sessionStorage.getItem("email"),
+          name: `${Form.fullname} ${Form.lastname}`,
+          phone: Form.phone,
+        },
+      });
+      const { id } = paymentMethod;
+      setLoading(true);
+      if (!error) {
+    
+        let idcli=sessionStorage.getItem("id");
+        let carddetails = {
+          paymentId: id,
+          amount: parseInt(subtotal), 
+        };
+        let options = {
+          body: carddetails,
+          headers: { "content-type": "application/json" },
+        };
+        helpHttp()
+          .post(URL.PAYMENT_STRIPE, options)
+          .then((res) => {
+            console.log(res)
+            if(!res.err){
+              let userDetails = {
+                firstName: Form.fullname,
+                lastName: Form.lastname,
+                phoneNumber: Form.phone,
+                address: Form.address,
+              };
+              let options = {
+                body: userDetails,
+                headers: { "content-type": "application/json" },
+              };
+              helpHttp()
+              .post(`${URL.USERS_DB}/${idcli}/profile`, options)
+              .then((res) => {
+                if(!res.err){
+                  alert("PAGO PROCESADO")
+                  orderSubmit(cart);
+                }
+              });
+            }
+          });
+        elements.getElement(CardElement).clear();
+        handleReset();
+        setLoading(false);
+        return;
+      } else {
+        alert("TARGETA INCORRECTA")
+        setLoading(false);
+      }
     }
-    //console.log(Form)
+  };
+
+
+
+
+
+
+
+
+
+
+
+  const handleReset = () => {
+    setForm(initialForm);
   };
   return (
     <>
@@ -474,7 +560,7 @@ export const Products = () => {
                   onApprove={(data, actions) => onApprove(data, actions)}
                 />
               )}
-              {Payment === "TARGETA" && (
+              {/* {Payment === "TARGETA" && (
                 <button
                   type="button"
                   className="btn btn-primary"
@@ -488,7 +574,7 @@ export const Products = () => {
                     "Pagar con visa"
                   )}
                 </button>
-              )}
+              )} */}
             </div>
           </div>
         </div>
