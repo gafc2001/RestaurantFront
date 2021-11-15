@@ -1,6 +1,12 @@
 import React, { useState, useEffect, useReducer } from "react";
 //para visa
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import {
+  useStripe,
+  useElements,
+  CardNumberElement,
+  CardExpiryElement,
+  CardCvcElement,
+} from "@stripe/react-stripe-js";
 //URL DELYBAKERY
 import { URL } from "../../api/apiDB";
 import {
@@ -112,7 +118,51 @@ export const Products = () => {
     console.log(order);
     orderSubmit();
   };
-
+  const cardPayment = async () => {
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardNumberElement),
+      billing_details: {
+        address: {
+          city: "lima",
+          country: "PE",
+          line1: Form.address,
+        },
+        email: sessionStorage.getItem("email"),
+        name: `${Form.fullname} ${Form.lastname}`,
+        phone: Form.phone,
+      },
+    });
+    setLoading(true);
+    if (!error) {
+      const { id } = paymentMethod;
+      let carddetails = {
+        paymentId: id,
+        amount: parseInt(subtotal),
+      };
+      let options = {
+        body: carddetails,
+        headers: { "content-type": "application/json" },
+      };
+      helpHttp()
+        .post(URL.PAYMENT_STRIPE, options)
+        .then((res) => {
+          console.log(res);
+          if (!res.err) {
+            // alert("El pago fue realizado con éxito")
+            orderSubmit();
+          }
+        });
+      elements.getElement(CardNumberElement).clear();
+      elements.getElement(CardCvcElement).clear();
+      elements.getElement(CardExpiryElement).clear();
+      // handleReset();
+      // setLoading(false);
+      return;
+    }
+    alert("TARGETA INCORRECTA");
+    setLoading(false);
+  };
   const orderSubmit = () => {
     let products = [];
     cart.map((product) =>
@@ -133,82 +183,19 @@ export const Products = () => {
       body: order_detail,
       headers: { "content-type": "application/json" },
     };
-    if (activeClassPayment[Payment] === 5) {
-      helpHttp()
-        .post(URL.ALL_ORDERS, options)
-        .then((res) => {
-          console.log(res);
-        });
-
-      return;
-    }
-    if (activeClassPayment[Payment] === 15) {
-      helpHttp()
-        .post(URL.ALL_ORDERS, options)
-        .then((res) => {
-          console.log(res);
-          if (!res.err) {
-            setLoading(false);
-            alert("PAGO PROCESADO");
-            return;
-          }
-        });
-    }
-
-    // if (order.links) {
-    //   let products = [];
-    //   order.purchase_units[0].items.map((product) =>
-    //     products.push({ idproduct: product.sku, quantity: product.quantity })
-    //   );
-    //   let order_detail = {
-    //     iduser: sessionStorage.getItem("id"),
-    //     status: "PENDIENTE",
-    //     subtotal: parseFloat(order.purchase_units[0].amount.value),
-    //     orders: products,
-    //     create_time: order.create_time,
-    //     payment_method: 5,
-    //   };
-    //   let options = {
-    //     body: order_detail,
-    //     headers: { "content-type": "application/json" },
-    //   };
-    //   helpHttp()
-    //     .post(URL.ALL_ORDERS, options)
-    //     .then((res) => {
-    //       console.log(res);
-    //     });
-    // } else {
-    //   let products = [];
-    //   cart.map((product) =>
-    //     products.push({
-    //       idproduct: product.idProduct,
-    //       quantity: product.quantity,
-    //     })
-    //   );
-    //   let order_detail = {
-    //     iduser: sessionStorage.getItem("id"),
-    //     status: "PENDIENTE",
-    //     subtotal: parseFloat(subtotal),
-    //     orders: products,
-    //     create_time: Date.now(),
-    //     payment_method: 15,
-    //   };
-    //   let options = {
-    //     body: order_detail,
-    //     headers: { "content-type": "application/json" },
-    //   };
-    //   helpHttp()
-    //     .post(URL.ALL_ORDERS, options)
-    //     .then((res) => {
-    //       console.log(res);
-    //       if (!res.err) {
-    //         setLoading(false);
-    //         alert("PAGO PROCESADO");
-    //       return
-    //       }
-    //     });
-    // }
+    helpHttp()
+      .post(URL.ALL_ORDERS, options)
+      .then((res) => {
+        console.log(res);
+        if (!res.err) {
+          setLoading(false);
+          alert("El pago fue realizado con éxito");
+          handleReset();
+          return;
+        }
+      });
   };
+
   const handleChange = (e) => {
     setForm({
       ...Form,
@@ -216,7 +203,7 @@ export const Products = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!Form.fullname || !Form.lastname || !Form.phone || !Form.address) {
       alert("datos incompletos");
@@ -230,74 +217,18 @@ export const Products = () => {
     };
     const idcli = sessionStorage.getItem("id");
 
-    if (activeClassPayment[Payment] === 5) {
-      let options = {
-        body: userDetails,
-        headers: { "content-type": "application/json" },
-      };
-      helpHttp()
-        .post(`${URL.USERS_DB}/${idcli}/profile`, options)
-        .then((res) => {
-          console.log(res);
-          if (!res.err) {
-            alert("datos confirmados");
-            handleReset();
-          }
-        });
-    }
-    if (activeClassPayment[Payment] === 15) {
-      const { error, paymentMethod } = await stripe.createPaymentMethod({
-        type: "card",
-        card: elements.getElement(CardElement),
-        billing_details: {
-          address: {
-            city: "lima",
-            country: "PE",
-            line1: Form.address,
-          },
-          email: sessionStorage.getItem("email"),
-          name: `${Form.fullname} ${Form.lastname}`,
-          phone: Form.phone,
-        },
+    let options = {
+      body: userDetails,
+      headers: { "content-type": "application/json" },
+    };
+    helpHttp()
+      .post(`${URL.USERS_DB}/${idcli}/profile`, options)
+      .then((res) => {
+        console.log(res);
+        if (!res.err) {
+          alert("datos confirmados");
+        }
       });
-      const { id } = paymentMethod;
-      console.log(id);
-      setLoading(true);
-      if (!error) {
-        let carddetails = {
-          paymentId: id,
-          amount: parseInt(subtotal),
-        };
-        let options = {
-          body: carddetails,
-          headers: { "content-type": "application/json" },
-        };
-        helpHttp()
-          .post(URL.PAYMENT_STRIPE, options)
-          .then((res) => {
-            console.log(res);
-            if (!res.err) {
-              let options = {
-                body: userDetails,
-                headers: { "content-type": "application/json" },
-              };
-              helpHttp()
-                .post(`${URL.USERS_DB}/${idcli}/profile`, options)
-                .then((res) => {
-                  console.log(res);
-                  if (!res.err) {
-                    orderSubmit();
-                  }
-                });
-            }
-          });
-        elements.getElement(CardElement).clear();
-        handleReset();
-        return;
-      }
-      alert("TARGETA INCORRECTA");
-      setLoading(false);
-    }
   };
 
   const toggle = () => {
@@ -539,37 +470,28 @@ export const Products = () => {
                         ></input>
                       </div>
                     </div>
-                    {Payment === "TARGETA" && (
-                      <div>
-                        <div className="form-group">
-                          <label className="label">Numero de tarjeta</label>
-                          <CustomCardNumber />
-                        </div>
-                        <div className="half-form">
-                          <div className="form-group">
-                            <label className="label">Fecha de expiracion</label>
-                            <CustomExpiry />
-                          </div>
-                          <div className="form-group">
-                            <label className="label">Codigo CVC</label>
-                            <CustomCardCvc />
-                          </div>
-                        </div>
-                      </div>
-                    )}
                   </div>
                   {Loading && <Loader />}
                   <button type="submit" className="btn btn-primary">
                     confirmar datos
                   </button>
-                  {Payment === "PAYPAL" && (
-                    <PayPalButton
-                      createOrder={(data, actions) =>
-                        createOrder(data, actions)
-                      }
-                      s
-                      onApprove={(data, actions) => onApprove(data, actions)}
-                    />
+                  {Payment === "TARGETA" && (
+                    <div>
+                      <div className="form-group">
+                        <label className="label">Numero de tarjeta</label>
+                        <CustomCardNumber />
+                      </div>
+                      <div className="half-form">
+                        <div className="form-group">
+                          <label className="label">Fecha de expiracion</label>
+                          <CustomExpiry />
+                        </div>
+                        <div className="form-group">
+                          <label className="label">Codigo CVC</label>
+                          <CustomCardCvc />
+                        </div>
+                      </div>
+                    </div>
                   )}
                 </form>
               </div>
@@ -582,21 +504,21 @@ export const Products = () => {
               >
                 Cancelar
               </button>
-              {/* {Payment === "TARGETA" && (
+              {Payment === "PAYPAL" && (
+                <PayPalButton
+                  createOrder={(data, actions) => createOrder(data, actions)}
+                  onApprove={(data, actions) => onApprove(data, actions)}
+                />
+              )}
+              {Payment === "TARGETA" && (
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={() => cartSubmit()}
+                  onClick={() => cardPayment()}
                 >
-                  {Loading ? (
-                    <div>
-                      <span className="sr-only">Loading...</span>
-                    </div>
-                  ) : (
-                    "Pagar con visa"
-                  )}
+                  Pagar con visa
                 </button>
-              )} */}
+              )}
             </div>
           </div>
         </div>
