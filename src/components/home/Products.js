@@ -391,13 +391,8 @@ export const Products = () => {
 
                     <span>Paypal</span>
                   </li>
-                  {/* <li
-                    className={`payment-method ${
-                      activeClassPayment[Payment] === 3 ? "active" : ""
-                    }`}
-                    onClick={() => {
-                      setPayment("CONTRAENTREGA");
-                    }}
+                  <li
+                    className="payment-method CONTRAENTREGA"
                   >
                     <svg
                       width="20"
@@ -412,7 +407,7 @@ export const Products = () => {
                       />
                     </svg>
                     <span>Contraentrega</span>
-                  </li> */}
+                  </li>
                 </ul>
               </div>
               <div className="payment-user-info">
