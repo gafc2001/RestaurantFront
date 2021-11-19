@@ -11,7 +11,7 @@ const initialForm = {
   category: { idCategory: "", nameCategory: null },
   nameProduct: "",
   priceProduct: "",
-  availableProduct: true,
+  availableProduct: "",
   img: null,
   description: "",
 };
@@ -44,7 +44,7 @@ export const ModalForm = ({
 
   useEffect(() => {
     if (dataToEdit) {
-      //console.log(dataToEdit);
+  
       setform(dataToEdit);
     } else {
       setform(initialForm);
@@ -55,11 +55,11 @@ export const ModalForm = ({
 
   const selectChange = (e) => {
     let categoryId = e.target.value;
-    console.log(categoryId);
+
     setform({
       ...form,
       category: {
-        idCategory: categoryId,
+        idCategory: parseInt(categoryId),
       },
     });
   };
@@ -77,7 +77,7 @@ export const ModalForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    console.log(form)
     if (
       !form.nameProduct ||
       !form.priceProduct ||
@@ -185,33 +185,32 @@ export const ModalForm = ({
           </select>
         )}
         </div>
-
-        <div className="form-group">
+        <div className="form-group " >
           <label htmlFor="avariable">Disponibilidad:</label>
           <div>
           <input
             type="radio"
-            name="Availability"
-            id="available"
-            onClick={handleAvariable}
-            value="available"
-            defaultChecked
+            name="avariable"
+            checked={form.availableProduct===true}
+            onChange={handleAvariable}
+            value="avariable"
+          
           />
           <label htmlFor="sold out">Disponible</label>
           </div>
           <div>
           <input
             type="radio"
-            name="Availability"
-            id="sold out"
-            onClick={handleAvariable}
+            name="sold out"
+            checked={form.availableProduct===false}
+            onChange={handleAvariable}
             value="sold out"
           />
           <label htmlFor="avariable">Agotado</label>
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="file" for="file" className="file-content"><i className="fas fa-upload file-icon"></i> Choose a file...
+          <label htmlFor="file"  className="file-content"><i className="fas fa-upload file-icon"></i> Choose a file...
           <input type="file" name="file0" id="file" onChange={fileChange} /></label>
         </div>
         <div className="btn-container">

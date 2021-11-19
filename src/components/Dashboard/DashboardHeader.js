@@ -49,7 +49,7 @@ export const DashboardHeader = ({ filtCategory,removeCategory }) => {
         </div>
         <div className="filter">
         <ul className="filter-list">
-          <li className="filter-item" onClick={()=>removeCategory(null)}>
+          <li className="filter-item" onClick={()=>removeCategory()}>
             <span>Todos</span>
           </li>
           {category &&
