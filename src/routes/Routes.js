@@ -28,7 +28,7 @@ const Routes = () => {
       <PublicRoute exact path="/register" component={RegisterUser} />
       <PrivateRoute path="/home" component={Products} />
       <PrivateRoute exact path='/notifications' component={Orders} />
-      <PrivateRoute path="/notifications/order/:id" component={OrderDetail}/> 
+      <PrivateRoute path="/notifications/order/:idorder" component={OrderDetail}/> 
       <PrivateRoute exact path="/message" component={Mainchat} />
       <PrivateRoute  path="/maindashboard/dashboard/:topic" component={Dashboard} />
       <PrivateRoute path="/maindashboard" component={MainDashboard} />

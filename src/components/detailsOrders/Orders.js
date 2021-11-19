@@ -1,7 +1,6 @@
-
 import Sidebar from "../sidebar/Sidebar";
 import "./../../assets/css/notification.css";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { helpHttp } from "../helpers/helpHttp";
 import Order from "./Order";
 import { Message } from "../Dashboard/Message";
@@ -9,22 +8,35 @@ import { Message } from "../Dashboard/Message";
 import { URL } from "../../api/apiDB";
 
 const Orders = () => {
-  const [db, setDb] = useState(null);
+  const [db, setDb] = useState([]);
+  const [Newdb, setNewdb] = useState([]);
   const [Error, setError] = useState(null);
   let iduser = sessionStorage.getItem("id");
-  
+
   useEffect(() => {
     helpHttp()
-      .get(URL.CLIENT_ORDERS)
+      .get(`${URL.CLIENT_ORDERS}/${sessionStorage.getItem("id")}`)
       .then((res) => {
         if (res.length > 0) {
           setDb(res);
+          setNewdb(res);
           setError(null);
         } else {
           setError(res);
         }
-      });
+      }
+      
+      );
   }, []);
+
+  const listStatus = (status) => {
+    if (status) {
+      let newdb = db.filter((el) => el.statusOrder === status);
+      setNewdb(newdb);
+    } else {
+      setNewdb(db);
+    }
+  };
 
   return (
     <>
@@ -38,30 +50,57 @@ const Orders = () => {
               </div>
             </div>
           </header>
-          {Error && (
-        <Message
-          msg={`Error a recargar`}
-          bgColor="#dc3545"
-        />
-      )}
+          {Error && <Message msg={`Error a recargar`} bgColor="#dc3545" />}
           <div className="col-1 box-content">
             <div className="noti-container">
               <div className="noti-header">
                 <h2 className="noti-title">
-                  {db&&<span>Ordenes totales  {db.length}</span>}
+                  {db && <span>Ordenes totales {db.length}</span>}
                 </h2>
                 <div className="filter">
                   <ul className="filter-list">
-                    <li className="filter-item filter-active">Todos</li>
-                    <li className="filter-item">Listo para el delivery</li>
-                    <li className="filter-item">En proceso</li>
-                    <li className="filter-item">Completado</li>
+                    <li
+                      className="filter-item filter-active"
+                      onClick={() => listStatus("")}
+                    >
+                      Todos
+                    </li>
+                    <li
+                      className="filter-item"
+                      onClick={() => listStatus("PENDIENTE")}
+                    >
+                      En proceso
+                    </li>
+                    <li
+                      className="filter-item"
+                      onClick={() => listStatus("PREPARANDO")}
+                    >
+                      En preparacion
+                    </li>
+                    <li
+                      className="filter-item"
+                      onClick={() => listStatus("ENVIANDO")}
+                    >
+                      Listo para el delivery
+                    </li>
+                    <li
+                      className="filter-item"
+                      onClick={() => listStatus("COMPLETADO")}
+                    >
+                      Completado
+                    </li>
                   </ul>
                 </div>
               </div>
               <div className="product-container">
-                {db &&
-                  db.map((order) => <Order key={order.idOrder} db={order} />)}
+                {Newdb.map((order) => (
+                  <Order key={order.idOrder} db={order} />
+                ))}
+                {/* {Newdb?Newdb.map((order) => (
+                  <Order key={order.idOrder} db={order} />
+                )):db.map((order) => (
+                  <Order key={order.idOrder} db={order} />
+                ))} */}
               </div>
             </div>
           </div>

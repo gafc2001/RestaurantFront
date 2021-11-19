@@ -12,7 +12,7 @@ import { URL } from "../../../api/apiDB";
 export const CrudAppPro = () => {
   //const [db, setDb] = useState(null);
   const [state, dispatch] = useReducer(crudReducer, crudInitialState);
-  const { db,onecategory } = state;
+  const {onecategory } = state;
 
   //variable de estado cuando sea null va  insertar de lo contrario actualizara
   const [dataToEdit, setDataToEdit] = useState(null);
@@ -40,12 +40,13 @@ export const CrudAppPro = () => {
         setLoading(false);
       });
   }, []);
+  
 
   const filtCategory=(idCategory)=>{
     dispatch({ type: TYPES.READ_ONE_CATEGORY,payload:idCategory});
   }
-  const removeCategory=(state)=>{
-    dispatch({ type: TYPES.REMOVE_CATEGORY,payload:state});
+  const removeCategory=()=>{
+    dispatch({ type: TYPES.REMOVE_CATEGORY});
   }
   const createData = (data) => {
     let options = {
@@ -91,6 +92,7 @@ export const CrudAppPro = () => {
     api.patch(endpoint, options).then((res) => {
       if (!res.err) {
         dispatch({ type: TYPES.UPDATE_DATA, payload: data });
+        dispatch({ type: TYPES.READ_ONE_CATEGORY,payload:data.category.idCategory})
 
         if (data.img) {
           //ACTUALIZANDO IMAGENES
@@ -109,6 +111,7 @@ export const CrudAppPro = () => {
             .catch((error) =>
               console.log("ERROR NO REGISTRO LA IMAGEN", error)
             );
+            dispatch({ type: TYPES.READ_ONE_CATEGORY,payload:data.category.idCategory})
         }
       } else {
         setError(res);
@@ -137,7 +140,7 @@ export const CrudAppPro = () => {
   return (
     <>
     <DashboardHeader filtCategory={filtCategory} removeCategory={removeCategory}/>
-      {onecategory?(onecategory && (
+      {onecategory && (
         <CrudTablePro
           data={onecategory}
           //funcion para actualizar laa  nueva renderizacion sin el elemento renderizado
@@ -151,21 +154,7 @@ export const CrudAppPro = () => {
           Loading={Loading}
           Error={Error}
         />
-      )):(db && (
-        <CrudTablePro
-          data={db}
-          //funcion para actualizar laa  nueva renderizacion sin el elemento renderizado
-          setDataToEdit={setDataToEdit}
-          //pasamos el deletedata para eliminar un id
-          deleteData={deleteData}
-          createData={createData}
-          updateData={updateData}
-          //para diferenciar entre create y update necesitamos pasarle la variable de estado y la funcion que actualiza datatoedit
-          dataToEdit={dataToEdit}
-          Loading={Loading}
-          Error={Error}
-        />
-      ))}
+      )}
     </>
   );
 };

@@ -10,18 +10,17 @@ import Invoicing from "./Invoicing";
 import { URL } from "../../api/apiDB";
 
 const OrderDetail = () => {
-  let { id } = useParams();
-
+  let { idorder } = useParams();
   const [Details, setDetails] = useState(null);
   const [Error, setError] = useState(null);
-  const [toggle, setToggle] = useState(false);
+  //const [toggle, setToggle] = useState(false);
   useEffect(() => {
     helpHttp()
-      .get(URL.CLIENT_ORDERS)
+      .get(`${URL.CLIENT_ORDERS}/${sessionStorage.getItem("id")}`)
       .then((res) => {
         if (res.length > 0) {
           res.map((Orderselect) =>
-            Orderselect.idOrder === parseInt(id)
+            Orderselect.idOrder === parseInt(idorder)
               ? setDetails(Orderselect)
               : null
           );
@@ -51,7 +50,7 @@ const OrderDetail = () => {
               <div className="noti-header">
                 <h2 className="noti-title border-b">
                   Orden #
-                  <span>{id}</span>
+                  <span>{idorder}</span>
                 </h2>
               </div>
               <div className="product-container">
