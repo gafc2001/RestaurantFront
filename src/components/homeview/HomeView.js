@@ -227,7 +227,7 @@ const HomeView = () => {
           </div>
         </div>
       </section>
-      <section className="categorias">
+      <section className="categorias content">
         <div className="contenedor2">
           <div className="section-title">
             <h2 data-title="Ordene Ahora">Nuestras Categorias</h2>
@@ -292,7 +292,7 @@ const HomeView = () => {
           </div>
         </div>
       </section>
-      <section className="productos">
+      <section className="productos content">
         <div className="contenedor3">
           <div className="section-title">
             <h2 data-title="Ordene Ahora">Nuestros Productos</h2>
@@ -332,7 +332,7 @@ const HomeView = () => {
           </div>
         </div>
       </section>
-      <footer>
+      <footer className="content">
         <div className="contenedor-footer">
           <div className="content-foo">
             <h4>Celular</h4>
