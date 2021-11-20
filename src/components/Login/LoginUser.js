@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
 import { Message } from "../Dashboard/Message";
-
+import { helpHttp } from "../helpers/helpHttp";
+import { Loader } from "../Dashboard/Loader";
 //URL DELYBAKERY
 import { URL } from "../../api/apiDB";
 //Styles
@@ -17,47 +18,18 @@ import Sidebar from "../sidebar/Sidebar";
 
 const initialForm = {
   username: "",
-  name: "",
   password: "",
-  email: "",
   roles: [],
 };
 
 export const LoginUser = () => {
-  const [form, setform] = useState(initialForm);
-  const [user, setuser] = useState(null);
+  const [form, setForm] = useState(initialForm);
+  const [user, setUser] = useState(null);
   const [Error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const iniciarSesion = (data) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    var raw = JSON.stringify(data);
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-    fetch(URL.SIGNIN_AUTH, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        //console.log(result);
-        if (result.message === "Bad credentials") {
-          setError(true);
-        } else {
-          sessionStorage.setItem("id", result.id);
-          sessionStorage.setItem("email", result.email);
-          sessionStorage.setItem("username", result.username);
-          sessionStorage.setItem("token", result.accessToken);
-          sessionStorage.setItem("role", result.roles);
-          setuser(result);
-          setError(false);
-        }
-      })
-      .catch((error) => console.log("error ", error));
-  };
-  const handleChange = async (e) => {
-    setform({
+  const handleChange = (e) => {
+    setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
@@ -68,7 +40,31 @@ export const LoginUser = () => {
       alert("datos incompletos");
       return;
     } else {
-      iniciarSesion(form);
+      setLoading(true);
+      helpHttp()
+      .post(URL.SIGNIN_AUTH, {
+        body: form,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
+      .then((res) => {
+        if (res.err || res.message === "Bad credentials") {
+          setLoading(false)
+          setError(true);
+          return
+        } else {
+          sessionStorage.setItem("id", res.id);
+          sessionStorage.setItem("email", res.email);
+          sessionStorage.setItem("username", res.username);
+          sessionStorage.setItem("token", res.accessToken);
+          sessionStorage.setItem("role", res.roles);
+          setError(false);
+          setTimeout(() =>  setLoading(false), 3000);
+          setTimeout(() =>   setUser(res) , 3500);
+        }
+      });
     }
   };
   return (
@@ -81,52 +77,56 @@ export const LoginUser = () => {
           <div className="form-logo">
             <img src={logoWhite} alt="" />
           </div>
+          <div style={{ textAlign: "center" }}>
+            {loading && <Loader style={{ margin: "0px auto" }} />}
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               {Error && (
                 <Message
-                  msg={"Contrasena incorrecta o usuario"}
+                  msg={"Contraseña o usuario incorrecto"}
                   bgColor="#dc3545"
                 />
               )}
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">Usuario</label>
               <div className="input-container">
                 <i className="fas fa-user-circle"></i>
                 <input
                   value={form.user}
                   type="text"
-                  id="username"
                   name="username"
-                  placeholder="Your username"
+                  placeholder="Ingresa tu usuario"
                   className="input"
                   onChange={handleChange}
+                  autoComplete="off"
+                  required
                 />
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Contraseña</label>
               <div className="input-container">
                 <i className="fas fa-lock"></i>
                 <input
                   value={form.password}
                   type="password"
-                  id="password"
                   name="password"
-                  placeholder="Your password"
+                  placeholder="Ingresa tu contraseña"
                   className="input"
                   onChange={handleChange}
+                  autoComplete="current-password"
+                  required
                 />
               </div>
             </div>
             <button className="btn btn-primary" type="submit">
-              Signin
+              Entrar
             </button>
             <span className="button-separator">
-              {" "}
-              <span>or</span>{" "}
+              <span>o</span>
             </span>
             <Link to="/register">
-              <div className="btn btn-secondary">Register</div>
+              <div className="btn btn-secondary">Ir a Registrar</div>
             </Link>
           </form>
         </div>

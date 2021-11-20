@@ -1,112 +1,156 @@
-import { useState } from "react";
-//import "bootstrap/dist/css/bootstrap.min.css"
 import { Redirect } from "react-router";
-
-//URL DELYBAKERY
-import { URL } from "../../api/apiDB";
+import { Message } from "../Dashboard/Message";
+import { Loader } from "../Dashboard/Loader";
+import { Link } from "react-router-dom";
 //Styles
 import "./../../assets/css/form.css";
 import "./../../assets/css/style.css";
-
+import { useForm } from "./useForm";
 //Images
 import logoWhite from "./../../assets/images/logo-white.png";
-import backgroundImg from '../../assets/images/background.jpg';
+import backgroundImg from "../../assets/images/background.jpg";
 import Sidebar from "../sidebar/Sidebar";
 
 const initialForm = {
   username: "",
   email: "",
   password: "",
-  roles: ["mod", "user"]
+  roles: [],
 };
 
-export const  RegisterUser = () => {
-  const [form, setform] = useState(initialForm);
-  // mensaje de error
-  const [Login, setLogin] = useState(false);
+const validationsForm = (form) => {
+  let errors = {};
+  let regexName = /^[a-z0-9_\\_\ü]+$/;
+  let regexNameLen = /^.{1,20}$/;
+  let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
 
+  if (!form.username.trim()) {
+    errors.username = "El campo 'Usuario' es requerido";
+  } else if (!regexName.test(form.username.trim())) {
+    errors.username = "El campo 'Usuario' no acepta espacios en blanco";
+  } else if (!regexNameLen.test(form.username.trim())) {
+    errors.username = "El campo 'Usuario' no debe exceder los 20 caracteres";
+  }
 
-  //controlar respuestas del servidor
+  if (!form.email.trim()) {
+    errors.email = "El campo 'Email' es requerido";
+  } else if (!regexEmail.test(form.email.trim())) {
+    errors.email = "El campo 'Email' es incorrecto";
+  }
 
-  const RegisterUser = (data) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtb2RlcmF0b3IiLCJpYXQiOjE2MzEzMzc3NTMsImV4cCI6MTYzMTQyNDE1M30.v4Sin4p2Vgaauip9XqMq-DMXYSHqpnkQcUC7i7PNX6YsUjF1IZJUTQCfnAjhUtmDiQPKkVvCVssb0CdxGrdXnA");
-    myHeaders.append("Content-Type", "application/json");
+  if (!form.password.trim()) {
+    errors.password = "El campo 'Contraseña' es requerido";
+  }
+  return errors;
+};
 
-    var raw = JSON.stringify(data);
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-
-    fetch(URL.SIGNUP_AUTH, requestOptions)
-      .then(response => response.text())
-      .then(result => {
-        let user = JSON.parse(result)
-        if (user.message === "User registered successfully!") {
-          setLogin(true);
-
-        } else {
-          setLogin(false);
-
-        }
-      })
-      .catch(error => console.log('error', error));
-  };
-  const handleChange = (e) => {
-    setform({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    RegisterUser(form);
-  };
+let styles = {
+  fontWeight: "bold",
+  color: "#dc3545",
+};
+export const RegisterUser = () => {
+  const {
+    form,
+    Login,
+    errors,
+    loading,
+    response,
+    Error,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useForm(initialForm, validationsForm);
 
   return (
-
-    
     <>
-    {Login && <Redirect to="/login" />}
-    <Sidebar/>
-      <img src={backgroundImg} alt="" className="background"/>
-        <div className="content center">
-            <div className="content-form">
-                <div className="form-logo">
-                    <img src={logoWhite} alt=""/>
-                </div>
-                <form onSubmit={handleSubmit}>  
-                    <div className="form-group">
-                        <label htmlFor="username">Username</label>
-                        <div className="input-container">
-                            <i className="fas fa-user-circle"></i>
-                            <input type="text" id="username" name="username" placeholder="Your username" className="input" onChange={handleChange}/>
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <div className="input-container">
-                            <i className="fas fa-envelope"></i>
-                            <input type="email" id="email"  name="email" placeholder="Your email" className="input" onChange={handleChange}/>
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <div className="input-container">
-                            <i className="fas fa-lock"></i>
-                            <input type="password" id="password"  name="password" placeholder="Your password" className="input" onChange={handleChange}/>
-                        </div>
-                    </div>
-                    
-                    <button className="btn btn-primary" type="submit">
-                        Login
-                    </button>
-                </form>
+      {Login && <Redirect to="/login" />}
+      <Sidebar />
+
+      <img src={backgroundImg} alt="" className="background" />
+      <div className="content center">
+        <div className="content-form">
+          <div className="form-logo">
+            <img src={logoWhite} alt="" />
+          </div>
+          <div style={{ textAlign: "center" }}>
+            {loading && <Loader style={{ margin: "0px auto" }} />}
+          </div>
+          {response && (
+            <Message msg="Los datos han sido enviados" bgColor="#198754" />
+          )}
+          {Error && (
+            <Message
+              msg={"Ocurrio un error intentelo de nuevo"}
+              bgColor="#dc3545"
+            />
+          )}
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <div className="input-container">
+                <i className="fas fa-user-circle"></i>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Escribe tu nombre de usuario"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={form.username}
+                  className="input"
+                  autoComplete="off"
+                  required
+                />
+                {errors.username && <p style={styles}>{errors.username}</p>}
+              </div>
             </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <div className="input-container">
+                <i className="fas fa-envelope"></i>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Escribe tu email"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={form.email}
+                  className="input"
+                  autoComplete="off"
+                  required
+                />
+                {errors.email && <p style={styles}>{errors.email}</p>}
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <div className="input-container">
+                <i className="fas fa-lock"></i>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Escribe tu contraseña"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={form.password}
+                  className="input"
+                  autoComplete="new-password"
+                  required
+                />
+                {errors.password && <p style={styles}>{errors.password}</p>}
+              </div>
+            </div>
+            <button className="btn btn-primary" type="submit">
+              Regístrate
+            </button>
+            <span className="button-separator">
+              <span>o</span>
+            </span>
+            <Link to="/login">
+              <div className="btn btn-secondary">Ir al Login</div>
+            </Link>
+          </form>
         </div>
+      </div>
     </>
   );
 };
