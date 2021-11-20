@@ -232,7 +232,7 @@ input.src:hover{
 .cards .card{
   background: #1F1D2B;
   display: flex;
-  min-width: 460px;
+  min-width: 300px;
   width: 46%;
   height: 218px;
   align-items: center;

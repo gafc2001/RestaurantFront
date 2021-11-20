@@ -48,6 +48,7 @@
 *::before,
 *::after{
     box-sizing: border-box;
+    color: var(--text-white);
 }
 *{
     margin: 0;
@@ -80,6 +81,13 @@ button{
     overflow-x: hidden;
     display: flex;
     justify-content: space-between;
+}
+.section{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.mb-1{
+    margin-bottom: 1rem;
 }
 .content{
     width: 100vw;
@@ -244,7 +252,22 @@ button{
     width: 70%;
     height: 100%;
 }
-
+.return{
+    color:var(--text-white);
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    margin: 1rem 1rem 1rem 0;
+}
+.return path{
+    fill: var(--text-white);
+    stroke: var(--text-white);
+}
+.return svg{
+    width:3rem;
+    height: 3rem;
+    margin-right: 1rem;
+}
 @media(max-width: 768px){
     body{
         background-color: var(--base-dark-secondary);

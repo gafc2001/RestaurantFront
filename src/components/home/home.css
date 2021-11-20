@@ -101,6 +101,8 @@
 .order-container{
     border-right: 1px solid var(--text-light);
     padding-right: 3rem;
+    display: flex;
+    flex-direction: column;
 }
 .order-item{
     margin-bottom: 2rem;
@@ -255,7 +257,7 @@
     fill: var(--text-white);
 }
 .container-scroll{
-    max-height: 55vh;
+    max-height: 70vh;
     overflow-y: scroll;
 }
 .container-scroll::-webkit-scrollbar{
@@ -277,8 +279,15 @@
         top: 7.5rem;
     }
 }
-@media (max-width: 768px){
+
+
+@media (max-width:1024px){
     .order-payment{
-        min-width: 90vw;
+        width: 100vw;
+        min-width:unset;
+    }
+    .order-container{
+        width: 100vw;
+        padding: 0 2rem;
     }
 }
