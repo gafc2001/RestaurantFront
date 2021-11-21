@@ -29,6 +29,7 @@ export const shoppingInitialState = {
       },
     ]
   },
+  payment_type:"",
   totalquantity:0,
   subtotal:0
 };

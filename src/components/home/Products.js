@@ -1,19 +1,6 @@
 import React, { useState, useEffect, useReducer } from "react";
-//para visa
-import {
-  useStripe,
-  useElements,
-  CardNumberElement,
-  CardExpiryElement,
-  CardCvcElement,
-} from "@stripe/react-stripe-js";
-//URL DELYBAKERY
+import { Link } from "react-router-dom";
 import { URL } from "../../api/apiDB";
-import {
-  CustomCardCvc,
-  CustomCardNumber,
-  CustomExpiry,
-} from "./StripeElement/CustomCardElements";
 import { Loader } from "../Dashboard/Loader";
 import { Message } from "../Dashboard/Message";
 import { helpHttp } from "../helpers/helpHttp";
@@ -30,28 +17,16 @@ import Sidebar from "../sidebar/Sidebar";
 import "../../assets/css/style.css";
 import "../home/home.css";
 import { Header } from "./Header";
-//paypal
-import ReactDOM from "react-dom";
-const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+//formulario de pago
+import ProfileForm from "./FormPayment/ProfileForm";
+
+
 
 export const Products = () => {
-  // let url = ""
-  //const [db, setDb] = useState(null);
   const [Error, setError] = useState(null);
   const [Loading, setLoading] = useState(false);
   const [toggleCart, setToggleCart] = useState(false);
   const [togglePayment, setTooglePayment] = useState(false);
-
-  const initialForm = {
-    fullname: "",
-    lastname: "",
-    address: "",
-    phone: "",
-  };
-  const [Form, setForm] = useState(initialForm);
-  //state para la targeta
-  const stripe = useStripe();
-  const elements = useElements();
 
   let activeClassPayment = {
     PAYPAL: 5,
@@ -106,143 +81,21 @@ export const Products = () => {
       totalQuantity();
     }
   };
-  //para paypal
-  const createOrder = (data, actions) => {
-    return actions.order.create({
-      purchase_units: [purchase_units],
-    });
-  };
 
-  const onApprove = async (data, actions) => {
-    const order = await actions.order.capture();
-    console.log(order);
-    orderSubmit();
-  };
-  const cardPayment = async () => {
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardNumberElement),
-      billing_details: {
-        address: {
-          city: "lima",
-          country: "PE",
-          line1: Form.address,
-        },
-        email: sessionStorage.getItem("email"),
-        name: `${Form.fullname} ${Form.lastname}`,
-        phone: Form.phone,
-      },
-    });
-    setLoading(true);
-    if (!error) {
-      const { id } = paymentMethod;
-      let carddetails = {
-        paymentId: id,
-        amount: parseInt(subtotal),
-      };
-      let options = {
-        body: carddetails,
-        headers: { "content-type": "application/json" },
-      };
-      helpHttp()
-        .post(URL.PAYMENT_STRIPE, options)
-        .then((res) => {
-          console.log(res);
-          if (!res.err) {
-            // alert("El pago fue realizado con éxito")
-            orderSubmit();
-          }
-        });
-      elements.getElement(CardNumberElement).clear();
-      elements.getElement(CardCvcElement).clear();
-      elements.getElement(CardExpiryElement).clear();
-      // handleReset();
-      // setLoading(false);
-      return;
-    }
-    alert("TARGETA INCORRECTA");
-    setLoading(false);
-  };
-  const orderSubmit = () => {
-    let products = [];
-    cart.map((product) =>
-      products.push({
-        idproduct: product.idProduct,
-        quantity: product.quantity,
-      })
-    );
-    let order_detail = {
-      iduser: sessionStorage.getItem("id"),
-      status: "PENDIENTE",
-      subtotal: parseFloat(subtotal),
-      orders: products,
-      create_time: Date.now(),
-      payment_method: activeClassPayment[Payment],
-    };
-    const options = {
-      body: order_detail,
-      headers: { "content-type": "application/json" },
-    };
-    helpHttp()
-      .post(URL.ALL_ORDERS, options)
-      .then((res) => {
-        console.log(res);
-        if (!res.err) {
-          setLoading(false);
-          alert("El pago fue realizado con éxito");
-          handleReset();
-          return;
-        }
-      });
-  };
-
-  const handleChange = (e) => {
-    setForm({
-      ...Form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!Form.fullname || !Form.lastname || !Form.phone || !Form.address) {
-      alert("datos incompletos");
-      return;
-    }
-    const userDetails = {
-      firstName: Form.fullname,
-      lastName: Form.lastname,
-      phoneNumber: Form.phone,
-      address: Form.address,
-    };
-    const idcli = sessionStorage.getItem("id");
-
-    let options = {
-      body: userDetails,
-      headers: { "content-type": "application/json" },
-    };
-    helpHttp()
-      .post(`${URL.USERS_DB}/${idcli}/profile`, options)
-      .then((res) => {
-        console.log(res);
-        if (!res.err) {
-          alert("datos confirmados");
-        }
-      });
-  };
-
-  const toggle = () => {
+  const toggleOff = () => {
     setTooglePayment(false);
-    handleReset();
+    setPayment("")
+  };
+  const toggleON = () => {
+    setTooglePayment(true);
+    setPayment("TARGETA")
   };
 
-  const handleReset = () => {
-    setForm(initialForm);
-  };
-  const onBtnCartClick = () =>{
+
+  const onBtnCartClick = () => {
     setToggleCart(!toggleCart);
-              setTooglePayment(false);
-  }
+    setTooglePayment(false);
+  };
   return (
     <>
       <Sidebar />
@@ -264,27 +117,30 @@ export const Products = () => {
 
               {onecategory
                 ? onecategory &&
-                onecategory.map((product) => (
-                  <Product
-                    key={product.idProduct}
-                    data={product}
-                    addToCart={addToCart}
-                  />
-                ))
+                  onecategory.map((product) => (
+                    <Product
+                      key={product.idProduct}
+                      data={product}
+                      addToCart={addToCart}
+                    />
+                  ))
                 : db &&
-                db.map((product) => (
-                  <Product
-                    key={product.idProduct}
-                    data={product}
-                    addToCart={addToCart}
-                  />
-                ))}
+                  db.map((product) => (
+                    <Product
+                      key={product.idProduct}
+                      data={product}
+                      addToCart={addToCart}
+                    />
+                  ))}
             </div>
           </main>
         </div>
 
-        <div className={`column-2 bg-primary products ${toggleCart ? "toggleOrderLeft" : "toggleOrderRight"
-          } ${togglePayment ? "togglePaymentRight" : ""}`}>
+        <div
+          className={`column-2 bg-primary products ${
+            toggleCart ? "toggleOrderLeft" : "toggleOrderRight"
+          } ${togglePayment ? "togglePaymentRight" : ""}`}
+        >
           <div className="btn btn-primary btn-cart" onClick={onBtnCartClick}>
             <span className="total-cart center">{totalquantity}</span>
             <i className="fas fa-shopping-cart"></i>
@@ -292,8 +148,20 @@ export const Products = () => {
           </div>
           <div className="order-container">
             <div className="return" onClick={onBtnCartClick}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8.5 16.5L4 12M4 12L8.5 7.5M4 12L20 12" stroke="#3B5162" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.5 16.5L4 12M4 12L8.5 7.5M4 12L20 12"
+                  stroke="#3B5162"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
               <span>Regresar</span>
             </div>
@@ -325,7 +193,7 @@ export const Products = () => {
               <button
                 onClick={() => {
                   addToPay();
-                  setTooglePayment(true);
+                  toggleON();
                 }}
                 className="btn btn-primary"
               >
@@ -345,8 +213,9 @@ export const Products = () => {
                   <h3>Metodos de pagos</h3>
                   <ul className="list-payment-methods">
                     <li
-                      className={`payment-method ${activeClassPayment[Payment] === 15 ? "active" : ""
-                        }`}
+                      className={`payment-method ${
+                        activeClassPayment[Payment] === 15 ? "active" : ""
+                      }`}
                       onClick={() => {
                         setPayment("TARGETA");
                       }}
@@ -368,8 +237,9 @@ export const Products = () => {
                       <span>Tarjeta</span>
                     </li>
                     <li
-                      className={`payment-method ${activeClassPayment[Payment] === 5 ? "active" : ""
-                        }`}
+                      className={`payment-method ${
+                        activeClassPayment[Payment] === 5 ? "active" : ""
+                      }`}
                       onClick={() => {
                         setPayment("PAYPAL");
                       }}
@@ -392,9 +262,7 @@ export const Products = () => {
 
                       <span>Paypal</span>
                     </li>
-                    <li
-                      className="payment-method CONTRAENTREGA"
-                    >
+                    <li className="payment-method CONTRAENTREGA">
                       <svg
                         width="20"
                         height="20"
@@ -411,110 +279,30 @@ export const Products = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="payment-user-info">
-                  <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                      <label className="label">Nombre</label>
-                      <div className="input-container">
-                        <input
-                          type="text"
-                          name="fullname"
-                          className="input"
-                          placeholder="Su nombre"
-                          onChange={handleChange}
-                          value={Form.fullname}
-                        ></input>
-                      </div>
-                    </div>
-                    <div className="form-group">
-                      <label className="label">Apellidos</label>
-                      <div className="input-container">
-                        <input
-                          type="text"
-                          name="lastname"
-                          className="input"
-                          placeholder="Sus apellidos"
-                          onChange={handleChange}
-                          value={Form.lastname}
-                        ></input>
-                      </div>
-                    </div>
-                    <div className="form-group">
-                      <label className="label">Direccion</label>
-                      <div className="input-container">
-                        <input
-                          type="text"
-                          name="address"
-                          className="input"
-                          placeholder="Ejmp: Av. Faucett Cdr. 5"
-                          onChange={handleChange}
-                          value={Form.address}
-                        ></input>
-                      </div>
-                    </div>
-                    <div className="form-group">
-                      <label className="label">Telefono</label>
-                      <div className="input-container">
-                        <input
-                          type="number"
-                          name="phone"
-                          className="input"
-                          placeholder="Su Telefono"
-                          onChange={handleChange}
-                          value={Form.phone}
-                        ></input>
-                      </div>
-                    </div>
-
-                    {Loading && <Loader />}
-                    <button type="submit" className="btn btn-primary">
-                      confirmar datos
-                    </button>
-                    {Payment === "TARGETA" && (
-                      <div>
-                        <div className="form-group">
-                          <label className="label">Numero de tarjeta</label>
-                          <CustomCardNumber />
-                        </div>
-                        <div className="half-form">
-                          <div className="form-group">
-                            <label className="label">Fecha de expiracion</label>
-                            <CustomExpiry />
-                          </div>
-                          <div className="form-group">
-                            <label className="label">Codigo CVC</label>
-                            <CustomCardCvc />
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </form>
-                </div>
+                <ProfileForm
+                  Payment={Payment}
+                  subtotal={subtotal}
+                  item={cart}
+                  purchase_units={purchase_units}
+                />
               </div>
             </div>
             <div className="btn-container">
               <button
                 type="button"
                 className="btn btn-secondary"
-                onClick={() => toggle()}
+                onClick={() => toggleOff()}
               >
                 Cancelar
               </button>
-              {Payment === "PAYPAL" && (
-                <PayPalButton
-                  createOrder={(data, actions) => createOrder(data, actions)}
-                  onApprove={(data, actions) => onApprove(data, actions)}
-                />
-              )}
-              {Payment === "TARGETA" && (
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => cardPayment()}
-                >
-                  Pagar con visa
-                </button>
-              )}
+              <Link to="/notifications">
+              <button
+                type="button"
+                className="btn btn-secondary"
+              >
+                Ver mis pedidos
+              </button>
+              </Link>
             </div>
           </div>
         </div>

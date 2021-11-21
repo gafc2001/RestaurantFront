@@ -50,11 +50,8 @@ export const LoginUser = () => {
         },
       })
       .then((res) => {
-        if (res.err || res.message === "Bad credentials") {
-          setLoading(false)
-          setError(true);
-          return
-        } else {
+        console.log(res)
+        if (res.username) {
           sessionStorage.setItem("id", res.id);
           sessionStorage.setItem("email", res.email);
           sessionStorage.setItem("username", res.username);
@@ -63,6 +60,10 @@ export const LoginUser = () => {
           setError(false);
           setTimeout(() =>  setLoading(false), 3000);
           setTimeout(() =>   setUser(res) , 3500);
+          return
+        } else {
+          setLoading(false)
+          setError(true);
         }
       });
     }
