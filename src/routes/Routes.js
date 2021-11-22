@@ -35,7 +35,6 @@ const Routes = () => {
       <PrivateRoute path="/profile" component={Profile} />
       <Route exact path="/404" component={Error} />
       <Route
-       
         path="*"
         render={() => {
           return <Redirect to={isAuth ?'/home':'/login'} />;

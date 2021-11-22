@@ -168,6 +168,7 @@ const useFormPayment = (
           },
         })
         .then((res) => {
+          console.log(res)
           if (res.firstName) {
             if (Payment === "TARGETA") {
               cardPayment();
