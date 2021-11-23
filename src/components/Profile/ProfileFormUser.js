@@ -57,7 +57,6 @@ const ProfileFormUser = () => {
     handleChange,
     handleBlur,
     handleSubmit,
-    fileChange,
     handleEdit,
     handleReset,
   } = useProfile(initialForm, validationsForm);
@@ -148,12 +147,6 @@ const ProfileFormUser = () => {
               ></input>
               {errors.address && <p style={styles}>{errors.address}</p>}
             </div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="file" className="file-content">
-              <i className="fas fa-upload file-icon"></i> Subir una imagen...
-              <input type="file" name="file0" id="file" onChange={fileChange} />
-            </label>
           </div>
           <div className="btn-container">
             <button className="btn btn-primary" type="submit">

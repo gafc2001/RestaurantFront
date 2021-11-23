@@ -30,10 +30,7 @@ export const useProfile = (initialForm, validateForm) => {
     handleChange(e);
     setErrors(validateForm(form));
   };
-  const fileChange = (e) => {
-    let selectedFile = e.target.files[0];
-    setForm({ ...form, profilePicture: selectedFile });
-  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,30 +54,8 @@ export const useProfile = (initialForm, validateForm) => {
         })
         .then((res) => {
           if (!res.err) {
-            console.log(form.profilePicture);
-            if (form.profilePicture) {
-              //guardando imagenes
-              const formdata = new FormData();
-              formdata.append("file", form.profilePicture);
-              let requestOptions = {
-                body: formdata,
-                method: "POST",
-              };
-              fetch(`${URL.USERS_DB}/${idcli}/image`, requestOptions)
-                .then((resp) => resp)
-                .then((resp) => {
-                  console.log(resp);
-                  setResponse(true);
-                  setTimeout(() => setResponse(false), 5000);
-                })
-                .catch((error) =>
-                  console.log("ERROR NO REGISTRO LA IMAGEN", error)
-                );
-              return;
-            } else {
-              setResponse(true);
-              setTimeout(() => setResponse(false), 5000);
-            }
+            setResponse(true);
+            setTimeout(() => setResponse(false), 5000);
           }
         });
     } else {
@@ -105,8 +80,9 @@ export const useProfile = (initialForm, validateForm) => {
     handleChange,
     handleBlur,
     handleSubmit,
-    fileChange,
     handleEdit,
     handleReset,
   };
 };
+
+
