@@ -38,6 +38,9 @@ const ChangePassword = () => {
       <div className="form-group">
         <h4>Ingrese su contraseña </h4>
         <div className="input-container">
+          <div className="profile-icon center">
+            <i className="fas fa-user"></i>
+          </div>
           <input
             type="password"
             name="oldPassword"
@@ -50,9 +53,13 @@ const ChangePassword = () => {
           ></input>
         </div>
       </div>
+
       <div className="form-group">
         <h4>Ingresa su nueva contraseña</h4>
         <div className="input-container">
+          <div className="profile-icon center">
+            <i className="fas fa-user"></i>
+          </div>
           <input
             type="password"
             name="newPassword"
@@ -68,6 +75,9 @@ const ChangePassword = () => {
       <div className="form-group">
         <h4>Confirme su contraseña</h4>
         <div className="input-container">
+          <div className="profile-icon center">
+            <i className="fas fa-user"></i>
+          </div>
           <input
             type="password"
             name="passwordConfirmation"
@@ -84,7 +94,9 @@ const ChangePassword = () => {
         <button className="btn btn-primary" type="submit">
           Guardar
         </button>
-        <li className="btn btn-secondary" onClick={()=>setForm(initialForm)}>cancelar</li>
+        <li className="btn btn-secondary" onClick={() => setForm(initialForm)}>
+          cancelar
+        </li>
       </div>
     </form>
   );
