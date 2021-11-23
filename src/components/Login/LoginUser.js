@@ -64,6 +64,7 @@ export const LoginUser = () => {
         } else {
           setLoading(false)
           setError(true);
+          setTimeout(() =>   setError(false) , 3500);
         }
       });
     }

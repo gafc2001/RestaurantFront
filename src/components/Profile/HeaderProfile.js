@@ -1,5 +1,4 @@
-import { $ } from "dom7";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { URL } from "../../api/apiDB";
 import { Message } from "../Dashboard/Message";
 const idcli = sessionStorage.getItem("id");
@@ -7,12 +6,6 @@ const HeaderProfile = () => {
   const [imgPreview, setImgPreview] = useState(null);
   const [error, setError] = useState(false);
   const [img, setImg] = useState(null)
-  // useEffect(() => {
-  //   effect
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, [input])
 
   const HandleImagefile = (e) => {
     let selected = e.target.files[0];

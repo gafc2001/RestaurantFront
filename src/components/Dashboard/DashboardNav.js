@@ -38,6 +38,17 @@ const DashboardNav = () => {
               </div>
             </li>
           </Link>
+          <Link to="/maindashboard/dashboard/usuarios">
+            <li className="navbar-item">
+              <span className="navbar-icon">
+                <i className="fas fa-tags"></i>
+              </span>
+              <div className="navbar-content">
+                <span className="name-item">Listado de usuarios</span>
+                <span className="desc-item">Actualizar Rol</span>
+              </div>
+            </li>
+          </Link>
         </ul>
       </nav>
     </>
