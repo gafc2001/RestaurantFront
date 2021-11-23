@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { URL } from "../../api/apiDB";
+import { Message } from "../Dashboard/Message";
 import { helpHttp } from "../helpers/helpHttp";
 const initialForm = {
   oldPassword: "",
@@ -9,6 +10,8 @@ const initialForm = {
 const idcli = sessionStorage.getItem("id");
 const ChangePassword = () => {
   const [form, setForm] = useState(initialForm);
+  const [message, setMessage] = useState(false)
+  const [error, setError] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +24,10 @@ const ChangePassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(form.newPassword!==form.passwordConfirmation){
+      alert("los contraseñas no coinciden iguales")
+      return
+    }
     helpHttp()
       .post(`${URL.PASSWORD_CHANGE}/${idcli}/password`, {
         body: form,
@@ -30,11 +37,20 @@ const ChangePassword = () => {
         },
       })
       .then((res) => {
-        console.log(res);
+        if(res.message){
+          setMessage(true)
+          setTimeout(() => setMessage(false), 5000);
+          return
+        }else{
+          setError(true)
+          setTimeout(() => setError(false), 5000);
+        }
       });
   };
   return (
     <form className="profile-details section" onSubmit={handleSubmit}>
+      {message&&<Message msg="la contraseña ha sido cambiada" bgColor="#198754" />}
+      {error&&<Message msg="La contraseña es incorrecta" bgColor="#dc3545" />}
       <div className="form-group">
         <h4>Ingrese su contraseña </h4>
         <div className="input-container">
@@ -53,7 +69,6 @@ const ChangePassword = () => {
           ></input>
         </div>
       </div>
-
       <div className="form-group">
         <h4>Ingresa su nueva contraseña</h4>
         <div className="input-container">

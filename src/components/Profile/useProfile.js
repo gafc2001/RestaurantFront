@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { URL } from "../../api/apiDB";
 import { helpHttp } from "../helpers/helpHttp";
-export const useProfile = (initialForm, validateForm,checkout) => {
+export const useProfile = (initialForm, validateForm) => {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState(false);
   const [Error, setError] = useState(false);
+  const [checkout, setCheckout] = useState(false);
+
   const idcli = sessionStorage.getItem("id");
   useEffect(() => {
     helpHttp()
@@ -40,7 +41,6 @@ export const useProfile = (initialForm, validateForm,checkout) => {
 
     if (Object.keys(errors).length === 0) {
       alert("Enviando Cambios");
-      setLoading(true);
       let dataClient = {
         firstName: form.firstName,
         lastName: form.lastName,
@@ -57,7 +57,7 @@ export const useProfile = (initialForm, validateForm,checkout) => {
         })
         .then((res) => {
           if (!res.err) {
-              console.log(form.profilePicture)
+            console.log(form.profilePicture);
             if (form.profilePicture) {
               //guardando imagenes
               const formdata = new FormData();
@@ -68,13 +68,18 @@ export const useProfile = (initialForm, validateForm,checkout) => {
               };
               fetch(`${URL.USERS_DB}/${idcli}/image`, requestOptions)
                 .then((resp) => resp)
-                .then((resp) => alert("Imagen cambiada y datos actualizados"))
+                .then((resp) => {
+                  console.log(resp);
+                  setResponse(true);
+                  setTimeout(() => setResponse(false), 5000);
+                })
                 .catch((error) =>
                   console.log("ERROR NO REGISTRO LA IMAGEN", error)
                 );
               return;
-            }else{
-                alert("datos actualizados")
+            } else {
+              setResponse(true);
+              setTimeout(() => setResponse(false), 5000);
             }
           }
         });
@@ -82,16 +87,26 @@ export const useProfile = (initialForm, validateForm,checkout) => {
       return;
     }
   };
+  const handleEdit = () => {
+    setCheckout(true);
+  };
+
+  const handleReset = () => {
+    setErrors({});
+    setCheckout(false);
+  };
 
   return {
     form,
     Error,
     errors,
-    loading,
     response,
+    checkout,
     handleChange,
     handleBlur,
     handleSubmit,
     fileChange,
+    handleEdit,
+    handleReset,
   };
 };
