@@ -1,4 +1,5 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
+import ChangePassword from "./ChangePassword";
 import { useProfile } from "./useProfile";
 const initialForm = {
   firstName: "",
@@ -46,7 +47,6 @@ const validationsForm = (form) => {
   return errors;
 };
 
-
 const ProfileFormUser = () => {
   const [checkout, setCheckout] = useState(false);
   const {
@@ -59,187 +59,141 @@ const ProfileFormUser = () => {
     handleBlur,
     handleSubmit,
     fileChange,
-  } = useProfile(initialForm, validationsForm,checkout);
-
-  // const [form, setForm] = useState(initialForm);
-
-  // useEffect(() => {
-  //   helpHttp()
-  //     .get(`${URL.USERS_DB}/${idcli}/profile`)
-  //     .then((res) => {
-  //       setForm(res);
-  //     });
-  // }, []);
-
-  // const handleChange = (e) => {
-  //   setForm({
-  //     ...form,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-  // const fileChange = (e) => {
-  //   let selectedFile = e.target.files[0];
-  //   setForm({ ...form, profilePicture: selectedFile });
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   let dataClient = {
-  //     firstName: form.firstName,
-  //     lastName: form.lastName,
-  //     phoneNumber: form.phoneNumber,
-  //     address: form.address,
-  //   };
-  //   helpHttp()
-  //     .post(`${URL.USERS_DB}/${idcli}/profile`, {
-  //       body: dataClient,
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Accept: "application/json",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       if (!res.err) {
-  //         if (form.profilePicture) {
-  //           //guardando imagenes
-  //           const formdata = new FormData();
-  //           formdata.append("file", form.profilePicture);
-  //           let requestOptions = {
-  //             body: formdata,
-  //             method: "POST",
-  //           };
-  //           fetch(`${URL.USERS_DB}/${idcli}/image`, requestOptions)
-  //             .then((resp) => resp)
-  //             .then((resp) => console.log(resp))
-  //             .catch((error) =>
-  //               console.log("ERROR NO REGISTRO LA IMAGEN", error)
-  //             );
-  //           return;
-  //         }
-  //       }
-  //     });
-  // };
+  } = useProfile(initialForm, validationsForm, checkout);
 
   return (
     <main className="profile-details section">
       <form onSubmit={handleSubmit}>
-        <div className="profile-item mb-1">
-          <div className="profile-icon center">
-            <i className="fas fa-user"></i>
-          </div>
-          {checkout ? (
-            <div className="form-group">
-              <h4>Nombres</h4>
-              <div className="input-container">
-                <input
-                  type="text"
-                  name="firstName"
-                  className="input"
-                  placeholder="Su nombre"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={form.firstName}
-                  required
-                  autoComplete="off"
-                ></input>
-                 {errors.firstName && <p style={styles}>{errors.firstName}</p>}
+        {checkout ? (
+          <div className="form-group">
+            <h4>Nombres</h4>
+            <div className="input-container">
+              <div className="profile-icon center">
+                <i className="fas fa-user"></i>
               </div>
+              <input
+                type="text"
+                name="firstName"
+                className="input"
+                placeholder="Su nombre"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={form.firstName}
+                required
+                autoComplete="off"
+              ></input>
+              {errors.firstName && <p style={styles}>{errors.firstName}</p>}
             </div>
-          ) : (
+          </div>
+        ) : (
+          <div className="profile-item mb-1">
+            <div className="profile-icon center">
+              <i className="fas fa-user"></i>
+            </div>
             <div className="profile-detail">
               <h4>Nombres</h4>
               <span className="profile-value">{form.firstName}</span>
             </div>
-          )}
-        </div>
-        <div className="profile-item mb-1">
-          <div className="profile-icon center">
-            <i className="fas fa-user"></i>
           </div>
+        )}
 
-          {checkout ? (
-            <div className="form-group">
-              <h4>Apellidos</h4>
-              <div className="input-container">
-                <input
-                  type="text"
-                  name="lastName"
-                  className="input"
-                  placeholder="Su Apellidos"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={form.lastName}
-                  required
-                  autoComplete="off"
-                ></input>
-                 {errors.lastName && <p style={styles}>{errors.lastName}</p>}
+        {checkout ? (
+          <div className="form-group">
+            <h4>Apellidos</h4>
+            <div className="input-container">
+              <div className="profile-icon center">
+                <i className="fas fa-user"></i>
               </div>
+              <input
+                type="text"
+                name="lastName"
+                className="input"
+                placeholder="Su Apellidos"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={form.lastName}
+                required
+                autoComplete="off"
+              ></input>
+              {errors.lastName && <p style={styles}>{errors.lastName}</p>}
             </div>
-          ) : (
+          </div>
+        ) : (
+          <div className="profile-item mb-1">
+            <div className="profile-icon center">
+              <i class="fas fa-user"></i>
+            </div>
             <div className="profile-detail">
               <h4>Apellidos</h4>
               <span className="profile-value">{form.lastName}</span>
             </div>
-          )}
-        </div>
-        <div className="profile-item mb-1">
-          <div className="profile-icon center">
-            <i className="fas fa-phone"></i>
           </div>
-          {checkout ? (
-            <div className="form-group">
-              <h4>Telefono</h4>
-              <div className="input-container">
-                <input
-                  type="number"
-                  name="phoneNumber"
-                  className="input"
-                  placeholder="Su telefono"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={form.phoneNumber}
-                  required
-                  autoComplete="off"
-                ></input>
-                  {errors.phoneNumber && <p style={styles}>{errors.phoneNumber}</p>}
+        )}
+
+        {checkout ? (
+          <div className="form-group">
+            <h4>Telefono</h4>
+            <div className="input-container">
+              <div className="profile-icon center">
+                <i className="fas fa-phone"></i>
               </div>
+              <input
+                type="number"
+                name="phoneNumber"
+                className="input"
+                placeholder="Su telefono"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={form.phoneNumber}
+                required
+                autoComplete="off"
+              ></input>
+              {errors.phoneNumber && <p style={styles}>{errors.phoneNumber}</p>}
             </div>
-          ) : (
+          </div>
+        ) : (
+          <div className="profile-item mb-1">
+            <div className="profile-icon center">
+              <i class="fas fa-phone"></i>
+            </div>
             <div className="profile-detail">
               <h4>Telefono</h4>
               <span className="profile-value">{form.phoneNumber}</span>
             </div>
-          )}
-        </div>
-        <div className="profile-item mb-1">
-          <div className="profile-icon center">
-            <i className="fas fa-house-user"></i>
           </div>
-          {checkout ? (
-            <div className="form-group">
-              <h4>Direccion</h4>
-              <div className="input-container">
-                <input
-                  type="text"
-                  name="address"
-                  className="input"
-                  placeholder="Su direccion"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={form.address}
-                  required
-                  autoComplete="off"
-                ></input>
-                    {errors.address && <p style={styles}>{errors.address}</p>}
+        )}
+        {checkout ? (
+          <div className="form-group">
+            <h4>Direccion</h4>
+            <div className="input-container">
+              <div className="profile-icon center">
+                <i className="fas fa-house-user"></i>
               </div>
+              <input
+                type="text"
+                name="address"
+                className="input"
+                placeholder="Su direccion"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={form.address}
+                required
+                autoComplete="off"
+              ></input>
+              {errors.address && <p style={styles}>{errors.address}</p>}
             </div>
-          ) : (
+          </div>
+        ) : (
+          <div className="profile-item mb-1">
+            <div className="profile-icon center">
+              <i class="fas fa-house-user"></i>
+            </div>
             <div className="profile-detail">
               <h4>Direccion</h4>
               <span className="profile-value">{form.address}</span>
             </div>
-          )}
-        </div>
+          </div>
+        )}
         {checkout && (
           <div className="profile-item mb-1">
             <div className="profile-icon center">
@@ -307,3 +261,62 @@ export default ProfileFormUser;
             <span className="profile-value">ANCON PAMPLONA PIEDRAS GORDAS</span>
           </div>
         </div> */
+        
+  // const [form, setForm] = useState(initialForm);
+
+  // useEffect(() => {
+  //   helpHttp()
+  //     .get(`${URL.USERS_DB}/${idcli}/profile`)
+  //     .then((res) => {
+  //       setForm(res);
+  //     });
+  // }, []);
+
+  // const handleChange = (e) => {
+  //   setForm({
+  //     ...form,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+  // const fileChange = (e) => {
+  //   let selectedFile = e.target.files[0];
+  //   setForm({ ...form, profilePicture: selectedFile });
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   let dataClient = {
+  //     firstName: form.firstName,
+  //     lastName: form.lastName,
+  //     phoneNumber: form.phoneNumber,
+  //     address: form.address,
+  //   };
+  //   helpHttp()
+  //     .post(`${URL.USERS_DB}/${idcli}/profile`, {
+  //       body: dataClient,
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //       },
+  //     })
+  //     .then((res) => {
+  //       if (!res.err) {
+  //         if (form.profilePicture) {
+  //           //guardando imagenes
+  //           const formdata = new FormData();
+  //           formdata.append("file", form.profilePicture);
+  //           let requestOptions = {
+  //             body: formdata,
+  //             method: "POST",
+  //           };
+  //           fetch(`${URL.USERS_DB}/${idcli}/image`, requestOptions)
+  //             .then((resp) => resp)
+  //             .then((resp) => console.log(resp))
+  //             .catch((error) =>
+  //               console.log("ERROR NO REGISTRO LA IMAGEN", error)
+  //             );
+  //           return;
+  //         }
+  //       }
+  //     });
+  // };

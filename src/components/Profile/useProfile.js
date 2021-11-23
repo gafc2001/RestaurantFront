@@ -57,6 +57,7 @@ export const useProfile = (initialForm, validateForm,checkout) => {
         })
         .then((res) => {
           if (!res.err) {
+              console.log(form.profilePicture)
             if (form.profilePicture) {
               //guardando imagenes
               const formdata = new FormData();
@@ -67,11 +68,13 @@ export const useProfile = (initialForm, validateForm,checkout) => {
               };
               fetch(`${URL.USERS_DB}/${idcli}/image`, requestOptions)
                 .then((resp) => resp)
-                .then((resp) => console.log(resp))
+                .then((resp) => alert("Imagen cambiada y datos actualizados"))
                 .catch((error) =>
                   console.log("ERROR NO REGISTRO LA IMAGEN", error)
                 );
               return;
+            }else{
+                alert("datos actualizados")
             }
           }
         });
