@@ -76,25 +76,18 @@ const HeaderProfile = () => {
   return (
     
     <header className="profile-header">
+      {imgPreview&&
       <Modal
           isOpen={modalIsOpen}
           style={customStyles}
           contentLabel="Picture"
       >
-          <PictureForm/>
-      </Modal>
+          <PictureForm imgPreview={imgPreview} ImageSubmit={ImageSubmit} setImgPreview={setImgPreview} HandleImagefile={HandleImagefile}/>
+      </Modal>}
       <div className="profile-image-container">
         {!imgPreview && (
           <>
-            <label htmlFor="file" >
-              <i ></i> Subir una imagen...
-              <input
-                type="file"
-                name="file0"
-                id="file"
-                onChange={HandleImagefile}
-              />
-            </label>
+
             <img src={`${URL.USERS_DB}/${idcli}/image`} />
             <span className="edit center" onClick={()=>setIsOpen(true)}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
