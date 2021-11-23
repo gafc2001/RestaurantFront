@@ -25,12 +25,15 @@
     width: 7rem;
     height: 7rem;
 }
-.sidebar-item span{
+.sidebar-item span {
     border-radius: 1rem;
     width: 5rem;
     height: 5rem;
 }
-
+.sidebar-item span svg{
+    width: 3.2rem;   
+    height: 3.2rem;
+}
 .sidebar-item path{
     fill: var(--primary-color);
 }
