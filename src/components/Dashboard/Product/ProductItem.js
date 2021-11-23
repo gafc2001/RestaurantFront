@@ -93,7 +93,7 @@ export const ProductItem = ({
         // onAfterOpen={afterOpenModal}
         //onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
+        contentLabel="Producto"
       >
         <ModalForm
           createData={createData}

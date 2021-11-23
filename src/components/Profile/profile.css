@@ -8,6 +8,7 @@
     align-items: center;
 }
 .profile-image-container{
+    position: relative;
     width:20rem;
     height:20rem;
     margin-right: 1rem;
@@ -59,4 +60,20 @@
 }
 .profile-item .profile-value{
     color : var(--text-light);
+}
+.edit{
+    width: 5rem;
+    height:5rem;
+    position: absolute;
+    bottom: 0rem;
+    right: 0;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+}
+.edit svg{
+    width:3.5rem;
+    height: 3.5rem;
+}
+.edit svg path{
+    fill: var(--text-white);
 }
