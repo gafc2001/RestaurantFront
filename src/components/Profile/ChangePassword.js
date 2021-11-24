@@ -7,7 +7,7 @@ const initialForm = {
   newPassword: "",
   passwordConfirmation: "",
 };
-const idcli = sessionStorage.getItem("id");
+
 const ChangePassword = () => {
   const [form, setForm] = useState(initialForm);
   const [message, setMessage] = useState(false)
@@ -29,7 +29,7 @@ const ChangePassword = () => {
       return
     }
     helpHttp()
-      .post(`${URL.PASSWORD_CHANGE}/${idcli}/password`, {
+      .post(`${URL.PASSWORD_CHANGE}/${sessionStorage.getItem("id")}/password`, {
         body: form,
         headers: {
           "Content-Type": "application/json",

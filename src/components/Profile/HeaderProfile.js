@@ -6,7 +6,6 @@ import PictureForm from "./PictureForm";
 
 Modal.setAppElement("#root");
 
-const idcli = sessionStorage.getItem("id");
 const HeaderProfile = () => {
   const [imgPreview, setImgPreview] = useState(null);
   const [error, setError] = useState(false);
@@ -64,7 +63,7 @@ const HeaderProfile = () => {
         body: data,
         method: "POST",
       };
-      fetch(`${URL.USERS_DB}/${idcli}/image`, requestOptions)
+      fetch(`${URL.USERS_DB}/${sessionStorage.getItem("id")}/image`, requestOptions)
         .then((resp) => resp)
         .then((resp) => {
           console.log(resp);
@@ -87,7 +86,7 @@ const HeaderProfile = () => {
       </Modal>
       {!imgPreview && (
         <div className="profile-image-container">
-          <img src={`${URL.USERS_DB}/${idcli}/image`} />
+          <img src={`${URL.USERS_DB}/${sessionStorage.getItem("id")}/image`} />
           <span className="edit center" onClick={() => setIsOpen(true)}>
             <svg
               width="24"

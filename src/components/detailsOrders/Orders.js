@@ -11,7 +11,7 @@ const Orders = () => {
   const [db, setDb] = useState([]);
   const [Newdb, setNewdb] = useState([]);
   const [Error, setError] = useState(null);
-  let iduser = sessionStorage.getItem("id");
+
 
   useEffect(() => {
     helpHttp()

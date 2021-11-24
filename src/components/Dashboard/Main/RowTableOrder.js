@@ -30,4 +30,4 @@ const RowTableOrder = ({report}) => {
 }
 
 export default RowTableOrder
-//{`https://restaurantrestapi.herokuapp.com/api/users/${user.idUser}/image`}
+

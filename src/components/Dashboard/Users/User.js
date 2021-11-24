@@ -25,15 +25,14 @@ export const User = () => {
           </div>
         </div>
       </header>
-
       <div className="table-container">
         <h3 className="title">Usuarios</h3>
         <table className="table-content">
           <thead className="thead">
             <tr>
               <th>Nombre usuario</th>
-              <th>estado</th>
-              <th>Rol</th>
+              <th>rol</th>
+              <th>direccion</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -81,14 +80,20 @@ export const User = () => {
               <td>Nombre</td>
               <td>estado</td>
               <td>Rol</td>
-              <div className="select-container">
-                <select className="select-form">
-                  <option>Seleccione</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                </select>
-              </div>
+
+              <td className="table-buttons">
+                <div className="select-container">
+                  <span className="table-btn-edit">
+                    <i className="fas fa-edit"></i>
+                  </span>
+                  <select className="select-form">
+                    <option>Seleccione</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                  </select>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>

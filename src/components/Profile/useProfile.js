@@ -8,12 +8,14 @@ export const useProfile = (initialForm, validateForm) => {
   const [Error, setError] = useState(false);
   const [checkout, setCheckout] = useState(false);
 
-  const idcli = sessionStorage.getItem("id");
+
   useEffect(() => {
     helpHttp()
-      .get(`${URL.USERS_DB}/${idcli}/profile`)
+      .get(`${URL.USERS_DB}/${sessionStorage.getItem("id")}/profile`)
       .then((res) => {
-        setForm(res);
+        if(!res.err){
+          setForm(res)
+        }
       });
   }, [checkout]);
 
@@ -45,7 +47,7 @@ export const useProfile = (initialForm, validateForm) => {
         address: form.address,
       };
       helpHttp()
-        .post(`${URL.USERS_DB}/${idcli}/profile`, {
+        .post(`${URL.USERS_DB}/${sessionStorage.getItem("id")}/profile`, {
           body: dataClient,
           headers: {
             "Content-Type": "application/json",
