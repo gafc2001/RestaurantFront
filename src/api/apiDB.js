@@ -1,5 +1,5 @@
-//const sourceURL="http://localhost:8080";
-const sourceURL="https://restaurantrestapi.herokuapp.com";
+const sourceURL="http://localhost:8080";
+// const sourceURL="https://restaurantrestapi.herokuapp.com";
 export const URL ={
     PRODUCT_DB:`${sourceURL}/api/products`,
     ALL_ORDERS:`${sourceURL}/api/order`,

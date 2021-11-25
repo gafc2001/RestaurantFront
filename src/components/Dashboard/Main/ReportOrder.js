@@ -66,22 +66,24 @@ export const ReportOrder = () => {
       </header>
       {Loading && <Loader />}
       {Error && <Message msg="No se encontraron registros" bgColor="#EA7C69" />}
-      <table className="dashboard-table">
-        <thead className="table-header">
-          <tr className="table-row">
-            <th className="customer-col">Cliente</th>
-            <th className="order-col">Orden</th>
-            <th className="total-col">Total</th>
-            <th className="status-col">Estado</th>
-          </tr>
-        </thead>
-        <tbody className="table-body">
-          {db &&
-            db.map((reportorder, index) => (
-              <RowTableOrder key={index} report={reportorder} />
-            ))}
-        </tbody>
-      </table>
+      <div className="table-scroll">
+        <table className="dashboard-table">
+          <thead className="table-header">
+            <tr className="table-row">
+              <th className="customer-col">Cliente</th>
+              <th className="order-col">Orden</th>
+              <th className="total-col">Total</th>
+              <th className="status-col">Estado</th>
+            </tr>
+          </thead>
+          <tbody className="table-body">
+            {db &&
+              db.map((reportorder, index) => (
+                <RowTableOrder key={index} report={reportorder} />
+              ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
