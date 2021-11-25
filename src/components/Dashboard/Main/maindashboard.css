@@ -1,15 +1,31 @@
 /* Col-1  */
+.recharts-wrapper{
+    width:100%!important;
+    height:100%!important;
+}
+.recharts-wrapper svg{
+    width:100%!important;
+    height:100%!important;
+}
+.parent.dashboard{
+    flex-wrap: wrap;
+}
+.dashboard .column-1{
+    min-width: 60rem;
+}
+.parent.dashboard .column-2 .height-100{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2rem;
+}
 .total-summary{
     margin-bottom: 1rem;
 }
 .total-summary-item {
     padding: 1.6rem;
-    margin-right: 1rem;
-    min-width:10rem;
-    /* width: 20rem; */
-}
-.total-summary-item:last-of-type{
-    margin-right:0;
+    /* min-width:10rem; */
+    /* max-width: 23.5rem; */
+    width: 20rem;
 }
 .total-header{
     display: flex;
@@ -80,14 +96,33 @@
 .dashboard-table {
     color: var(--text-white);
     width: 100%;
+    min-width: 70rem;
     font-size: 1.4rem;
     font-weight: var(--text-bold);
+}
+.box-scroll{
+    width: 100%;
+    min-width: 30rem;
+    overflow-x: scroll;
+}
+.table-scroll{
+    overflow-x:scroll;
 }
 .table-header{
     font-weight: var(--text-bold);
 }
 .table-body{
+    display: block;
+    min-height: 30rem;
+    max-height: 50vh;
+    overflow-y: scroll;
     color: var(--text-light);
+}
+
+.table-header, .table-body .row{
+    display: table;
+    table-layout: fixed;
+    width: 100%;
 }
 .table-row .customer-col{
     width: 25%;
@@ -153,6 +188,8 @@
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--form-border);
     color: var(--text-white);
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 .summary-title{
     font-size: 1.6rem;
@@ -160,6 +197,11 @@
 }
 .summary-content{
     padding: 1rem 0;
+}
+.summary-content.product{
+    width: 100%;
+    max-height: 25rem;
+    overflow-y: scroll;
 }
 .summary-item {
     display:flex;
@@ -178,4 +220,18 @@
 }
 .summary-product{
     width: 20%;
+}
+
+@media (max-width: 768px){
+    .dashboard .column-1{
+        min-width: 100%;
+        flex: 1;
+        width: 100%;
+    }
+    .parent.dashboard{
+        padding-right: 2rem;
+    }
+    .total-summary-item{
+        min-width:100%;
+    }
 }
