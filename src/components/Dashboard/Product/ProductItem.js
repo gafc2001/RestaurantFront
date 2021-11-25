@@ -43,10 +43,6 @@ export const ProductItem = ({
     
   }
 
-  // function afterOpenModal() {
-  //   setIsOpen(true);
-  // }
-
   function closeModal() {
     setIsOpen(false);
   }

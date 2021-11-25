@@ -5,8 +5,7 @@ const initialForm = {
   firstName: "",
   lastName: "",
   phoneNumber: "",
-  address: "",
-  profilePicture: null,
+  address: ""
 };
 const styles = {
   fontWeight: "bold",
@@ -17,7 +16,6 @@ const validationsForm = (form) => {
   let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
   let regexPhone = /^\d{9}$/;
   let regexAddress = /^.{1,255}$/;
-
   if (!form.firstName.trim()) {
     errors.firstName = "El campo 'Nombre' es requerido";
   } else if (!regexName.test(form.firstName.trim())) {

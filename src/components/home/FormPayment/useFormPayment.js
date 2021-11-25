@@ -158,9 +158,8 @@ const useFormPayment = (
 
     if (Object.keys(errors).length === 0) {
       setLoading(true);
-      const idcli = sessionStorage.getItem("id");
       helpHttp()
-        .post(`${URL.USERS_DB}/${idcli}/profile`, {
+        .post(`${URL.USERS_DB}/${sessionStorage.getItem("id")}/profile`, {
           body: form,
           headers: {
             "Content-Type": "application/json",
