@@ -30,7 +30,7 @@ const DashboardNav = () => {
           <Link to="/maindashboard/dashboard/statusorder">
             <li className="navbar-item">
               <span className="navbar-icon">
-                <i className="fas fa-tags"></i>
+                <i class="fas fa-clipboard-list"></i>
               </span>
               <div className="navbar-content">
                 <span className="name-item">Estados de las ordenes</span>
@@ -41,7 +41,7 @@ const DashboardNav = () => {
           <Link to="/maindashboard/dashboard/usuarios">
             <li className="navbar-item">
               <span className="navbar-icon">
-                <i className="fas fa-tags"></i>
+                <i class="fas fa-users-cog"></i>
               </span>
               <div className="navbar-content">
                 <span className="name-item">Listado de usuarios</span>
