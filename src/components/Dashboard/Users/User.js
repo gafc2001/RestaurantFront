@@ -1,11 +1,91 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { helpHttp } from "../../helpers/helpHttp";
+import { URL } from "../../../api/apiDB";
+import Moment from "react-moment";
 
+const initialCombo = {
+  role: "",
+};
 export const User = () => {
+  const [db, setDb] = useState([]);
+  const [combo, setCombo] = useState(initialCombo);
+  const [response, setResponse] = useState(false);
+  const [TableUser, setTableUser] = useState([]);
+  const [Busqueda, setBusqueda] = useState("");
+
+
+  useEffect(() => {
+    const getDataUsers = async () => {
+      await helpHttp()
+        .get(URL.USERS_DB)
+        .then((res) => {
+          if (res.length > 0) {
+            setDb(res);
+            setTableUser(res);
+          }
+        });
+    };
+    getDataUsers();
+  }, [response]);
+
+  const handleChange = (e) => {
+    setBusqueda(e.target.value);
+    filtrar(e.target.value);
+  };
+  const filtrar = (terminoBusqueda) => {
+    var resultado = TableUser.filter((el) => {
+      if (
+        el.username
+          .toString()
+          .toLowerCase()
+          .includes(terminoBusqueda.toLowerCase()) ||
+        el.email
+          .toString()
+          .toLowerCase()
+          .includes(terminoBusqueda.toLowerCase()) ||
+          el.roles[0].nameRole
+          .toString()
+          .toLowerCase()
+          .includes(terminoBusqueda.toLowerCase())
+      ) {
+        return el;
+      }
+    });
+    setDb(resultado);
+  };
+
+  const handleChangeSelect = (e) => {
+    console.log(combo);
+    setCombo({ ...combo, role: e.target.value });
+  };
+
+  const submitRol = (idUser) => {
+    if (!combo.role) {
+      alert("no ha seleccionado ningun rol");
+      return;
+    }
+    let options = {
+      body: combo,
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    };
+    helpHttp()
+      .post(`${URL.USERS_ROLES}/${idUser}`, options)
+      .then((res) => {
+        if (!res.err) {
+          alert("rol cambiado");
+          setResponse(!response);
+        }
+      });
+  };
+
   return (
     <>
       <header className="settings-header">
         <div className="settings-info">
-          <h3 className="settings-title">Administración Usuarios</h3>
+          <h3 className="settings-title">Administración de roles de usuario</h3>
           <div className="btn-filter center">
             <span>
               <svg
@@ -25,76 +105,64 @@ export const User = () => {
           </div>
         </div>
       </header>
+      <div className="content-form">
+        <div className="search-box">
+          <input
+            className="src"
+            type="text"
+            name="search"
+            placeholder="Buscar usuarios"
+            autoComplete="off"
+            value={Busqueda}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
       <div className="table-container">
         <h3 className="title">Usuarios</h3>
         <table className="table-content">
           <thead className="thead">
             <tr>
               <th>Nombre usuario</th>
-              <th>rol</th>
-              <th>direccion</th>
-              <th>Acciones</th>
+              <th>direccion Correo</th>
+              <th>Rol de usuario</th>
+              <th>Actualizado</th>
+              <th>Actualizar a:</th>
+              <th>Accion</th>
             </tr>
           </thead>
           <tbody className="tbody">
-            <tr>
-              <td>Nombre</td>
-              <td>estado</td>
-              <td>Rol</td>
-              <div className="select-container">
-                <select className="select-form">
-                  <option>Seleccione</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                </select>
-              </div>
-            </tr>
-            <tr>
-              <td>Nombre</td>
-              <td>estado</td>
-              <td>Rol</td>
-              <div className="select-container">
-                <select className="select-form">
-                  <option>Seleccione</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                </select>
-              </div>
-            </tr>
-            <tr>
-              <td>Nombre</td>
-              <td>estado</td>
-              <td>Rol</td>
-              <div className="select-container">
-                <select className="select-form">
-                  <option>Seleccione</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                </select>
-              </div>
-            </tr>
-            <tr>
-              <td>Nombre</td>
-              <td>estado</td>
-              <td>Rol</td>
-
-              <td className="table-buttons">
-                <div className="select-container">
-                  <span className="table-btn-edit">
-                    <i className="fas fa-edit"></i>
-                  </span>
-                  <select className="select-form">
-                    <option>Seleccione</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
+            {db.map((el) => (
+              <tr key={el.idUser}>
+                <td>{el.username}</td>
+                <td>{el.email}</td>
+                {el.roles[0].nameRole === "ROLE_ADMIN" ? (
+                  <td>ADMINISTRADOR</td>
+                ) : (
+                  <td>CLIENTE</td>
+                )}
+                <td>
+                  <Moment fromNow>{el.updatedAt}</Moment>
+                </td>
+                <td>
+                  <div className="select-container">
+                    <select
+                      className="select-form"
+                      onChange={handleChangeSelect}
+                    >
+                      <option value="" selected={`${response ? true : false}`}>
+                        Seleccione
+                      </option>
+                      <option value="admin">ADMIN</option>
+                      <option value="user">CLIENTE</option>
+                    </select>
+                  </div>
+                </td>
+                <td>
+                  <div onClick={() => submitRol(el.idUser)}>Cambiar</div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
