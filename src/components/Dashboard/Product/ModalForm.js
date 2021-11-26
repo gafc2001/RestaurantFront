@@ -87,9 +87,8 @@ export const ModalForm = ({
       !form.description ||
       form.category.idCategory === ""
     ) {
-      // alert("datos incompletos");
 
-      MySwal.fire("Good job!", "You clicked the button!", "success");
+      MySwal.fire("Cuidado", "Datos incompletos", "warning");
 
       return;
     }

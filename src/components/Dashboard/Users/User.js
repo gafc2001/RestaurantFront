@@ -65,8 +65,7 @@ export const User = () => {
 
   const submitRol = (idUser) => {
     if (!combo.role) {
-      // alert("no ha seleccionado ningun rol");
-      MySwal.fire("Good job!", "You clicked the button!", "success");
+      MySwal.fire("Cuidado", "No ha seleccionado ningun rol","warning");
       return;
     }
     let options = {
@@ -80,8 +79,7 @@ export const User = () => {
       .post(`${URL.USERS_ROLES}/${idUser}`, options)
       .then((res) => {
         if (!res.err) {
-          // alert("rol cambiado");
-          MySwal.fire("Good job!", "You clicked the button!", "success");
+          MySwal.fire("Listo", "Se cambio el rol", "success");
           setResponse(!response);
         }
       });

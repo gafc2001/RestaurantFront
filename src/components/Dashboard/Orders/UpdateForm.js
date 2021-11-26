@@ -49,9 +49,8 @@ const UpdateForm = ({ updateOrder, dataToEdit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.statusOrder || !form.idOrder) {
-      // alert("datos incompletos");
 
-      MySwal.fire("Good job!", "You clicked the button!", "success");
+      MySwal.fire("Cuidado", "Datos incompletos", "warning");
       return;
     }
     switch (form.statusOrder) {
@@ -83,9 +82,8 @@ const UpdateForm = ({ updateOrder, dataToEdit }) => {
         handleReset();
         break;
       case "COMPLETADO":
-        // alert("Este pedido a sido finalizado");
 
-        MySwal.fire("Good job!", "You clicked the button!", "success");
+        MySwal.fire("Listo", "Este pedido a sido finalizado", "success");
         handleReset();
         break;
       default:

@@ -40,9 +40,8 @@ export const CrudFormCategory = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.nameCategory || !form.description) {
-      // alert("datos incompletos");
 
-      MySwal.fire("Good job!", "You clicked the button!", "success");
+      MySwal.fire("Cuidado", "Datos incompletos", "warning");
       return;
     }
     //le pasamos los valores de estado de la variable form en las funciones create y update

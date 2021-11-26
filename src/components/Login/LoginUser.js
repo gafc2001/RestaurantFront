@@ -42,12 +42,7 @@ export const LoginUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.username || !form.password) {
-      // alert("datos incompletos");
-      MySwal.fire(
-        'Good job!',
-        'You clicked the button!',
-        'success'
-      )
+      MySwal.fire("Cuidado", "Datos incompletos", "warning");
       return;
     } else {
       setLoading(true);

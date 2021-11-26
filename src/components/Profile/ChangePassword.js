@@ -30,8 +30,7 @@ const ChangePassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (form.newPassword !== form.passwordConfirmation) {
-      // alert("los contraseñas no coinciden iguales");
-      MySwal.fire("Good job!", "You clicked the button!", "success");
+      MySwal.fire("Error", "Las contraseñas no coinciden", "error");
       return;
     }
     helpHttp()

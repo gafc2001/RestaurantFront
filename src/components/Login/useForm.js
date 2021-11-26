@@ -32,9 +32,8 @@ export const useForm = (initialForm, validateForm) => {
     setErrors(validateForm(form));
 
     if (Object.keys(errors).length === 0) {
-      // alert("Enviando Registro");
 
-      MySwal.fire("Good job!", "You clicked the button!", "success");
+      MySwal.fire("Enviando", "Enviando registro", "info");
       setLoading(true);
       helpHttp()
         .post(URL.SIGNUP_AUTH, {

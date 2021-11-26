@@ -56,8 +56,7 @@ const useFormPayment = (
   };
 
   const onError = (err) => {
-    // alert("Carrito vacio");
-    MySwal.fire("Good job!", "You clicked the button!", "success");
+    MySwal.fire("Carrito vacio", "LLene su carrito", "info");
     setCheckout(false);
   };
   const orderSubmit = () => {
@@ -88,8 +87,7 @@ const useFormPayment = (
           setLoading(false);
           setResponse("ex4");
           setTimeout(() => setResponse(null), 5000);
-          // alert("El pago fue realizado con éxito");
-          MySwal.fire("Good job!", "You clicked the button!", "success");
+          MySwal.fire("Pago realizado", "El pago fue realizado con éxito","success");
           setForm(initialForm);
           return;
         }
@@ -182,12 +180,7 @@ const useFormPayment = (
                 setTimeout(() => setCheckout(true), 3000);
                 return;
               }
-              // alert("Carrito Vacio");
-              MySwal.fire(
-                'Good job!',
-                'You clicked the button!',
-                'success'
-              )
+              MySwal.fire("Carrito vacio", "LLene su carrito", "info");
             } else {
               console.log("No ha seleccionado un tipo de pago");
             }
