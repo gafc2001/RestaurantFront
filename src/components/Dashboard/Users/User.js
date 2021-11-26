@@ -150,7 +150,7 @@ export const User = () => {
                       className="table select-form center"
                       onChange={handleChangeSelect}
                     >
-                      <option value="" disabled >
+                      <option value="" selected={`${response ? true : false}`} >
                         Seleccione
                       </option>
                       <option value="admin">ADMIN</option>

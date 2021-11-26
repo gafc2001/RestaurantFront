@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../sidebar/Sidebar";
 import { ws } from "../Socket/Socket";
 import "./chat.css";
+import { URL } from "../../api/apiDB";
 const Mainchat = () => {
 
     const [message, setMessage] = useState("");
@@ -127,7 +128,7 @@ const Mainchat = () => {
 
                                 <div key={i} className={`message ${e.sender == sessionStorage.getItem("id") ? "right" : "left"}`}>
                                     <div className="message-profile">
-                                        <img src="https://picsum.photos/id/1/200/200" />
+                                        <img src={`${URL.USERS_DB}/${e.sender}/image`} />
                                     </div>
                                     <div className="messages">
                                         <p className="message-text">

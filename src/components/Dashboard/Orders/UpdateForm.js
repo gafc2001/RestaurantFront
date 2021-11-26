@@ -100,11 +100,13 @@ const UpdateForm = ({ updateOrder, dataToEdit }) => {
             <label htmlFor="date">
               TELEFONO: {profile.phoneNumber}
             </label>
-            <label htmlFor="date">
-              ULTIMA ACTUALIZACION: <Moment fromNow>{form.updateAt}</Moment>
-            </label>
+
             <label htmlFor="date">
               DIRECCION: {profile.address}
+            </label>
+
+            <label htmlFor="date">
+              ULTIMA ACTUALIZACION: <Moment fromNow>{form.updateAt}</Moment>
             </label>
 
             <div className="Graphic-step">
