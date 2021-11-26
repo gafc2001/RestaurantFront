@@ -55,6 +55,14 @@
     padding: 0;
     list-style: none;
 }
+::-webkit-scrollbar{
+    background-color: var(--base-dark-secondary);
+    border-radius: 1rem;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--text-light);
+    border-radius:1rem;
+}
 img{
     max-width: 100%;
 }
@@ -74,6 +82,8 @@ button{
 }
 .d-flex{
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 .parent{
     position: relative;
@@ -81,6 +91,7 @@ button{
     overflow-x: hidden;
     display: flex;
     justify-content: space-between;
+    column-gap: 2rem;
 }
 .section{
     margin-top: 2rem;
@@ -189,7 +200,7 @@ button{
 }
 .column-2{
     flex: 2.5;
-    padding: 1rem 4rem;
+    padding: 1rem 0;
     color: var(--text-white);
 }
 .bg-primary{
@@ -203,6 +214,8 @@ button{
 .header-info{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 .page-info{
     display: flex;

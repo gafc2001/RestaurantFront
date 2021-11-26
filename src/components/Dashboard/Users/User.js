@@ -133,7 +133,7 @@ export const User = () => {
           </thead>
           <tbody className="tbody">
             {db.map((el) => (
-              <tr key={el.idUser}>
+              <tr key={el.idUser} >
                 <td>{el.username}</td>
                 <td>{el.email}</td>
                 {el.roles[0].nameRole === "ROLE_ADMIN" ? (
@@ -147,9 +147,7 @@ export const User = () => {
                 <td>
                   <div className="select-container">
                     <select
-                    defaultValue=""
-                   
-                      className="select-form"
+                      className="table select-form center"
                       onChange={handleChangeSelect}
                     >
                       <option value="" disabled >
@@ -161,7 +159,7 @@ export const User = () => {
                   </div>
                 </td>
                 <td>
-                  <div onClick={() => submitRol(el.idUser)}>Cambiar</div>
+                  <div className="edit-role center" onClick={() => submitRol(el.idUser)}><i class="fas fa-edit"></i></div>
                 </td>
               </tr>
             ))}

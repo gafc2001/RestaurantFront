@@ -14,7 +14,7 @@ const MainDashboard = () => {
   return (
     <>
       <Sidebar />
-      <div className="parent content">
+      <div className="parent content dashboard">
         <div className="column-1 ">
           <header className="header">
             <div className="header-info">

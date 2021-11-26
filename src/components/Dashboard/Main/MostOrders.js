@@ -48,28 +48,30 @@ export const MostOrders = () => {
     setCombo(cantDays);
   };
   return (
-    <div className="box-content summary-container">
-      <div className="summary">
-        <header className="filter-header">
-          <h4 className="summary-title">Mas ordenados</h4>
-          <select onChange={selectChange} className="select-form">
-            <option value="1">Más vendidos el último dia</option>
-            <option value="7">Más vendidos la última semana</option>
-            <option value="30">Más vendidos el último mes</option>
-            <option value="360">Más vendidos todo el año</option>
-          </select>
-        </header>
-        {Loading && <Loader />}
-        {Error && (
-          <Message msg="No se encontraron registros" bgColor="#EA7C69" />
-        )}
-        <div className="summary-content">
-          {db &&
-            db.map((order) => (
-              <Order key={order.product.idProduct} order={order} />
-            ))}
+    <div className="box-scroll">
+      <div className="box-content summary-container">
+        <div className="summary">
+          <header className="filter-header">
+            <h4 className="summary-title">Mas ordenados</h4>
+            <select onChange={selectChange} className="select-form">
+              <option value="1">Más vendidos el último dia</option>
+              <option value="7">Más vendidos la última semana</option>
+              <option value="30">Más vendidos el último mes</option>
+              <option value="360">Más vendidos todo el año</option>
+            </select>
+          </header>
+          {Loading && <Loader />}
+          {Error && (
+            <Message msg="No se encontraron registros" bgColor="#EA7C69" />
+          )}
+          <div className="summary-content product">
+            {db &&
+              db.map((order) => (
+                <Order key={order.product.idProduct} order={order} />
+              ))}
+          </div>
+          <div className="btn btn-secondary">Ver todos</div>
         </div>
-        <div className="btn btn-secondary">Ver todos</div>
       </div>
     </div>
   );
