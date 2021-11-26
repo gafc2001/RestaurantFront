@@ -70,7 +70,7 @@ export const ReportOrder = () => {
         <thead className="table-header">
           <tr className="table-row">
             <th className="customer-col">Cliente</th>
-            <th className="order-col">Orden</th>
+            <th className="order-col">Direccion</th>
             <th className="total-col">Total</th>
             <th className="status-col">Estado</th>
           </tr>

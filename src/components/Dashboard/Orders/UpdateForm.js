@@ -1,22 +1,41 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useEffect,useState } from 'react'
 import "moment/locale/es";
 import Moment from "react-moment";
 import StepNavegation from "./StepNavegation";
 import "./stepOrder.css";
+//para perfil
+import { URL } from "../../../api/apiDB";
+import { helpHttp } from "../../helpers/helpHttp";
+
 const initialForm = {
   idOrder: null,
   statusOrder: "",
 };
+const initialProfile = {
+  address: "",
+  firstName: "",
+  idProfile:null,
+  lastName:"",
+  phoneNumber:"",
+};
 
 const UpdateForm = ({ updateOrder, dataToEdit }) => {
   const [form, setform] = useState(initialForm);
+  const [profile, setProfile] = useState(initialProfile)
 
   const labelArray = ["PENDIENTE", "PREPARANDO", "ENVIANDO", "COMPLETADO"];
 
   useEffect(() => {
     if (dataToEdit) {
       setform(dataToEdit);
+              helpHttp()
+            .get(`${URL.USERS_DB}/${dataToEdit.user.idUser}/profile`)
+            .then((res) => {
+              if(!res.err){
+                setProfile(res)
+                console.log(res)
+              }
+            });
     } else {
       setform(initialForm);
     }
@@ -74,15 +93,18 @@ const UpdateForm = ({ updateOrder, dataToEdit }) => {
         {form.idOrder ? (
           <div className="form-group">
             <label htmlFor="idOrder">NUMERO DE ORDEN: {form.idOrder}</label>
-            <label htmlFor="client">CLIENTE: {form.user.username}</label>
+            <label htmlFor="client">CLIENTE: {`${profile.firstName} ${profile.lastName}  `}</label>
             <label htmlFor="statusOrder">
               ESTADO DEL PEDIDO: {form.statusOrder}
             </label>
             <label htmlFor="date">
-              FECHA DE CREACION: <Moment format="LL">{form.createdAt}</Moment>
+              TELEFONO: {profile.phoneNumber}
             </label>
             <label htmlFor="date">
               ULTIMA ACTUALIZACION: <Moment fromNow>{form.updateAt}</Moment>
+            </label>
+            <label htmlFor="date">
+              DIRECCION: {profile.address}
             </label>
 
             <div className="Graphic-step">

@@ -15,4 +15,6 @@ export const URL ={
     ORDERS_SUMARY:`${sourceURL}/api/order/summary`,
     ORDERS_DETAILS_SUMARY:`${sourceURL}/api/orderdetails/summary`,
     PASSWORD_CHANGE:`${sourceURL}/api/auth`,
-}
+}  
+
+

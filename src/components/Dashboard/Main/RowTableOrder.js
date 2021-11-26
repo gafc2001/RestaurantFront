@@ -3,7 +3,7 @@ import React from 'react'
 import { URL } from "../../../api/apiDB";
 
 const RowTableOrder = ({report}) => {
-    let {user,total,status,description} = report
+    let {user,total,status,address} = report
     let  style = {
       "COMPLETADO": "completed",
       "PENDIENTE": "pending",
@@ -19,9 +19,9 @@ const RowTableOrder = ({report}) => {
             <span>{user.username}</span>
           </td>
           <td className="order-col">
-            {description}
+            {address}
           </td>
-          <td className="total-col">{total}</td>
+          <td className="total-col">$ {total}</td>
           <td className="status-col">
           {style[status] && <span className={`color-status ${style[status]}`}>{status}</span>}
           </td>

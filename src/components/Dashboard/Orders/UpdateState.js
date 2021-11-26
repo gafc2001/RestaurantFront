@@ -4,7 +4,7 @@ import OrderTable from "./OrderTable";
 import UpdateForm from "./UpdateForm";
 import { URL } from "../../../api/apiDB";
 const UpdateState = () => {
-  const [db, setDb] = useState(null);
+  const [db, setDb] = useState([]);
   const [dataToEdit, setDataToEdit] = useState(null);
 
   //controlar respuestas del servidor
@@ -14,6 +14,7 @@ const UpdateState = () => {
       .then((res) => {
         if (!res.err) {
           setDb(res);
+          //console.log(res)
         } else {
           setDb(null);
         }
@@ -65,7 +66,7 @@ const UpdateState = () => {
         </div>
       </header>
       <UpdateForm updateOrder={updateOrder} dataToEdit={dataToEdit} />
-      {db && <OrderTable setDataToEdit={setDataToEdit} data={db} />}
+      {db && <OrderTable setDataToEdit={setDataToEdit}  data={db} />}
     </>
   );
 };

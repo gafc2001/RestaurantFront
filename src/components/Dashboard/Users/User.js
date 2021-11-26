@@ -147,10 +147,12 @@ export const User = () => {
                 <td>
                   <div className="select-container">
                     <select
+                    defaultValue=""
+                   
                       className="select-form"
                       onChange={handleChangeSelect}
                     >
-                      <option value="" selected={`${response ? true : false}`}>
+                      <option value="" disabled >
                         Seleccione
                       </option>
                       <option value="admin">ADMIN</option>

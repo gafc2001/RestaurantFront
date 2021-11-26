@@ -50,7 +50,6 @@ export const LoginUser = () => {
         },
       })
       .then((res) => {
-        console.log(res)
         if (res.username) {
           sessionStorage.setItem("id", res.id);
           sessionStorage.setItem("email", res.email);

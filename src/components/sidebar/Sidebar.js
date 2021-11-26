@@ -3,8 +3,10 @@ import { NavLink } from "react-router-dom";
 import "../sidebar/sidebar.css";
 import "../../assets/css/style.css";
 import logo from "../../assets/images/logo.png";
+import { isAuthenticated } from "../../auth/authentications";
 export default function Sidebar() {
   let role = sessionStorage.getItem("role");
+  let Auth=isAuthenticated();
   const logoutSession = () => {
     sessionStorage.removeItem("id");
     sessionStorage.removeItem("username");
@@ -99,7 +101,7 @@ export default function Sidebar() {
               </span>
             </li>
           </NavLink>
-          {role !== "ROLE_USER" && (
+          {Auth&&(role !== "ROLE_USER" && (
             <NavLink
               to="/maindashboard"
               className="sidebar-item center"
@@ -122,7 +124,7 @@ export default function Sidebar() {
                 </span>
               </li>
             </NavLink>
-          )}
+          ))}
 
           <NavLink
             to="/profile"
@@ -140,7 +142,7 @@ export default function Sidebar() {
               </span>
             </li>
           </NavLink>
-          <NavLink
+          {!Auth&&(<NavLink
             to="/login"
             className="sidebar-item center"
             activeClassName="sidebar-item-active"
@@ -156,8 +158,8 @@ export default function Sidebar() {
 
               </span>
             </li>
-          </NavLink>
-          <NavLink
+          </NavLink>)}
+          {Auth&&(<NavLink
             to="/"
             className="sidebar-item center"
             onClick={logoutSession}
@@ -170,7 +172,7 @@ export default function Sidebar() {
 
               </span>
             </li>
-          </NavLink>
+          </NavLink>)}
         </ul>
       </nav>
     </>

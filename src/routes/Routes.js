@@ -17,8 +17,10 @@ import OrderDetail from "../components/detailsOrders/OrderDetail";
 import {MainDashboard} from "../components/Dashboard/Main/MainDashboard";
 import {Profile} from "../components/Profile/Profile";
 import {Mainchat} from "../components/Chat/Mainchat";
+import { isAuthenticatedRol } from "../auth/authenticationsRol";
 const Routes = () => {
     const isAuth = isAuthenticated();
+  const isAuthRol =isAuthenticatedRol();
   return (
     <>
     
@@ -30,7 +32,9 @@ const Routes = () => {
       <PrivateRoute exact path='/notifications' component={Orders} />
       <PrivateRoute path="/notifications/order/:idorder" component={OrderDetail}/> 
       <PrivateRoute exact path="/message" component={Mainchat} />
+      {isAuthRol&&
       <PrivateRoute  path="/maindashboard/dashboard/:topic" component={Dashboard} />
+      }
       <PrivateRoute path="/maindashboard" component={MainDashboard} />
       <PrivateRoute path="/profile" component={Profile} />
       <Route exact path="/404" component={Error} />

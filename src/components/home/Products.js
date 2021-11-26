@@ -88,7 +88,7 @@ export const Products = () => {
   };
   const toggleON = () => {
     setTooglePayment(true);
-    setPayment("TARGETA")
+    //setPayment("TARGETA")
   };
 
 
@@ -135,7 +135,6 @@ export const Products = () => {
             </div>
           </main>
         </div>
-
         <div
           className={`column-2 bg-primary products ${
             toggleCart ? "toggleOrderLeft" : "toggleOrderRight"

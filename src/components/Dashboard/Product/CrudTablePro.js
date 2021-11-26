@@ -59,10 +59,7 @@ const CrudTablePro = ({
         </div>
         <Modal
           isOpen={modalIsOpen}
-          // onAfterOpen={afterOpenModal}
-          // onRequestClose={closeModal}
           style={customStyles}
-          contentLabel="Example Modal"
         >
           <ModalForm
             createData={createData}
@@ -84,9 +81,7 @@ const CrudTablePro = ({
             />
           ))
         ) : (
-          <tr>
             <h3>Sin datos</h3>
-          </tr>
         )}
       </div>
     </>

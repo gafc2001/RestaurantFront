@@ -319,7 +319,7 @@ const HomeView = () => {
               Products.map((product) => (
                 <div key={product.idProduct} className="card">
                   <img
-                    src={`https://restaurantrestapi.herokuapp.com/api/products/${product.idProduct}/image`}
+                    src={`${URL.PRODUCT_DB}/${product.idProduct}/image`}
                     alt={product.nameProduct}
                   />
                   <div className="contenido-texto-card">

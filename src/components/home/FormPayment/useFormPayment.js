@@ -25,6 +25,7 @@ const useFormPayment = (
   useEffect(() => {
     setForm(initialForm);
     setErrors({})
+    setCheckout(false)
     return () => {
       clearTimeout()
     }
@@ -173,6 +174,7 @@ const useFormPayment = (
               cardPayment();
             } else if (Payment === "PAYPAL") {
               if (item.length > 0) {
+                setLoading(false);
                 setTimeout(() => setCheckout(true), 3000);
                 return;
               }
