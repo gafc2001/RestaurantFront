@@ -1,7 +1,7 @@
-//const sourceURL="http://localhost:8080";
-//const URLSOCKET="//localhost:8080"
-const sourceURL="https://restaurantrestapi.herokuapp.com";
-const URLSOCKET="//restaurantrestapi.herokuapp.com";
+const sourceURL="http://localhost:8080";
+const URLSOCKET="//localhost:8080"
+//const sourceURL="https://restaurantrestapi.herokuapp.com";
+//const URLSOCKET="//restaurantrestapi.herokuapp.com";
 export const URL ={
     SOCKET:URLSOCKET,
     PRODUCT_DB:`${sourceURL}/api/products`,

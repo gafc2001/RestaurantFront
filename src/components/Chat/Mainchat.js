@@ -21,7 +21,7 @@ const Mainchat = () => {
   const [toggleChat, setToggleChat] = useState(false);
   const [Chatuser, setChatuser] = useState(initialChatUser);
   const [Receptor, setReceptor] = useState(initialReceptor);
-  const [Emisor, setEmisor] = useState(initialReceptor)
+  const [Emisor, setEmisor] = useState(initialReceptor);
 
 
 useEffect(() => {
@@ -29,9 +29,7 @@ useEffect(() => {
       .get(`${URL.USERS_DB}/${sessionStorage.getItem("id")}/profile`)
       .then((res) => {
         if(!res.err){
-            console.log(res)
             setEmisor({...Emisor,firstName:res.firstName,lastName:res.lastName,iduser:sessionStorage.getItem("id")})
-        console.log(Emisor)
         }
         
       });
