@@ -23,20 +23,6 @@ const Mainchat = () => {
   const [Receptor, setReceptor] = useState(initialReceptor);
   const [Emisor, setEmisor] = useState(initialReceptor)
 
-  useEffect(() => {
-      console.log(Chatuser.sender)
-    if(Chatuser.sender != sessionStorage.getItem("id")){
-        helpHttp()
-        .get(`${URL.USERS_DB}/${Chatuser.sender}/profile`)
-        .then((res) => {
-          if(!res.err){
-            setReceptor({...Receptor,firstName:res.firstName,lastName:res.lastName,iduser:Chatuser.sender})
-
-          }
-        });
-    }
-}, [Chatuser])
-
 
 useEffect(() => {
       helpHttp()
@@ -50,6 +36,20 @@ useEffect(() => {
         
       });
 }, [])
+
+useEffect(() => {
+    if(Chatuser.sender != sessionStorage.getItem("id")){
+        helpHttp()
+        .get(`${URL.USERS_DB}/${Chatuser.sender}/profile`)
+        .then((res) => {
+          if(!res.err){
+            setReceptor({...Receptor,firstName:res.firstName,lastName:res.lastName,iduser:Chatuser.sender})
+
+          }
+        });
+    }
+}, [Chatuser])
+
 
 
   ws.onopen = (e) => {
@@ -183,14 +183,14 @@ useEffect(() => {
               <span>Regresar</span>
             </div>
             <div className="profile">
-              {Chatuser.sender ? (
+              {Receptor.iduser ? (
                 <>
                   <div className="profile-picture">
-                    <img src={`${URL.USERS_DB}/${Chatuser.sender}/image`} />
+                    <img src={`${URL.USERS_DB}/${Receptor.iduser}/image`} />
                   </div>
                   <div className="profile-info">
                     <span className="name">
-                      {Chatuser.name} <i className="fas fa-circle"></i>
+                    {Receptor.firstName} {Receptor.lastName} <i className="fas fa-circle"></i>
                     </span>
                     <span className="user-status">Activo ahora</span>
                   </div>
