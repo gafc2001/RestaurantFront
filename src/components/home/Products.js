@@ -99,7 +99,14 @@ export const Products = () => {
   return (
     <>
       <Sidebar />
-      <div className="parent">
+      <div className="btn btn-primary btn-cart" onClick={onBtnCartClick}>
+          <span className="total-cart center">{totalquantity}</span>
+          <i className="fas fa-shopping-cart"></i>
+      </div>
+      <div className="parent home">
+        
+
+        {/* Column 1 */}
         <div className="column-1 content f-column">
           <Header filtCategory={filtCategory} removeCategory={removeCategory} />
           <main className="menu">
@@ -117,34 +124,30 @@ export const Products = () => {
 
               {onecategory
                 ? onecategory &&
-                  onecategory.map((product) => (
-                    <Product
-                      key={product.idProduct}
-                      data={product}
-                      addToCart={addToCart}
-                    />
-                  ))
+                onecategory.map((product) => (
+                  <Product
+                    key={product.idProduct}
+                    data={product}
+                    addToCart={addToCart}
+                  />
+                ))
                 : db &&
-                  db.map((product) => (
-                    <Product
-                      key={product.idProduct}
-                      data={product}
-                      addToCart={addToCart}
-                    />
-                  ))}
+                db.map((product) => (
+                  <Product
+                    key={product.idProduct}
+                    data={product}
+                    addToCart={addToCart}
+                  />
+                ))}
             </div>
           </main>
         </div>
+        {/* Column 2 */}
         <div
-          className={`column-2 bg-primary products ${
-            toggleCart ? "toggleOrderLeft" : "toggleOrderRight"
-          } ${togglePayment ? "togglePaymentRight" : ""}`}
+          className={`column-2 bg-primary products 
+            ${toggleCart ? "toggleOrderLeft" : "toggleOrderRight"}
+            ${togglePayment ? "togglePaymentRight" : ""}`}
         >
-          <div className="btn btn-primary btn-cart" onClick={onBtnCartClick}>
-            <span className="total-cart center">{totalquantity}</span>
-            <i className="fas fa-shopping-cart"></i>
-            <p>Mi carrito</p>
-          </div>
           <div className="order-container">
             <div className="return" onClick={onBtnCartClick}>
               <svg
@@ -212,9 +215,8 @@ export const Products = () => {
                   <h3>Metodos de pagos</h3>
                   <ul className="list-payment-methods">
                     <li
-                      className={`payment-method ${
-                        activeClassPayment[Payment] === 15 ? "active" : ""
-                      }`}
+                      className={`payment-method ${activeClassPayment[Payment] === 15 ? "active" : ""
+                        }`}
                       onClick={() => {
                         setPayment("TARGETA");
                       }}
@@ -236,9 +238,8 @@ export const Products = () => {
                       <span>Tarjeta</span>
                     </li>
                     <li
-                      className={`payment-method ${
-                        activeClassPayment[Payment] === 5 ? "active" : ""
-                      }`}
+                      className={`payment-method ${activeClassPayment[Payment] === 5 ? "active" : ""
+                        }`}
                       onClick={() => {
                         setPayment("PAYPAL");
                       }}
@@ -294,13 +295,8 @@ export const Products = () => {
               >
                 Cancelar
               </button>
-              <Link to="/notifications">
-              <button
-                type="button"
-                className="btn btn-secondary"
-              >
-                Ver mis pedidos
-              </button>
+              <Link to="/notifications" className="btn btn-secondary">
+                  Mis pedidos
               </Link>
             </div>
           </div>
