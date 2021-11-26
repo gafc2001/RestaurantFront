@@ -7,7 +7,6 @@ import { RegisterUser } from "../components/Login/RegisterUser";
 
 import { PrivateRoute } from './helperRoutes';
 import { Dashboard } from '../components/Dashboard/Dashboard';
-import Error from '../components/Error';
 import { Products } from '../components/home/Products';
 import Message from '../components/Message';
 import { isAuthenticated } from "../auth/authentications";
@@ -37,7 +36,6 @@ const Routes = () => {
       }
       <PrivateRoute path="/maindashboard" component={MainDashboard} />
       <PrivateRoute path="/profile" component={Profile} />
-      <Route exact path="/404" component={Error} />
       <Route
         path="*"
         render={() => {

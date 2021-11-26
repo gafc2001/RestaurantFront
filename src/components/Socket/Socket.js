@@ -1,2 +1,5 @@
-let ws = new WebSocket('ws://restaurantrestapi.herokuapp.com/chat');
+
+
+import {URL} from "../../api/apiDB"
+let ws = new WebSocket(`ws:${URL.SOCKET}/chat`);
 export {ws};
