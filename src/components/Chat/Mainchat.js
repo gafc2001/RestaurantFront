@@ -4,6 +4,7 @@ import { ws } from "../Socket/Socket";
 import "./chat.css";
 import { URL } from "../../api/apiDB";
 import {helpHttp} from "../helpers/helpHttp"
+import image from "../../assets/images/chat.png";
 let initialChatUser = {
   sender: null,
   name: "",
@@ -101,7 +102,7 @@ useEffect(() => {
       <div className="container-chat">
         <div className={`col-1-chat ${toggleChat ? "active" : ""}`}>
           <header className="header-chat">
-            <h1><i class="fas fa-users"></i> Chat Delibakery</h1>
+            <h1><i className="fas fa-users"></i> Chat Delibakery</h1>
           </header>
           <aside className="side-chat">
               {Emisor.iduser&&<>
@@ -194,14 +195,19 @@ useEffect(() => {
                   </div>
                 </>
               ) : (
-                <h1><i class="fas fa-comments"></i> No hay mensajes</h1>
+                <h1><i className="fas fa-comments"></i> No hay mensajes</h1>
               )}
             </div>
           </header>
           <main className="content-chat">
             <div className="list-messages">
-              {/* Messages */}
 
+              <div className="center f-column message-empty">
+                <img src={image} alt="chat" width="200"/>
+                <p className="text">Comienzar a chatear</p>
+              </div>
+              {/* Messages */}
+              
               {listMessages.map((e, i) => (
                 <div
                   key={i}
@@ -223,6 +229,7 @@ useEffect(() => {
                   </div>
                 </div>
               ))}
+
             </div>
             <div className="input-message">
               <span className="emoji">
