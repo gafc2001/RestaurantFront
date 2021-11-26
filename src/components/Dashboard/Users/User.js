@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import { helpHttp } from "../../helpers/helpHttp";
 import { URL } from "../../../api/apiDB";
 import Moment from "react-moment";
+///sweetalert
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const initialCombo = {
   role: "",
@@ -12,7 +17,6 @@ export const User = () => {
   const [response, setResponse] = useState(false);
   const [TableUser, setTableUser] = useState([]);
   const [Busqueda, setBusqueda] = useState("");
-
 
   useEffect(() => {
     const getDataUsers = async () => {
@@ -43,7 +47,7 @@ export const User = () => {
           .toString()
           .toLowerCase()
           .includes(terminoBusqueda.toLowerCase()) ||
-          el.roles[0].nameRole
+        el.roles[0].nameRole
           .toString()
           .toLowerCase()
           .includes(terminoBusqueda.toLowerCase())
@@ -61,7 +65,8 @@ export const User = () => {
 
   const submitRol = (idUser) => {
     if (!combo.role) {
-      alert("no ha seleccionado ningun rol");
+      // alert("no ha seleccionado ningun rol");
+      MySwal.fire("Good job!", "You clicked the button!", "success");
       return;
     }
     let options = {
@@ -75,7 +80,8 @@ export const User = () => {
       .post(`${URL.USERS_ROLES}/${idUser}`, options)
       .then((res) => {
         if (!res.err) {
-          alert("rol cambiado");
+          // alert("rol cambiado");
+          MySwal.fire("Good job!", "You clicked the button!", "success");
           setResponse(!response);
         }
       });
@@ -133,7 +139,7 @@ export const User = () => {
           </thead>
           <tbody className="tbody">
             {db.map((el) => (
-              <tr key={el.idUser} >
+              <tr key={el.idUser}>
                 <td>{el.username}</td>
                 <td>{el.email}</td>
                 {el.roles[0].nameRole === "ROLE_ADMIN" ? (
@@ -150,7 +156,7 @@ export const User = () => {
                       className="table select-form center"
                       onChange={handleChangeSelect}
                     >
-                      <option value="" selected={`${response ? true : false}`} >
+                      <option value="" selected={`${response ? true : false}`}>
                         Seleccione
                       </option>
                       <option value="admin">ADMIN</option>
@@ -159,7 +165,12 @@ export const User = () => {
                   </div>
                 </td>
                 <td>
-                  <div className="edit-role center" onClick={() => submitRol(el.idUser)}><i className="fas fa-edit"></i></div>
+                  <div
+                    className="edit-role center"
+                    onClick={() => submitRol(el.idUser)}
+                  >
+                    <i className="fas fa-edit"></i>
+                  </div>
                 </td>
               </tr>
             ))}

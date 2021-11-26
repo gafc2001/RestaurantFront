@@ -1,7 +1,6 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { URL } from "../../../api/apiDB";
 import { helpHttp } from "../../helpers/helpHttp";
-
 //para stripe
 import {
   useStripe,
@@ -10,6 +9,10 @@ import {
   CardExpiryElement,
   CardCvcElement,
 } from "@stripe/react-stripe-js";
+///sweetalert
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const useFormPayment = (
   initialForm,
@@ -20,22 +23,21 @@ const useFormPayment = (
   idPayment,
   purchase_units
 ) => {
-
-
   useEffect(() => {
     setForm(initialForm);
-    setErrors({})
-    setCheckout(false)
+    setErrors({});
+    setCheckout(false);
     return () => {
-      clearTimeout()
-    }
-  }, [Payment])
+      clearTimeout();
+    };
+  }, [Payment]);
 
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const [checkout, setCheckout] = useState(false);
+
   // hook stripe
   const stripe = useStripe();
   const elements = useElements();
@@ -48,13 +50,14 @@ const useFormPayment = (
 
   const onApprove = async (data, actions) => {
     const order = await actions.order.capture();
-    console.log(order)
+    console.log(order);
     orderSubmit();
     setCheckout(false);
   };
 
   const onError = (err) => {
-    alert("Carrito vacio");
+    // alert("Carrito vacio");
+    MySwal.fire("Good job!", "You clicked the button!", "success");
     setCheckout(false);
   };
   const orderSubmit = () => {
@@ -85,7 +88,8 @@ const useFormPayment = (
           setLoading(false);
           setResponse("ex4");
           setTimeout(() => setResponse(null), 5000);
-          alert("El pago fue realizado con éxito");
+          // alert("El pago fue realizado con éxito");
+          MySwal.fire("Good job!", "You clicked the button!", "success");
           setForm(initialForm);
           return;
         }
@@ -168,7 +172,7 @@ const useFormPayment = (
           },
         })
         .then((res) => {
-          console.log(res)
+          console.log(res);
           if (res.firstName) {
             if (Payment === "TARGETA") {
               cardPayment();
@@ -178,7 +182,12 @@ const useFormPayment = (
                 setTimeout(() => setCheckout(true), 3000);
                 return;
               }
-              alert("Carrito Vacio");
+              // alert("Carrito Vacio");
+              MySwal.fire(
+                'Good job!',
+                'You clicked the button!',
+                'success'
+              )
             } else {
               console.log("No ha seleccionado un tipo de pago");
             }

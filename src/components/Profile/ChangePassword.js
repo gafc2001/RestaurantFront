@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { URL } from "../../api/apiDB";
 import { Message } from "../Dashboard/Message";
 import { helpHttp } from "../helpers/helpHttp";
+///sweetalert
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
+
 const initialForm = {
   oldPassword: "",
   newPassword: "",
@@ -10,8 +15,8 @@ const initialForm = {
 
 const ChangePassword = () => {
   const [form, setForm] = useState(initialForm);
-  const [message, setMessage] = useState(false)
-  const [error, setError] = useState(false)
+  const [message, setMessage] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,9 +29,10 @@ const ChangePassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(form.newPassword!==form.passwordConfirmation){
-      alert("los contraseñas no coinciden iguales")
-      return
+    if (form.newPassword !== form.passwordConfirmation) {
+      // alert("los contraseñas no coinciden iguales");
+      MySwal.fire("Good job!", "You clicked the button!", "success");
+      return;
     }
     helpHttp()
       .post(`${URL.PASSWORD_CHANGE}/${sessionStorage.getItem("id")}/password`, {
@@ -37,20 +43,22 @@ const ChangePassword = () => {
         },
       })
       .then((res) => {
-        if(res.message){
-          setMessage(true)
+        if (res.message) {
+          setMessage(true);
           setTimeout(() => setMessage(false), 5000);
-          return
-        }else{
-          setError(true)
+          return;
+        } else {
+          setError(true);
           setTimeout(() => setError(false), 5000);
         }
       });
   };
   return (
     <form className="profile-details section" onSubmit={handleSubmit}>
-      {message&&<Message msg="la contraseña ha sido cambiada" bgColor="#198754" />}
-      {error&&<Message msg="La contraseña es incorrecta" bgColor="#dc3545" />}
+      {message && (
+        <Message msg="la contraseña ha sido cambiada" bgColor="#198754" />
+      )}
+      {error && <Message msg="La contraseña es incorrecta" bgColor="#dc3545" />}
       <div className="form-group">
         <h4>Ingrese su contraseña </h4>
         <div className="input-container">

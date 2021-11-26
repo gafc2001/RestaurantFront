@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { URL } from "../../api/apiDB";
-import {helpHttp} from "../helpers/helpHttp"
+import { helpHttp } from "../helpers/helpHttp";
+
+///sweetalert
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 export const useForm = (initialForm, validateForm) => {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
@@ -27,28 +32,30 @@ export const useForm = (initialForm, validateForm) => {
     setErrors(validateForm(form));
 
     if (Object.keys(errors).length === 0) {
-      alert("Enviando Registro");
+      // alert("Enviando Registro");
+
+      MySwal.fire("Good job!", "You clicked the button!", "success");
       setLoading(true);
-        helpHttp()
-          .post(URL.SIGNUP_AUTH, {
-            body: form,
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-          })
-          .then((res) => {
-            if (res.message === "User registered successfully!") {
-              setLoading(false);
-              setResponse(true);
-              setForm(initialForm);
-              setError(false)
-              setTimeout(() => setResponse(false), 5000);
-            } else {
-                setError(true)
-                setLoading(false);
-            }
-          });
+      helpHttp()
+        .post(URL.SIGNUP_AUTH, {
+          body: form,
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        })
+        .then((res) => {
+          if (res.message === "User registered successfully!") {
+            setLoading(false);
+            setResponse(true);
+            setForm(initialForm);
+            setError(false);
+            setTimeout(() => setResponse(false), 5000);
+          } else {
+            setError(true);
+            setLoading(false);
+          }
+        });
     } else {
       return;
     }

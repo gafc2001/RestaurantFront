@@ -5,6 +5,10 @@ import "./../../../assets/css/form.css";
 import { Message } from "../Message";
 //URL DELYBAKERY
 import { URL } from "../../../api/apiDB";
+///sweetalert
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const initialForm = {
   idProduct: null,
@@ -21,7 +25,7 @@ export const ModalForm = ({
   updateData,
   dataToEdit,
   setDataToEdit,
-  closeModal
+  closeModal,
 }) => {
   const [db2, setDb2] = useState(null);
   const [Error, setError] = useState(null);
@@ -44,7 +48,6 @@ export const ModalForm = ({
 
   useEffect(() => {
     if (dataToEdit) {
-  
       setform(dataToEdit);
     } else {
       setform(initialForm);
@@ -77,14 +80,16 @@ export const ModalForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form)
+    console.log(form);
     if (
       !form.nameProduct ||
       !form.priceProduct ||
       !form.description ||
       form.category.idCategory === ""
     ) {
-      alert("datos incompletos");
+      // alert("datos incompletos");
+
+      MySwal.fire("Good job!", "You clicked the button!", "success");
 
       return;
     }
@@ -127,7 +132,9 @@ export const ModalForm = ({
         <header className="settings-info">
           <h2 className="page-name">{dataToEdit ? "Editar" : "Agregar"}</h2>
           <div onClick={closeModal} className="">
-            <h2 className="page-name"><i className="far fa-times-circle"></i></h2>
+            <h2 className="page-name">
+              <i className="far fa-times-circle"></i>
+            </h2>
           </div>
         </header>
       </div>
@@ -158,7 +165,7 @@ export const ModalForm = ({
             />
           </div>
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="desct">Descripción</label>
           <div className="input-container">
@@ -173,45 +180,50 @@ export const ModalForm = ({
           </div>
         </div>
         <div className="select-container">
-        {db2 && (
-          <select value={form.category.idCategory} onChange={selectChange} className="select-form">
-            <option value="">Seleccione</option>
-            {db2 &&
-              db2.map((Elemento) => (
-                <option key={Elemento.idCategory} value={Elemento.idCategory}>
-                  {Elemento.nameCategory}
-                </option>
-              ))}
-          </select>
-        )}
+          {db2 && (
+            <select
+              value={form.category.idCategory}
+              onChange={selectChange}
+              className="select-form"
+            >
+              <option value="">Seleccione</option>
+              {db2 &&
+                db2.map((Elemento) => (
+                  <option key={Elemento.idCategory} value={Elemento.idCategory}>
+                    {Elemento.nameCategory}
+                  </option>
+                ))}
+            </select>
+          )}
         </div>
-        <div className="form-group " >
+        <div className="form-group ">
           <label htmlFor="avariable">Disponibilidad:</label>
           <div>
-          <input
-            type="radio"
-            name="avariable"
-            checked={form.availableProduct===true}
-            onChange={handleAvariable}
-            value="avariable"
-          
-          />
-          <label htmlFor="sold out">Disponible</label>
+            <input
+              type="radio"
+              name="avariable"
+              checked={form.availableProduct === true}
+              onChange={handleAvariable}
+              value="avariable"
+            />
+            <label htmlFor="sold out">Disponible</label>
           </div>
           <div>
-          <input
-            type="radio"
-            name="sold out"
-            checked={form.availableProduct===false}
-            onChange={handleAvariable}
-            value="sold out"
-          />
-          <label htmlFor="avariable">Agotado</label>
+            <input
+              type="radio"
+              name="sold out"
+              checked={form.availableProduct === false}
+              onChange={handleAvariable}
+              value="sold out"
+            />
+            <label htmlFor="avariable">Agotado</label>
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="file"  className="file-content"><i className="fas fa-upload file-icon"></i> Choose a file...
-          <input type="file" name="file0" id="file" onChange={fileChange} /></label>
+          <label htmlFor="file" className="file-content">
+            <i className="fas fa-upload file-icon"></i> Choose a file...
+            <input type="file" name="file0" id="file" onChange={fileChange} />
+          </label>
         </div>
         <div className="btn-container">
           <button className="btn btn-primary" value="Enviar" type="submit">

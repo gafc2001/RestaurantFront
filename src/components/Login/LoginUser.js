@@ -16,6 +16,11 @@ import logoWhite from "./../../assets/images/logo-white.png";
 import backgroundImg from "../../assets/images/background.jpg";
 import Sidebar from "../sidebar/Sidebar";
 
+///sweetalert
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
+
 const initialForm = {
   username: "",
   password: "",
@@ -37,35 +42,40 @@ export const LoginUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.username || !form.password) {
-      alert("datos incompletos");
+      // alert("datos incompletos");
+      MySwal.fire(
+        'Good job!',
+        'You clicked the button!',
+        'success'
+      )
       return;
     } else {
       setLoading(true);
       helpHttp()
-      .post(URL.SIGNIN_AUTH, {
-        body: form,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-      .then((res) => {
-        if (res.username) {
-          sessionStorage.setItem("id", res.id);
-          sessionStorage.setItem("email", res.email);
-          sessionStorage.setItem("username", res.username);
-          sessionStorage.setItem("token", res.accessToken);
-          sessionStorage.setItem("role", res.roles);
-          setError(false);
-          setTimeout(() =>  setLoading(false), 3000);
-          setTimeout(() =>   setUser(res) , 3500);
-          return
-        } else {
-          setLoading(false)
-          setError(true);
-          setTimeout(() =>   setError(false) , 3500);
-        }
-      });
+        .post(URL.SIGNIN_AUTH, {
+          body: form,
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        })
+        .then((res) => {
+          if (res.username) {
+            sessionStorage.setItem("id", res.id);
+            sessionStorage.setItem("email", res.email);
+            sessionStorage.setItem("username", res.username);
+            sessionStorage.setItem("token", res.accessToken);
+            sessionStorage.setItem("role", res.roles);
+            setError(false);
+            setTimeout(() => setLoading(false), 3000);
+            setTimeout(() => setUser(res), 3500);
+            return;
+          } else {
+            setLoading(false);
+            setError(true);
+            setTimeout(() => setError(false), 3500);
+          }
+        });
     }
   };
   return (

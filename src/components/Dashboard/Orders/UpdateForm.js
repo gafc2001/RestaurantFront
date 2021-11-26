@@ -8,6 +8,11 @@ import { URL } from "../../../api/apiDB";
 import { helpHttp } from "../../helpers/helpHttp";
 import OrderTableRowOrder from "../../detailsOrders/OrderTableRow";
 
+///sweetalert
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
+
 const initialForm = {
   idOrder: null,
   statusOrder: "",
@@ -44,7 +49,9 @@ const UpdateForm = ({ updateOrder, dataToEdit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.statusOrder || !form.idOrder) {
-      alert("datos incompletos");
+      // alert("datos incompletos");
+
+      MySwal.fire("Good job!", "You clicked the button!", "success");
       return;
     }
     switch (form.statusOrder) {
@@ -76,7 +83,9 @@ const UpdateForm = ({ updateOrder, dataToEdit }) => {
         handleReset();
         break;
       case "COMPLETADO":
-        alert("Este pedido a sido finalizado");
+        // alert("Este pedido a sido finalizado");
+
+        MySwal.fire("Good job!", "You clicked the button!", "success");
         handleReset();
         break;
       default:

@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { URL } from "../../api/apiDB";
 import { helpHttp } from "../helpers/helpHttp";
+///sweetalert
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
+
 export const useProfile = (initialForm, validateForm) => {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
@@ -8,13 +13,12 @@ export const useProfile = (initialForm, validateForm) => {
   const [Error, setError] = useState(false);
   const [checkout, setCheckout] = useState(false);
 
-
   useEffect(() => {
     helpHttp()
       .get(`${URL.USERS_DB}/${sessionStorage.getItem("id")}/profile`)
       .then((res) => {
-        if(!res.err){
-          setForm(res)
+        if (!res.err) {
+          setForm(res);
         }
       });
   }, [checkout]);
@@ -33,13 +37,14 @@ export const useProfile = (initialForm, validateForm) => {
     setErrors(validateForm(form));
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors(validateForm(form));
 
     if (Object.keys(errors).length === 0) {
-      alert("Enviando Cambios");
+      // ("Enviando Cambios");
+
+      MySwal.fire("Good job!", "You clicked the button!", "success");
       let dataClient = {
         firstName: form.firstName,
         lastName: form.lastName,
@@ -86,5 +91,3 @@ export const useProfile = (initialForm, validateForm) => {
     handleReset,
   };
 };
-
-

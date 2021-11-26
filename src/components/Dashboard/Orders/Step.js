@@ -2,7 +2,7 @@ import React from "react";
 
 const Step = ({selected,index,label}) => {
   const description= {
-    PENDIENTE:"Pedido pagado pendiente de preparacion",
+    PENDIENTE:"Pedido pagado",
     PREPARANDO:"Orden recibida y preparandose",
     ENVIANDO:"Pedido empaquetado  y  listo para enviar",
     COMPLETADO:"Orden finalizada y confirmada",
