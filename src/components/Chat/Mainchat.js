@@ -199,11 +199,11 @@ useEffect(() => {
           </header>
           <main className="content-chat">
             <div className="list-messages">
-
+              {!listMessages.length>0&&
               <div className="center f-column message-empty">
                 <img src={image} alt="chat" width="200"/>
                 <p className="text">Comienzar a chatear</p>
-              </div>
+              </div>}
               {/* Messages */}
               
               {listMessages.map((e, i) => (

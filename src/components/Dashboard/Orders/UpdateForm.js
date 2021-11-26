@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from "react";
 import "moment/locale/es";
 import Moment from "react-moment";
 import StepNavegation from "./StepNavegation";
@@ -6,6 +6,7 @@ import "./stepOrder.css";
 //para perfil
 import { URL } from "../../../api/apiDB";
 import { helpHttp } from "../../helpers/helpHttp";
+import OrderTableRowOrder from "../../detailsOrders/OrderTableRow";
 
 const initialForm = {
   idOrder: null,
@@ -14,28 +15,27 @@ const initialForm = {
 const initialProfile = {
   address: "",
   firstName: "",
-  idProfile:null,
-  lastName:"",
-  phoneNumber:"",
+  idProfile: null,
+  lastName: "",
+  phoneNumber: "",
 };
 
 const UpdateForm = ({ updateOrder, dataToEdit }) => {
   const [form, setform] = useState(initialForm);
-  const [profile, setProfile] = useState(initialProfile)
+  const [profile, setProfile] = useState(initialProfile);
 
   const labelArray = ["PENDIENTE", "PREPARANDO", "ENVIANDO", "COMPLETADO"];
 
   useEffect(() => {
     if (dataToEdit) {
       setform(dataToEdit);
-              helpHttp()
-            .get(`${URL.USERS_DB}/${dataToEdit.user.idUser}/profile`)
-            .then((res) => {
-              if(!res.err){
-                setProfile(res)
-                console.log(res)
-              }
-            });
+      helpHttp()
+        .get(`${URL.USERS_DB}/${dataToEdit.user.idUser}/profile`)
+        .then((res) => {
+          if (!res.err) {
+            setProfile(res);
+          }
+        });
     } else {
       setform(initialForm);
     }
@@ -93,17 +93,15 @@ const UpdateForm = ({ updateOrder, dataToEdit }) => {
         {form.idOrder ? (
           <div className="form-group">
             <label htmlFor="idOrder">NUMERO DE ORDEN: {form.idOrder}</label>
-            <label htmlFor="client">CLIENTE: {`${profile.firstName} ${profile.lastName}  `}</label>
+            <label htmlFor="client">
+              CLIENTE: {`${profile.firstName} ${profile.lastName}  `}
+            </label>
             <label htmlFor="statusOrder">
               ESTADO DEL PEDIDO: {form.statusOrder}
             </label>
-            <label htmlFor="date">
-              TELEFONO: {profile.phoneNumber}
-            </label>
+            <label htmlFor="date">TELEFONO: {profile.phoneNumber}</label>
 
-            <label htmlFor="date">
-              DIRECCION: {profile.address}
-            </label>
+            <label htmlFor="date">DIRECCION: {profile.address}</label>
 
             <label htmlFor="date">
               ULTIMA ACTUALIZACION: <Moment fromNow>{form.updateAt}</Moment>
@@ -114,6 +112,29 @@ const UpdateForm = ({ updateOrder, dataToEdit }) => {
                 labelArray={labelArray}
                 formStatus={form}
               ></StepNavegation>
+            </div>
+            <div className="product-container">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <td>Producto</td>
+                    <td>Precio</td>
+                    <td>Cantidad</td>
+                    <td>Categorias</td>
+                    <td>Total</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {dataToEdit &&
+                    dataToEdit.orderDetails.map((item) => (
+                      <OrderTableRowOrder
+                        key={item.product.idProduct}
+                        item={item.product}
+                        quantity={item.quantity}
+                      />
+                    ))}
+                </tbody>
+              </table>
             </div>
           </div>
         ) : (

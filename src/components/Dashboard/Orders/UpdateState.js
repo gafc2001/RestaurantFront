@@ -7,19 +7,46 @@ const UpdateState = () => {
   const [db, setDb] = useState([]);
   const [dataToEdit, setDataToEdit] = useState(null);
 
+  const [TableOrders, setTableOrders] = useState([]);
+  const [Busqueda, setBusqueda] = useState("");
+
   //controlar respuestas del servidor
   useEffect(() => {
+    const getDataProducts = async () => {
+      await
     helpHttp()
       .get(URL.ALL_ORDERS)
       .then((res) => {
         if (!res.err) {
           setDb(res);
-          //console.log(res)
+          setTableOrders(res);
         } else {
           setDb(null);
         }
-      });
+      })
+    }
+    getDataProducts();
   }, []);
+
+  const handleChange = (e) => {
+    setBusqueda(e.target.value);
+    filtrar(e.target.value);
+  };
+  const filtrar = (terminoBusqueda) => {
+    var resultado = TableOrders.filter((el) => {
+      if (
+        el.idOrder
+          .toString()
+          .toLowerCase()
+          .includes(terminoBusqueda.toLowerCase()) 
+      ) {
+        return el;
+      }
+    });
+    setDb(resultado);
+  };
+
+
 
   const updateOrder = (data) => {
     let endpoint = `${URL.ALL_ORDERS}/${data.idOrder}/status`;
@@ -34,7 +61,6 @@ const UpdateState = () => {
     helpHttp()
       .patch(endpoint, options)
       .then((res) => {
-        console.log(res)
         if (!res.err) {
           let newData = db.map((el) => (el.idOrder === res.idOrder ? res : el));
           setDb(newData);
@@ -66,7 +92,7 @@ const UpdateState = () => {
         </div>
       </header>
       <UpdateForm updateOrder={updateOrder} dataToEdit={dataToEdit} />
-      {db && <OrderTable setDataToEdit={setDataToEdit}  data={db} />}
+      {db && <OrderTable setDataToEdit={setDataToEdit}  data={db} handleChange={handleChange} Busqueda={Busqueda}/>}
     </>
   );
 };
