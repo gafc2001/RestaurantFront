@@ -55,7 +55,7 @@ const ChangePassword = () => {
         <h4>Ingrese su contraseña </h4>
         <div className="input-container">
           <div className="profile-icon center">
-            <i class="fas fa-lock"></i>
+            <i className="fas fa-lock"></i>
           </div>
           <input
             type="password"
@@ -73,7 +73,7 @@ const ChangePassword = () => {
         <h4>Ingresa su nueva contraseña</h4>
         <div className="input-container">
           <div className="profile-icon center">
-            <i class="fas fa-lock"></i>
+            <i className="fas fa-lock"></i>
           </div>
           <input
             type="password"
@@ -91,7 +91,7 @@ const ChangePassword = () => {
         <h4>Confirme su contraseña</h4>
         <div className="input-container">
           <div className="profile-icon center">
-            <i class="fas fa-lock"></i>
+            <i className="fas fa-lock"></i>
           </div>
           <input
             type="password"

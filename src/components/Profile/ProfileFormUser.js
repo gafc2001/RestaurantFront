@@ -212,7 +212,7 @@ export default ProfileFormUser;
 
 /* <div className="profile-item mb-1">
           <div className="profile-icon center">
-            <i class="fas fa-user"></i>
+            <i className="fas fa-user"></i>
           </div>
           <div className="profile-detail">
             <h4>Nombres</h4>
@@ -221,7 +221,7 @@ export default ProfileFormUser;
         </div>
         <div className="profile-item mb-1">
           <div className="profile-icon center">
-            <i class="fas fa-phone"></i>
+            <i className="fas fa-phone"></i>
           </div>
           <div className="profile-detail">
             <h4>Telefono</h4>
@@ -230,7 +230,7 @@ export default ProfileFormUser;
         </div>
         <div className="profile-item mb-1">
           <div className="profile-icon center">
-            <i class="fas fa-house-user"></i>
+            <i className="fas fa-house-user"></i>
           </div>
           <div className="profile-detail">
             <h4>Direccion</h4>

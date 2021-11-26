@@ -4,6 +4,7 @@ import { ws } from "../Socket/Socket";
 import "./chat.css";
 import { URL } from "../../api/apiDB";
 import {helpHttp} from "../helpers/helpHttp"
+import image from "../../assets/images/chat.png";
 let initialChatUser = {
   sender: null,
   name: "",
@@ -99,9 +100,7 @@ useEffect(() => {
       <div className="container-chat">
         <div className={`col-1-chat ${toggleChat ? "active" : ""}`}>
           <header className="header-chat">
-            <div className="input-container">
-              <input type="text" className="input" placeholder="Buscar" />
-            </div>
+            <h1><i className="fas fa-users"></i> Chat Delibakery</h1>
           </header>
           <aside className="side-chat">
               {Emisor.iduser&&<>
@@ -173,12 +172,12 @@ useEffect(() => {
                 <path
                   d="M8.5 16.5L4 12M4 12L8.5 7.5M4 12L20 12"
                   stroke="#3B5162"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
-              <span>Regresar</span>
+              <span>Regresar</span> 
             </div>
             <div className="profile">
               {Receptor.iduser ? (
@@ -194,14 +193,19 @@ useEffect(() => {
                   </div>
                 </>
               ) : (
-                <h1>no hay mensajes</h1>
+                <h1><i className="fas fa-comments"></i> No hay mensajes</h1>
               )}
             </div>
           </header>
           <main className="content-chat">
             <div className="list-messages">
-              {/* Messages */}
 
+              <div className="center f-column message-empty">
+                <img src={image} alt="chat" width="200"/>
+                <p className="text">Comienzar a chatear</p>
+              </div>
+              {/* Messages */}
+              
               {listMessages.map((e, i) => (
                 <div
                   key={i}
@@ -223,6 +227,7 @@ useEffect(() => {
                   </div>
                 </div>
               ))}
+
             </div>
             <div className="input-message">
               <span className="emoji">
