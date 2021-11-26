@@ -21,20 +21,35 @@ const Mainchat = () => {
   const [toggleChat, setToggleChat] = useState(false);
   const [Chatuser, setChatuser] = useState(initialChatUser);
   const [Receptor, setReceptor] = useState(initialReceptor);
+  const [Emisor, setEmisor] = useState(initialReceptor)
 
   useEffect(() => {
-    if( Chatuser.sender || Chatuser.sender != sessionStorage.getItem("id")){
+      console.log(Chatuser.sender)
+    if(Chatuser.sender != sessionStorage.getItem("id")){
         helpHttp()
         .get(`${URL.USERS_DB}/${Chatuser.sender}/profile`)
         .then((res) => {
           if(!res.err){
-              console.log(res)
             setReceptor({...Receptor,firstName:res.firstName,lastName:res.lastName,iduser:Chatuser.sender})
-            console.log(Receptor)
+
           }
         });
     }
 }, [Chatuser])
+
+
+useEffect(() => {
+      helpHttp()
+      .get(`${URL.USERS_DB}/${sessionStorage.getItem("id")}/profile`)
+      .then((res) => {
+        if(!res.err){
+            console.log(res)
+            setEmisor({...Emisor,firstName:res.firstName,lastName:res.lastName,iduser:sessionStorage.getItem("id")})
+        console.log(Emisor)
+        }
+        
+      });
+}, [])
 
 
   ws.onopen = (e) => {
@@ -91,6 +106,7 @@ const Mainchat = () => {
             </div>
           </header>
           <aside className="side-chat">
+              {Emisor.iduser&&<>
             <div
               className="contact-chat"
               onClick={() => {
@@ -99,13 +115,13 @@ const Mainchat = () => {
             >
               <div className="profile-picture chat-picture">
                 <img
-                  src={`${URL.USERS_DB}/${sessionStorage.getItem("id")}/image`} 
+                  src={`${URL.USERS_DB}/${Emisor.iduser}/image`} 
                   alt="profile-picture"
                 />
                 <p className="chat-status"></p>
               </div>
               <div className="chat-content">
-                <span className="chat-user">{sessionStorage.getItem("username")}</span>
+                <span className="chat-user">{Emisor.firstName} {Emisor.lastName}</span>
                 <p className="chat-message">
                   lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor
                   sit amet, consectetur adip
@@ -116,6 +132,7 @@ const Mainchat = () => {
                 <p className="chat-qty">5</p>
               </div>
             </div>
+            </>}
             {Receptor.iduser&&<>
             <div
               className="contact-chat"
