@@ -9,11 +9,18 @@ let initialChatUser = {
   name: "",
 };
 
+let initialReceptor = {
+    firstName: "",
+    lastName:"",
+    iduser:"",
+  };
+
 const Mainchat = () => {
   const [message, setMessage] = useState("");
   const [listMessages, setListMessages] = useState([]);
   const [toggleChat, setToggleChat] = useState(false);
   const [Chatuser, setChatuser] = useState(initialChatUser);
+  const [Receptor, setReceptor] = useState(initialReceptor);
 
   useEffect(() => {
     if( Chatuser.sender || Chatuser.sender != sessionStorage.getItem("id")){
@@ -22,6 +29,8 @@ const Mainchat = () => {
         .then((res) => {
           if(!res.err){
               console.log(res)
+            setReceptor({...Receptor,firstName:res.firstName,lastName:res.lastName,iduser:Chatuser.sender})
+            console.log(Receptor)
           }
         });
     }
@@ -107,21 +116,23 @@ const Mainchat = () => {
                 <p className="chat-qty">5</p>
               </div>
             </div>
+            {Receptor.iduser&&<>
             <div
               className="contact-chat"
               onClick={() => {
                 openChat();
               }}
             >
+                
               <div className="profile-picture chat-picture">
                 <img
-                  src={`${URL.USERS_DB}/${sessionStorage.getItem("id")}/image`} 
+                  src={`${URL.USERS_DB}/${Receptor.iduser}/image`} 
                   alt="profile-picture"
                 />
                 <p className="chat-status"></p>
               </div>
               <div className="chat-content">
-                <span className="chat-user">El Gato cuba</span>
+                <span className="chat-user">{Receptor.firstName} {Receptor.lastName}</span> 
                 <p className="chat-message">
                   lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor
                   sit amet, consectetur adip
@@ -131,7 +142,7 @@ const Mainchat = () => {
                 <p className="chat-time">Justo Ahora</p>
                 <p className="chat-qty">5</p>
               </div>
-            </div>
+            </div></>}
           </aside>
         </div>
         <div className={`col-2-chat ${toggleChat ? "active" : ""}`}>
