@@ -101,9 +101,7 @@ useEffect(() => {
       <div className="container-chat">
         <div className={`col-1-chat ${toggleChat ? "active" : ""}`}>
           <header className="header-chat">
-            <div className="input-container">
-              <input type="text" className="input" placeholder="Buscar" />
-            </div>
+            <h1><i class="fas fa-users"></i> Chat Delibakery</h1>
           </header>
           <aside className="side-chat">
               {Emisor.iduser&&<>
@@ -175,12 +173,12 @@ useEffect(() => {
                 <path
                   d="M8.5 16.5L4 12M4 12L8.5 7.5M4 12L20 12"
                   stroke="#3B5162"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
-              <span>Regresar</span>
+              <span>Regresar</span> 
             </div>
             <div className="profile">
               {Receptor.iduser ? (
@@ -196,7 +194,7 @@ useEffect(() => {
                   </div>
                 </>
               ) : (
-                <h1>no hay mensajes</h1>
+                <h1><i class="fas fa-comments"></i> No hay mensajes</h1>
               )}
             </div>
           </header>

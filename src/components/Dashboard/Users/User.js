@@ -159,7 +159,7 @@ export const User = () => {
                   </div>
                 </td>
                 <td>
-                  <div className="edit-role center" onClick={() => submitRol(el.idUser)}><i class="fas fa-edit"></i></div>
+                  <div className="edit-role center" onClick={() => submitRol(el.idUser)}><i className="fas fa-edit"></i></div>
                 </td>
               </tr>
             ))}
