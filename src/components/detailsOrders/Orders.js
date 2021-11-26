@@ -50,7 +50,7 @@ const Orders = () => {
               </div>
             </div>
           </header>
-          {Error && <Message msg={`Error a recargar`} bgColor="#dc3545" />}
+          {/* {Error && <Message msg={`Error a recargar`} bgColor="#dc3545" />} */}
           <div className="col-1 box-content">
             <div className="noti-container">
               <div className="noti-header">
