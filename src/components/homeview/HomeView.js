@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { helpHttp } from "../helpers/helpHttp";
+import { NavLink } from "react-router-dom";
 //URL DELIBAKERY
 import { URL } from "../../api/apiDB";
 import "./homeView.css";
@@ -102,7 +103,9 @@ const HomeView = () => {
                 experiencias únicas para fidelizar a nuestros clientes y hacer
                 más grande la familia Delibakery.
               </p>
+              <NavLink to="/home">
               <div className="boton boton-default">Conoce la carta</div>
+              </NavLink>
             </div>
             <Swiper
               effect={"coverflow"}
