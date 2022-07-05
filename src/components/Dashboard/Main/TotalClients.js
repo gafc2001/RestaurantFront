@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { helpHttp } from "../../helpers/helpHttp";
 //URL DELYBAKERY
 import { URL } from "../../../api/apiDB";
 const TotalClients = () => {
-  let initialDetails = { status: "", percentage: null, current: null };
+  
+  const initialDetails = useMemo(() => {
+    return { status: "", percentage: null, current: null }
+  },[]);
   const [UserDetails, setUserDetails] = useState(initialDetails);
   useEffect(() => {
     helpHttp()
@@ -15,7 +18,7 @@ const TotalClients = () => {
           setUserDetails(initialDetails);
         }
       });
-  }, []);
+  }, [initialDetails]);
 
   return (
     <section className="box-content total-summary-item">

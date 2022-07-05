@@ -31,7 +31,7 @@ const useFormPayment = (
     return () => {
       clearTimeout();
     };
-  }, [Payment]);
+  }, [Payment,initialForm]);
 
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});

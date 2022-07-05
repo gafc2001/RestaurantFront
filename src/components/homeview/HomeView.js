@@ -83,6 +83,7 @@ const HomeView = () => {
       ) {
         return el;
       }
+      return [];
     });
     setProducts(resultado);
   };

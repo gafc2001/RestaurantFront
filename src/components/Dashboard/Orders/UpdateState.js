@@ -42,6 +42,7 @@ const UpdateState = () => {
       ) {
         return el;
       }
+      return [];
     });
     setDb(resultado);
   };

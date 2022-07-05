@@ -86,7 +86,7 @@ const HeaderProfile = () => {
       </Modal>
       {!imgPreview && (
         <div className="profile-image-container">
-          <img src={`${URL.USERS_DB}/${sessionStorage.getItem("id")}/image`} />
+          <img src={`${URL.USERS_DB}/${sessionStorage.getItem("id")}/image`} alt="profile"/>
           <span className="edit center" onClick={() => setIsOpen(true)}>
             <svg
               width="24"

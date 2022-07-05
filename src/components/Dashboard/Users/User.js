@@ -54,6 +54,7 @@ export const User = () => {
       ) {
         return el;
       }
+      return [];
     });
     setDb(resultado);
   };

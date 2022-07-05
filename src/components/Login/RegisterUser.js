@@ -20,7 +20,7 @@ const initialForm = {
 
 const validationsForm = (form) => {
   let errors = {};
-  let regexName = /^[a-z0-9_\\_\ü]+$/;
+  let regexName = /^[a-z0-9_\\_]+$/;
   let regexNameLen = /^.{1,20}$/;
   let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
 

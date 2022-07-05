@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React from "react";
 import useFormPayment from "./useFormPayment";
 import { Message } from "../../Dashboard/Message";
 

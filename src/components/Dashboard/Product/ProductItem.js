@@ -66,7 +66,7 @@ export const ProductItem = ({
       </div>
       <button
         className="btn btn-primary center"
-        onClick={() => (openModal(), setDataToEdit(el))}
+        onClick={() => {openModal(); setDataToEdit(el)}}
       >
         <span>
           <svg

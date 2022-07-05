@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 import { helpHttp } from "../../helpers/helpHttp";
 //URL DELYBAKERY
 import { URL } from "../../../api/apiDB";
 
 const TotalPrice = () => {
-  let initialPrice = { status: "", percentage: null, current: null };
+  
+  const initialPrice = useMemo(()=> {
+    return { status: "", percentage: null, current: null }
+  },[]);
   const [totalPrice, settotalPrice] = useState(initialPrice);
 
   useEffect(() => {
@@ -18,7 +21,7 @@ const TotalPrice = () => {
           settotalPrice(initialPrice);
         }
       });
-  }, []);
+  }, [initialPrice]);
 
   return (
     <section className="box-content total-summary-item">

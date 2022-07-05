@@ -34,10 +34,10 @@ useEffect(() => {
         }
         
       });
-}, [])
+}, [Emisor])
 
 useEffect(() => {
-    if(Chatuser.sender != sessionStorage.getItem("id")){
+    if(Chatuser.sender !== sessionStorage.getItem("id")){
         helpHttp()
         .get(`${URL.USERS_DB}/${Chatuser.sender}/profile`)
         .then((res) => {
@@ -47,7 +47,7 @@ useEffect(() => {
           }
         });
     }
-}, [Chatuser])
+}, [Chatuser,Receptor])
 
 
 
@@ -58,7 +58,7 @@ useEffect(() => {
      
     const chatMesssage = JSON.parse(message.data);
    
-    if (chatMesssage.sender != sessionStorage.getItem("id")) {
+    if (chatMesssage.sender !== sessionStorage.getItem("id")) {
       setChatuser({
         ...Chatuser,
         sender: chatMesssage.sender,
@@ -113,7 +113,7 @@ useEffect(() => {
               <div className="profile-picture chat-picture">
                 <img
                   src={`${URL.USERS_DB}/${Emisor.iduser}/image`} 
-                  alt="profile-picture"
+                  alt="profile"
                 />
                 <p className="chat-status"></p>
               </div>
@@ -141,7 +141,7 @@ useEffect(() => {
               <div className="profile-picture chat-picture">
                 <img
                   src={`${URL.USERS_DB}/${Receptor.iduser}/image`} 
-                  alt="profile-picture"
+                  alt="profile"
                 />
                 <p className="chat-status"></p>
               </div>
@@ -183,7 +183,7 @@ useEffect(() => {
               {Receptor.iduser ? (
                 <>
                   <div className="profile-picture">
-                    <img src={`${URL.USERS_DB}/${Receptor.iduser}/image`} />
+                    <img src={`${URL.USERS_DB}/${Receptor.iduser}/image`} alt="profile"/>
                   </div>
                   <div className="profile-info">
                     <span className="name">
@@ -210,11 +210,11 @@ useEffect(() => {
                 <div
                   key={i}
                   className={`message ${
-                    e.sender == sessionStorage.getItem("id") ? "right" : "left"
+                    e.sender === sessionStorage.getItem("id") ? "right" : "left"
                   }`}
                 >
                   <div className="message-profile">
-                    <img src={`${URL.USERS_DB}/${e.sender}/image`} />
+                    <img src={`${URL.USERS_DB}/${e.sender}/image`} alt="user-profile"/>
                   </div>
                   <div className="messages">
                     <p className="message-text">

@@ -8,7 +8,6 @@ import { RegisterUser } from "../components/Login/RegisterUser";
 import { PrivateRoute } from './helperRoutes';
 import { Dashboard } from '../components/Dashboard/Dashboard';
 import { Products } from '../components/home/Products';
-import Message from '../components/Message';
 import { isAuthenticated } from "../auth/authentications";
 import HomeView from "../components/homeview/HomeView"
 import Orders from "../components/detailsOrders/Orders"

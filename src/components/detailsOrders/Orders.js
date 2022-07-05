@@ -3,14 +3,12 @@ import "./../../assets/css/notification.css";
 import { useEffect, useState } from "react";
 import { helpHttp } from "../helpers/helpHttp";
 import Order from "./Order";
-import { Message } from "../Dashboard/Message";
 //URL DELIBAKERY
 import { URL } from "../../api/apiDB";
 
 const Orders = () => {
   const [db, setDb] = useState([]);
   const [Newdb, setNewdb] = useState([]);
-  const [Error, setError] = useState(null);
 
 
   useEffect(() => {
@@ -20,9 +18,6 @@ const Orders = () => {
         if (res.length > 0) {
           setDb(res);
           setNewdb(res);
-          setError(null);
-        } else {
-          setError(res);
         }
       }
       

@@ -30,7 +30,7 @@ const OrderDetail = () => {
           setError(res);
         }
       });
-  }, []);
+  }, [idorder]);
   return (
     <>
       <Sidebar />

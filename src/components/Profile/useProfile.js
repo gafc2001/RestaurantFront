@@ -10,7 +10,6 @@ export const useProfile = (initialForm, validateForm) => {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [response, setResponse] = useState(false);
-  const [Error, setError] = useState(false);
   const [checkout, setCheckout] = useState(false);
 
   useEffect(() => {
@@ -80,7 +79,6 @@ export const useProfile = (initialForm, validateForm) => {
 
   return {
     form,
-    Error,
     errors,
     response,
     checkout,

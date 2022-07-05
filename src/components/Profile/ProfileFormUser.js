@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Message } from "../Dashboard/Message";
 import { useProfile } from "./useProfile";
 const initialForm = {
@@ -50,7 +50,6 @@ const ProfileFormUser = () => {
     form,
     errors,
     response,
-    Error,
     checkout,
     handleChange,
     handleBlur,

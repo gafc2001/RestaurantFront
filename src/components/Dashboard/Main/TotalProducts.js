@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 import { helpHttp } from "../../helpers/helpHttp";
 //URL DELYBAKERY
@@ -6,7 +6,9 @@ import { URL } from "../../../api/apiDB";
 
 const TotalProducts = () => {
 
-  let initialOrder = { status: "", percentage: null, current: null };
+  const initialOrder = useMemo(() => {
+    return { status: "", percentage: null, current: null };
+  },[]);
   const [OrderDetails, setOrderDetails] = useState(initialOrder);
 
   useEffect(() => {
@@ -19,7 +21,7 @@ const TotalProducts = () => {
           setOrderDetails(initialOrder);
         }
       });
-  }, []);
+  }, [initialOrder]);
   return (
     <section className="box-content total-summary-item">
   

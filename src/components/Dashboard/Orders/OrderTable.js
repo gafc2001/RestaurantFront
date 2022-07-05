@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import OrderTableRow from "./OrderTableRow";
 const OrderTable = ({ data, setDataToEdit, Busqueda, handleChange }) => {
   return (

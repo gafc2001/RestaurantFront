@@ -116,7 +116,7 @@ export function shoppingReducer(state, action) {
     }
     case TYPES.ADD_TO_PAY: {
         let suma=0
-        state.cart.map(el=>{ suma=suma+el.total})
+        state.cart.map(el=> suma=suma+el.total)
       return {
         ...state,subtotal:suma,
         purchase_units: {

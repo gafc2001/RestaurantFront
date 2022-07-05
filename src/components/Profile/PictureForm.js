@@ -12,7 +12,7 @@ const PictureForm = ({ imgPreview, HandleImagefile,ImageSubmit,setImgPreview,set
         <input type="file" name="file0" id="file" onChange={HandleImagefile} />
       </label>
       <div className="mb-1">
-        <img src={imgPreview} />
+        <img src={imgPreview} alt="preview"/>
       </div>
       <div className="btn-container">
         <div className="btn btn-primary"  onClick={()=>ImageSubmit()}>Aplicar cambios</div>
