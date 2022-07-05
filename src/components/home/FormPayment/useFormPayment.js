@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { URL } from "../../../api/apiDB";
 import { helpHttp } from "../../helpers/helpHttp";
+import { useHistory } from "react-router-dom";
 //para stripe
 import {
   useStripe,
@@ -37,6 +38,8 @@ const useFormPayment = (
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const [checkout, setCheckout] = useState(false);
+  const history = useHistory();
+
 
   // hook stripe
   const stripe = useStripe();
@@ -89,6 +92,7 @@ const useFormPayment = (
           setTimeout(() => setResponse(null), 5000);
           MySwal.fire("Pago realizado", "El pago fue realizado con éxito","success");
           setForm(initialForm);
+          history.push('/notifications');
           return;
         }
       });

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { URL } from "../../api/apiDB";
 import { helpHttp } from "../helpers/helpHttp";
-
+import { useHistory } from "react-router-dom";
 ///sweetalert
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -13,6 +13,7 @@ export const useForm = (initialForm, validateForm) => {
   const [response, setResponse] = useState(null);
   const [Error, setError] = useState(false);
 
+  const history = useHistory();
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -49,7 +50,9 @@ export const useForm = (initialForm, validateForm) => {
             setResponse(true);
             setForm(initialForm);
             setError(false);
+            history.push('/login');
             setTimeout(() => setResponse(false), 5000);
+            
           } else {
             setError(true);
             setLoading(false);
