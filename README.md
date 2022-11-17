@@ -1,7 +1,8 @@
 **Restaurant Project**
 
 Este proyecto necesita de la API Restaurante
-- Backend repositorio ➡ https://github.com/gafc2001/RestaurantApi
+<a href="https://restaurantapi.devgustavo.com/docs" target="_blank">https://restaurantapi.devgustavo.com/docs</a>
+- Backend repositorio ➡ <a href="https://github.com/gafc2001/RestaurantApi" target="_blank">https://github.com/gafc2001/RestaurantApi</a>
 - Backend url ➡ https://restaurantapi.devgustavo.com/docs
 
 Algunos screenshots del proyecto
