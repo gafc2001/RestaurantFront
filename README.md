@@ -1,4 +1,5 @@
-**Restaurant Project**
+# Restaurant Project
+El proyecto tiene como finalidad desarrollar un sistema web de pedidos de comida para las áreas de venta y administración, el cual podrá ser accedido a través de la Web con el objetivo de mejorar la gestión del restaurante.
 <br>
 ⭐ https://restaurant.devgustavo.com/
 <br>
